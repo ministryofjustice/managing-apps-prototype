@@ -1,0 +1,32 @@
+//
+// For guidance on how to add CSS and SCSS see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+
+// Add extra styles here
+
+$govuk-global-styles: true;
+$path: "/assets/images/";
+
+$moj-page-width: 1170px;
+$govuk-page-width: $moj-page-width;
+
+// Content Hub
+@import "content-hub";
+
+// App Masthead
+@import './components/app-masthead';
+
+// DPS styles
+@import "./dps/dps.scss";
+@import "./dps/dps-header-bar.scss";
+
+// Managing Apps
+@import "./dps/managing-apps.scss";
+@import "./dps/accessible-autocomplete.scss";
+
+// Admin screens
+@import "./dps/admin.scss"; 
+
+// Sandbox
+@import "sandbox.scss";
