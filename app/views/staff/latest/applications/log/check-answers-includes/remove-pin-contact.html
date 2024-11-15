@@ -9,7 +9,7 @@
       Full name
     </dt>
     <dd class="govuk-summary-list__value">
-      {{ data['contactName'] }}
+      {{ data['removeName'] }}
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -17,7 +17,13 @@
        Telephone number
     </dt>
     <dd class="govuk-summary-list__value">
-      {{ data['contactTel'] }}
+      {% if data['removeTel1'] %}
+      <p>{{ data['removeTel1'] }}</p>
+      {% endif %}
+
+      {% if data['removeTel2'] %}
+      <p>{{ data['removeTel2'] }}</p>
+      {% endif %}
     </dd>
   </div>
 

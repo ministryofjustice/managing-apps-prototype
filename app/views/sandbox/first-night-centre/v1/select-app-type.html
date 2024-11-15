@@ -1,0 +1,97 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Select application type" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+    <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+          <form class="form" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="chooseApp-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <span class="govuk-caption-xl">Log an application</span>
+            <h1 class="govuk-fieldset__heading">
+              {{pageName}}
+            </h1>
+          </legend>
+          <div id="chooseApp-hint" class="govuk-hint">
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_01" name="appType" type="radio" value="bh_01">
+            <label class="govuk-label govuk-radios__label" for="bh_01">
+              Add new social PIN phone contact
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_07" name="appType" type="radio" value="bh_07">
+            <label class="govuk-label govuk-radios__label" for="bh_07">
+              Add new legal PIN phone contact
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_02" name="appType" type="radio" value="bh_02">
+            <label class="govuk-label govuk-radios__label" for="bh_02">
+              Add emergency PIN phone credit
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_03" name="appType" type="radio" value="bh_03">
+            <label class="govuk-label govuk-radios__label" for="bh_03">
+              Remove PIN phone contact
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_04" name="appType" type="radio" value="bh_04">
+            <label class="govuk-label govuk-radios__label" for="bh_04">
+              Swap visiting orders (VOs) for PIN credit
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="bh_05" name="appType" type="radio" value="bh_05">
+            <label class="govuk-label govuk-radios__label" for="bh_05">
+              Supply list of PIN phone contacts
+            </label>
+          </div>
+
+          </div>
+        </fieldset>
+      </div>
+      <div class="moj-button-action">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+  </div> <!-- end main content  -->
+
+
+
+{% endblock %}

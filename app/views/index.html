@@ -33,7 +33,7 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
 
     <table class="govuk-table govuk-!-margin-top-5">
       <caption class="govuk-table__caption govuk-caption-xl">Prototypes</caption>
@@ -46,6 +46,7 @@
       </thead>
       <tbody class="govuk-table__body">
         {% include "./table-rows/latest.html" %}
+        {% include "./table-rows/v1-6.html" %}
         {% include "./table-rows/v1-5.html" %}
         {% include "./table-rows/v1-1.html" %}
         {% include "./table-rows/v1.html" %}
@@ -54,7 +55,32 @@
 
 
   </div>
+  <div class="govuk-grid-column-one-third">
 
+    <table class="govuk-table govuk-!-margin-top-5">
+      <caption class="govuk-table__caption govuk-caption-xl">Sandbox</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Description</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <!--  example -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="/sandbox/first-night-centre/v1/select-app-type" class="govuk-link govuk-link--no-visited-state" target="_blank">PIN apps / First night centre</a>
+          </td>
+          <td class="govuk-table__cell">
+            <p class="govuk-body">A test to split legal and social PIN apps and flag ones that come from first night centre.</p>
+          </td>
+        </tr>
+        <!--  end example -->
+      </tbody>
+    </table>
+
+
+  </div>
 
 </div>
 

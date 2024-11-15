@@ -22,13 +22,13 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
-      <span class="govuk-caption-xl">OMU applications</span>
+      <span class="govuk-caption-xl">Business Hub applications</span>
       <h1 class="govuk-heading-xl">
         {% if data['appType'] == "bh_02" %}
           Add emergency PIN phone credit
@@ -60,9 +60,6 @@
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" href="./comments.html">
               Comments
-              {% if data['newComment'] %}
-              <span id="notifications" class="moj-notification-badge">1</span>
-              {% endif %}
             </a>
           </li>
 

@@ -98,31 +98,6 @@
         <textarea class="govuk-textarea" id="forwardReasons" name="forwardReasons" rows="5"></textarea>
       </div>
 
-      <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"">Notify staff about this comment (optional)</legend>
-
-        <dl id="notify-list" class="govuk-summary-list">
-        </dl>
-
-        <div class="govuk-form-group">
-          <label for="my-autocomplete" class="govuk-label">Name</label>
-          <div class="notify-group">
-            <div id="my-autocomplete-wrapper">
-                <select id="my-autocomplete">
-                  <option value="" selected disabled hidden></option>
-                  {% for individual in data['staff'] %}
-                    <option value="{{ individual.name }} ({{ individual.dept }})">{{ individual.name }} ({{ individual.dept }})</option>
-                  {% endfor %}
-                </select>
-            </div>
-            <a id="addName" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Add
-            </a>
-          </div>
-
-        </div>
-      </fieldset>
-
       <div class="moj-button-action">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue

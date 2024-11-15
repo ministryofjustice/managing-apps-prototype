@@ -1,0 +1,84 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Add new PIN phone contact" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">{{pageName}}</span>
+      <h1 class="govuk-heading-xl">New PIN phone contact</h1>
+
+      <div class="govuk-width-container">
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+
+
+            <form class="form" action="{{homeurl}}applications/log/check-answers">
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label govuk-label--s" for="contactName">
+                Full name
+              </label>
+              <input class="govuk-input" id="contactName" name="contactName" type="text" value="{{ data['contactName'] }}">
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-9">
+              <label class="govuk-label govuk-label--s" for="companyName">
+                Company
+              </label>
+              <input class="govuk-input" id="companyName" name="companyName" type="text" value="{{ data['companyName'] }}">
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-bottom-9 govuk-!-margin-top-9">
+              <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
+                Telephone number
+              </label>
+              <div id="contactTel1-hint" class="govuk-hint">
+                Include area code or international code, if overseas.
+              </div>
+              <input class="govuk-input govuk-!-margin-bottom-5" id="contactTel1" name="contactTel1" type="text" value="{{ data['contactTel1'] }}">
+              <label class="govuk-label govuk-label--s" for="contactTel2">
+                Other telephone number
+              </label>
+              <input class="govuk-input" id="contactTel2" name="contactTel2" type="text" value="{{ data['contactTel2'] }}">
+
+            </div>
+
+            <div class="moj-button-action">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+{% endblock %}
+
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#address-picker')
+  })
+</script>
+
+{% endblock %}

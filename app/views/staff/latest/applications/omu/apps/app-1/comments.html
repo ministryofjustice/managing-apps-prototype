@@ -22,13 +22,13 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
-      <span class="govuk-caption-xl">OMU applications</span>
+      <span class="govuk-caption-xl">Business Hub applications</span>
       <h1 class="govuk-heading-xl">
         {% if data['appType'] == "bh_02" %}
           Add emergency PIN phone credit
@@ -60,9 +60,6 @@
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" aria-current="page"  href="./comments.html">
               Comments
-              {% if data['newComment'] %}
-              <span id="notifications" class="moj-notification-badge">1</span>
-              {% endif %}
             </a>
           </li>
 
@@ -84,6 +81,7 @@
       </nav>
 
       <h2 class="govuk-heading-m">Comments about this application</h2>
+      <p class="govuk-body">Only staff will see these comments</p>
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -145,8 +143,8 @@
               <div id="my-autocomplete-wrapper">
                   <select id="my-autocomplete">
                     <option value="" selected disabled hidden></option>
-                    {% for individual in data['staff'] %}
-                      <option value="{{ individual.name }} ({{ individual.dept }})">{{ individual.name }} ({{ individual.dept }})</option>
+                    {% for individual in data['prisonStaff'] %}
+                    <option value="{{ individual.last_name }}, {{ individual.first_name }} ({{ individual.job_title }})">{{ individual.last_name }}, {{ individual.first_name }} ({{ individual.job_title }})</option>
                     {% endfor %}
                   </select>
               </div>

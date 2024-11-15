@@ -1,0 +1,86 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Applications admin" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/v1-6/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <nav aria-label="breadcrumb">
+        <div class="govuk-breadcrumbs">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <h1 class="govuk-heading-xl">
+        Applications admin
+      </h1>
+      <p class="govuk-body-l">Use and adapt these admin tools to meet the needs of your establishment.</p>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+          <ul class="govuk-grid-row card-group" id="sortable">
+            <li class="govuk-grid-column-one-third card-group__item" id="tile_001">
+              <div class="card card--clickable card_dps" data-test="manage-groups">
+                <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link card__link govuk-link--no-visited-state" href="./groups/">
+                    Manage groups
+                  </a>
+                </h2>
+                <p class="govuk-body card__description">
+                  Add more recipient groups to the existing ones, as required. Add or remove staff from your groups.
+                </p>
+              </div>
+            </li>
+
+            <li class="govuk-grid-column-one-third card-group__item" id="tile_001">
+              <div class="card card--clickable card_dps" data-test="manage-applications">
+                <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link card__link govuk-link--no-visited-state" href="./applications/">
+                    Manage applications
+                  </a>
+                </h2>
+                <p class="govuk-body card__description">
+                  Add or remove application types as required and, when added, set their recipient groups.
+                </p>
+              </div>
+            </li>
+
+            <li class="govuk-grid-column-one-third card-group__item" id="tile_001">
+              <div class="card card--clickable card_dps" data-test="manage-users">
+                <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link card__link govuk-link--no-visited-state" href="./user-roles/">
+                    Manage users
+                  </a>
+                </h2>
+                <p class="govuk-body card__description">
+                  Change user permissions.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div> <!-- end main content  -->
+  </div>
+</div>
+
+
+{% endblock %}

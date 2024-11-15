@@ -60,14 +60,14 @@
             <h2 class="govuk-heading-m">New PIN phone contact</h2>
 
             <div class="govuk-form-group govuk-!-margin-bottom-5">
-              <label class="govuk-label govuk-label--s" for="event-name">
+              <label class="govuk-label govuk-label--s" for="contactName">
                 Full name
               </label>
               <input class="govuk-input" id="contactName" name="contactName" type="text" value="{{ data['contactName'] }}">
             </div>
 
             <div class="govuk-form-group govuk-!-margin-bottom-9">
-              <label class="govuk-label govuk-label--s" for="event-name">
+              <label class="govuk-label govuk-label--s" for="companyName">
                 Company
               </label>
               <input class="govuk-input" id="companyName" name="companyName" type="text" value="{{ data['companyName'] }}">
@@ -76,7 +76,7 @@
             <h2 class="govuk-heading-m">Address</h2>
 
             <div class="govuk-form-group address-lookup">
-              <label for="my-autocomplete" class="govuk-label  govuk-label--s">Find address</label>
+              <label for="address-picker" class="govuk-label  govuk-label--s">Find address</label>
               <div id="address-picker-hint" class="govuk-hint">
                 Type part of address or postcode to begin
               </div>
@@ -120,10 +120,10 @@
             </div>
 
             <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
-              <label class="govuk-label govuk-label--s" for="contactPostcode">
+              <label class="govuk-label govuk-label--s" for="contactCountry">
                 Country
               </label>
-              <select class="govuk-select" id="country" name="country">
+              <select class="govuk-select" id="contactCountry" name="country">
                 <option value="" selected disabled hidden></option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Ireland">Ireland</option>
@@ -139,14 +139,14 @@
 
 
             <div class="govuk-form-group govuk-!-margin-bottom-9 govuk-!-margin-top-9">
-              <label class="govuk-label govuk-label--s" for="contactTel">
+              <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
                 Telephone number
               </label>
-              <div id="contactTel-hint" class="govuk-hint">
+              <div id="contactTel1-hint" class="govuk-hint">
                 Include area code or international code, if overseas.
               </div>
               <input class="govuk-input govuk-!-margin-bottom-5" id="contactTel1" name="contactTel1" type="text" value="{{ data['contactTel1'] }}">
-              <label class="govuk-label govuk-label--s" for="contactTel1">
+              <label class="govuk-label govuk-label--s" for="contactTel2">
                 Other telephone number
               </label>
               <input class="govuk-input" id="contactTel2" name="contactTel2" type="text" value="{{ data['contactTel2'] }}">
@@ -161,14 +161,14 @@
             </div>
 
             <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset" role="group" aria-describedby="contact-dob-hint">
+              <fieldset class="govuk-fieldset" role="group">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                     Date of birth
                 </legend>
                 <div class="govuk-date-input" id="contact-dob">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="contact-dob">
+                      <label class="govuk-label govuk-date-input__label" for="contact-dob-day">
                         Day
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="contact-dob-day" name="contact-dob-day" type="text" inputmode="numeric" value="{{ data['contact-dob-day'] }}" >
@@ -187,7 +187,7 @@
                       <label class="govuk-label govuk-date-input__label" for="contact-dob-year">
                         Year
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="contactDOByear" name="contactDOByear" type="text" inputmode="numeric" value="{{ data['contactDOByear'] }}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="contact-dob-year" name="contact-dob-year" type="text" inputmode="numeric" value="{{ data['contactDOByear'] }}">
                     </div>
                   </div>
                 </div>

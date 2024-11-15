@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Swap visiting orders (VOs) for PIN credit" %}
+{% set pageName="Swap VOs for PIN credit" %}
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/latest/" %}
@@ -15,7 +15,7 @@
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
-      <span class="govuk-caption-xl">{{pageName}}</span>
+      <span class="govuk-caption-xl">Swap VOs for PIN credit</span>
       <h1 class="govuk-heading-xl">Log details</h1>
 
       <div class="govuk-width-container">
@@ -26,65 +26,20 @@
 
             <form class="form" action="{{homeurl}}applications/log/check-answers">
 
-              <div class="govuk-form-group govuk-!-margin-bottom-0">
-                <label class="govuk-label govuk-label--s" for="prisonNumber">
-                  Prison number
-                </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
-                <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                  Find prisoner
-                </a>
-              </div>
+              {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-              <div id="prisoner-name-row" class="govuk-form-group">
-                <label class="govuk-label govuk-label--s" for="prisonerName">
-                  Prisoner name
-                </label>
-                <input class="govuk-input" id="prisonerName" name="prisonerName" type="text" value="Taj Patel" disabled>
-              </div>
-
-              {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
-
-                {{ mojDatePicker({
-                id: "submittedDate",
-                name: "submittedDate",
+              {{ govukTextarea({
+                name: "vosDetail",
+                id: "vos-detail",
                 label: {
-                    text: "Submitted on",
-                    classes: "govuk-label--s"
+                  text: "Details (optional)",
+                  classes: "govuk-label--s"
                 },
-                value:  data['submittedDate'] ,
-                classes: "govuk-!-margin-bottom-5"
+                hint: {
+                  text: "Add a brief summary, for example, if this person is a Foreign National."
+                }
+
               }) }}
-
-            <h2 class="govuk-heading-m">Swap visiting orders (VOs) for PIN credit</h2>
-
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                  Select month
-                </legend>
-                <div class="govuk-radios" data-module="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="voMonth" name="voMonth" type="radio" value="September" {{ checked('voMonth','September') }}>
-                    <label class="govuk-label govuk-radios__label" for="voMonth">
-                      September
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="voMonth-2" name="voMonth" type="radio" value="October" {{ checked('voMonth','October') }}>
-                    <label class="govuk-label govuk-radios__label" for="voMonth-2">
-                      October
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="voMonth-3" name="voMonth" type="radio" value="November" {{ checked('voMonth','November') }}>
-                    <label class="govuk-label govuk-radios__label" for="voMonth-3">
-                      November
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
 
             <div class="moj-button-action">
               <button type="submit" class="govuk-button" data-module="govuk-button">

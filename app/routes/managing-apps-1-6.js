@@ -7,7 +7,7 @@ module.exports = function (router, content) {
     // Check whether the variable matches a condition
     if (appType == "bh_01") {
       // Send user to ineligible page
-      res.redirect('/staff/v1-6/applications/log/topup-pin-credit')
+      res.redirect('/staff/v1-6/applications/log/new-pin-contact')
     }
     if (appType == "bh_02") {
       // Send user to ineligible page
@@ -15,7 +15,7 @@ module.exports = function (router, content) {
     }
     if (appType == "bh_03") {
       // Send user to ineligible page
-      res.redirect('/staff/v1-6/applications/log/new-pin-contact')
+      res.redirect('/staff/v1-6/applications/log/topup-pin-credit')
     }
     if (appType == "bh_04") {
       // Send user to ineligible page

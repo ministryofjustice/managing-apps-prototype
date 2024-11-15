@@ -19,7 +19,7 @@
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <span class="govuk-caption-xl">
         {% if data['appType'] == "bh_01" %}
-          Add new PIN phone contact
+          Add new social PIN phone contact
         {% elseif data['appType'] == "bh_02" %}
           Add emergency PIN phone credit
         {% elseif data['appType'] == "bh_03" %}
@@ -30,6 +30,8 @@
           Swap visiting orders (VOs) for PIN credit
         {% elseif data['appType'] == "bh_06" %}
             Supply list of PIN phone contacts
+        {% elseif data['appType'] == "bh_07" %}
+            Add new legal PIN phone contact
         {% endif %}
         </span>
 
@@ -43,7 +45,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {% if data['appType'] == "bh_01" %}
-                Add new PIN phone contact
+              Add new social PIN phone contact
               {% elseif data['appType'] == "bh_02" %}
                 Add emergency PIN phone credit
               {% elseif data['appType'] == "bh_03" %}
@@ -54,6 +56,8 @@
                 Swap visiting orders (VOs) for PIN credit
               {% elseif data['appType'] == "bh_06" %}
                   Supply list of PIN phone contacts
+              {% elseif data['appType'] == "bh_07" %}
+                  Add new legal PIN phone contact
               {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
@@ -61,6 +65,8 @@
             </dd>
           </div>
         </dl>
+
+
 
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">Application details</h2>
@@ -84,10 +90,22 @@
               {{ data['submittedDate'] }}
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              First night centre
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['prisonerFNC'] }}
+            </dd>
+          </div>
         </dl>
 
         {% if data['appType'] == "bh_01" %}
-          {% include "./check-answers-includes/new-pin-contact.html" %}
+          {% include "./check-answers-includes/new-social-pin-contact.html" %}
+        {% endif %}
+
+        {% if data['appType'] == "bh_07" %}
+          {% include "./check-answers-includes/new-legal-pin-contact.html" %}
         {% endif %}
 
         {% if data['appType'] == "bh_02" %}
@@ -105,6 +123,11 @@
         {% if data['appType'] == "bh_05" %}
           {% include "./check-answers-includes/swap-vos-pin-credit.html" %}
         {% endif %}
+
+        {% if data['appType'] == "bh_06" %}
+          {% include "./check-answers-includes/supply-pin-list.html" %}
+        {% endif %}
+
 
         <div class="moj-button-action">
           <a href="./confirmation.html" class="govuk-button" data-module="govuk-button">

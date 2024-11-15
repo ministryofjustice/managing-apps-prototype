@@ -1,0 +1,127 @@
+<div class="govuk-form-group govuk-!-margin-bottom-5">
+  <label class="govuk-label govuk-label--s" for="contactName">
+    Full name
+  </label>
+  <input class="govuk-input" id="contactName" name="contactName" type="text" value="{{ data['contactName'] }}">
+</div>
+
+<h2 class="govuk-heading-m">Address</h2>
+
+<div class="govuk-form-group address-lookup">
+  <label for="address-picker" class="govuk-label  govuk-label--s">Find address</label>
+  <div id="address-picker-hint" class="govuk-hint">
+    Type part of address or postcode to begin
+  </div>
+    <div id="my-autocomplete-wrapper">
+        <select id="address-picker" class="govuk-select">
+          <option value="" selected disabled hidden></option>
+          {% for address in data['addresses'] %}
+            <option value="{{ address.id }}">{{ address.line_1 }}, {% if data['address.line_2'] %}{{ address.line_2 }}, {% endif %}{{ address.town }}, {{ address.postcode }}, {{ address.country }}</option>
+          {% endfor %}
+        </select>
+    </div>
+</div>
+
+
+<div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+  <label class="govuk-label govuk-label--s" for="contactAddress1">
+    Address line 1
+  </label>
+  <input class="govuk-input" id="contactAddress1" name="contactAddress1" type="text" value="{{ data['contactAddress1'] }}">
+</div>
+
+<div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+  <label class="govuk-label govuk-label--s" for="contactAddress2">
+    Address line 2
+  </label>
+  <input class="govuk-input" id="contactAddress2" name="contactAddress2" type="text" value="{{ data['contactAddress2'] }}">
+</div>
+
+<div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+  <label class="govuk-label govuk-label--s" for="contactTowncity">
+    Town or city
+  </label>
+  <input class="govuk-input" id="contactTowncity" name="contactTowncity" type="text" value="{{ data['contactTowncity'] }}">
+</div>
+
+<div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+  <label class="govuk-label govuk-label--s" for="contactPostcode">
+    Postcode
+  </label>
+  <input class="govuk-input govuk-input--width-10" id="contactPostcode" name="contactPostcode" type="text" value="{{ data['contactPostcode'] }}">
+</div>
+
+<div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+  <label class="govuk-label govuk-label--s" for="contactCountry">
+    Country
+  </label>
+  <select class="govuk-select" id="contactCountry" name="country">
+    <option value="" selected disabled hidden></option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="Ireland">Ireland</option>
+    <option disabled="">──────────</option>
+    {% for country in data['countries'] %}
+    <option value="{{ data['country'] }}">{{ country }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<a href="#" id="lookup-address" class="govuk-body govuk-link">Lookup address</a>
+<a href="#" id="enter-manually" class="govuk-body govuk-link">Enter address manually</a>
+
+
+<div class="govuk-form-group govuk-!-margin-bottom-9 govuk-!-margin-top-9">
+  <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
+    Telephone number
+  </label>
+  <div id="contactTel1-hint" class="govuk-hint">
+    Include area code or international code, if overseas.
+  </div>
+  <input class="govuk-input govuk-!-margin-bottom-5" id="contactTel1" name="contactTel1" type="text" value="{{ data['contactTel1'] }}">
+  <label class="govuk-label govuk-label--s" for="contactTel2">
+    Other telephone number
+  </label>
+  <input class="govuk-input" id="contactTel2" name="contactTel2" type="text" value="{{ data['contactTel2'] }}">
+
+</div>
+
+<div class="govuk-form-group govuk-!-margin-bottom-5">
+  <label class="govuk-label govuk-label--s" for="contactRelationship">
+    Relationship to prisoner
+  </label>
+  <input class="govuk-input" id="contactRelationship" name="contactRelationship" type="text" value="{{ data['contactRelationship'] }}">
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" role="group">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+        Date of birth
+    </legend>
+    <div class="govuk-date-input" id="contact-dob">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="contact-dob-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="contact-dob-day" name="contact-dob-day" type="text" inputmode="numeric" value="{{ data['contact-dob-day'] }}" >
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="contact-dob-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="contact-dob-month" name="contact-dob-month" type="text" inputmode="numeric" value="{{ data['contact-dob-month'] }}">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="contact-dob-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="contact-dob-year" name="contact-dob-year" type="text" inputmode="numeric" value="{{ data['contactDOByear'] }}">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>

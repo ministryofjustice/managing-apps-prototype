@@ -16,6 +16,8 @@ require('./routes/managing-apps-latest.js')(router);
 
 require('./routes/admin-latest.js')(router);
 
+require('./routes/sandbox.js')(router);
+
 
 //require('./views/'+version+'/routes/mainrouter.js')(router);
 module.exports = router;

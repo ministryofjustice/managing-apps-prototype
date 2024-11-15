@@ -31,30 +31,19 @@
 
 <div class="govuk-width-container">
 
-	{% if data['newApp'] == "true" %}
-	<div id="applicationsSuccess" class="moj-banner moj-banner--success" role="region" aria-label="Success">
-	  <svg class="moj-banner__icon" fill="currentColor" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
-	    <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z" />
-	  </svg>
-	  <div class="moj-banner__message">Application added.</div>
-	</div>
-	{% endif %}
+	{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
 
-
-	<div class="govuk-grid-row apps-header-search">
-		<div class="govuk-grid-column-two-thirds">
-
-			<div class="govuk-form-group">
-				<h1 class="govuk-label-wrapper">
-					<label class="govuk-label govuk-label--s" for="event-name">
-						Search by prisoner name or number
-					</label>
-				</h1>
-				<input class="govuk-input govuk-!-margin-bottom-0" id="event-name" name="eventName" type="text">
-			</div>
-
-		</div>
-	</div>
+	{{ mojSubNavigation({
+	  label: 'Sub navigation',
+	  items: [{
+	    text: 'Pending',
+	    href: './pending.html',
+	    active: true
+	  }, {
+	    text: 'Closed',
+	    href: './closed.html'
+	  }]
+	}) }}
 
 </div>
 
@@ -68,7 +57,7 @@
 
 			<div class="govuk-grid-column-two-thirds">
 
-				{% include "./includes/apps.html" %}
+				{% include "./includes/pending_apps.html" %}
 
 			</div>
 		</div>

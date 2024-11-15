@@ -20,6 +20,12 @@ let apps                     = require('./dps/app_types.json')
 let wings                    = require('./dps/wings.json')
 let bhApps                   = require('./dps/business_hub_apps.json')
 let pinApps                  = require('./dps/pin_apps.json')
+
+let bhPendingApps           = require('./dps/bh_pending_apps.json')
+let bhClosedApps            = require('./dps/bh_closed_apps.json')
+let omuPendingApps           = require('./dps/omu_pending_apps.json')
+let omuClosedApps            = require('./dps/omu_closed_apps.json')
+
 let addresses                = require('./dps/addresses.json')
 let prisonStaff              = require('./dps/staff_members.json')
 let countries                = require('./dps/countries.json')
@@ -32,6 +38,10 @@ module.exports = {
   wings,
   bhApps,
   pinApps,
+  bhPendingApps,
+  bhClosedApps,
+  omuPendingApps,
+  omuClosedApps,
   addresses,
   prisonStaff,
   countries

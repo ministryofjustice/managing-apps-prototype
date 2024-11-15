@@ -15,7 +15,7 @@
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
-      <span class="govuk-caption-xl">{{pageName}}</span>
+      <span class="govuk-caption-xl">Supply list of PIN phone contacts</span>
       <h1 class="govuk-heading-xl">Log details</h1>
 
       <div class="govuk-width-container">
@@ -26,36 +26,21 @@
 
             <form class="form" action="{{homeurl}}applications/log/check-answers">
 
+              {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-              <div class="govuk-form-group govuk-!-margin-bottom-0">
-                <label class="govuk-label govuk-label--s" for="prisonNumber">
-                  Prison number
-                </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
-                <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                  Find prisoner
-                </a>
-              </div>
-
-              <div id="prisoner-name-row" class="govuk-form-group">
-                <label class="govuk-label govuk-label--s" for="prisonerName">
-                  Prisoner name
-                </label>
-                <input class="govuk-input" id="prisonerName" name="prisonerName" type="text" value="Taj Patel" disabled>
-              </div>
-
-            {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
-
-              {{ mojDatePicker({
-              id: "submittedDate",
-              name: "submittedDate",
-              label: {
-                  text: "Submitted on",
+              {{ govukTextarea({
+                name: "printPINsDetail",
+                id: "print-pins-detail",
+                label: {
+                  text: "Details (optional)",
                   classes: "govuk-label--s"
-              },
-              value:  data['submittedDate'] ,
-              classes: "govuk-!-margin-bottom-5"
-            }) }}
+                },
+                hint: {
+                  text: "Add a brief summary."
+                }
+
+              }) }}
+
 
             <div class="moj-button-action">
               <button type="submit" class="govuk-button" data-module="govuk-button">

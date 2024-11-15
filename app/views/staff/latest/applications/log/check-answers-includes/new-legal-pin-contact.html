@@ -1,0 +1,44 @@
+<div class="govuk-summary-list--header">
+  <h2 class="govuk-heading-m">Add new legal PIN phone contact</h2>
+  <a href="" class="govuk-body">Change <span class="govuk-visually-hidden">legal PIN phone contact details</span></a>
+</div>
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      First name
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['legalFirstName'] }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Last name
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['legalLastName'] }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Company
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['companyName'] }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+       Telephone numbers
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if data['legalContactTel1'] %}
+      <p>{{ data['legalContactTel1'] }}</p>
+      {% elseif data['legalContactTel1'] %}
+      <p>{{ data['legalContactTel2'] }}</p>
+      {% endif %}
+    </dd>
+  </div>
+
+</dl>
