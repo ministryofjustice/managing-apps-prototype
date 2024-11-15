@@ -18,21 +18,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <span class="govuk-caption-xl">
-        {% if data['appType'] == "bh_01" %}
-          Add new social PIN phone contact
-        {% elseif data['appType'] == "bh_02" %}
-          Add emergency PIN phone credit
-        {% elseif data['appType'] == "bh_03" %}
-          Top up PIN phone credit
-        {% elseif data['appType'] == "bh_04" %}
-          Remove PIN phone contact
-        {% elseif data['appType'] == "bh_05" %}
-          Swap visiting orders (VOs) for PIN credit
-        {% elseif data['appType'] == "bh_06" %}
-            Supply list of PIN phone contacts
-        {% elseif data['appType'] == "bh_07" %}
-            Add new legal PIN phone contact
-        {% endif %}
+          {% include "/staff/latest/applications/includes/application-type.html" %}
         </span>
 
         <h1 class="govuk-heading-xl">{{pageName}}</h1>
@@ -44,21 +30,7 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['appType'] == "bh_01" %}
-              Add new social PIN phone contact
-              {% elseif data['appType'] == "bh_02" %}
-                Add emergency PIN phone credit
-              {% elseif data['appType'] == "bh_03" %}
-                Top up PIN phone credit
-              {% elseif data['appType'] == "bh_04" %}
-                Remove PIN phone contact
-              {% elseif data['appType'] == "bh_05" %}
-                Swap visiting orders (VOs) for PIN credit
-              {% elseif data['appType'] == "bh_06" %}
-                  Supply list of PIN phone contacts
-              {% elseif data['appType'] == "bh_07" %}
-                  Add new legal PIN phone contact
-              {% endif %}
+              {% include "/staff/latest/applications/includes/application-type.html" %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/staff/latest/applications/log/select-app-type.html" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
@@ -104,16 +76,12 @@
           {% include "./check-answers-includes/new-social-pin-contact.html" %}
         {% endif %}
 
-        {% if data['appType'] == "bh_07" %}
+        {% if data['appType'] == "bh_02" %}
           {% include "./check-answers-includes/new-legal-pin-contact.html" %}
         {% endif %}
 
-        {% if data['appType'] == "bh_02" %}
-          {% include "./check-answers-includes/emergency-pin-credit.html" %}
-        {% endif %}
-
         {% if data['appType'] == "bh_03" %}
-          {% include "./check-answers-includes/topup-pin-credit.html" %}
+          {% include "./check-answers-includes/emergency-pin-credit.html" %}
         {% endif %}
 
         {% if data['appType'] == "bh_04" %}

@@ -35,7 +35,8 @@
     <dd class="govuk-summary-list__value">
       {% if data['legalContactTel1'] %}
       <p>{{ data['legalContactTel1'] }}</p>
-      {% elseif data['legalContactTel1'] %}
+      {% endif %}
+      {% if data['legalContactTel2'] %}
       <p>{{ data['legalContactTel2'] }}</p>
       {% endif %}
     </dd>

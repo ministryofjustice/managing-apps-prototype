@@ -16,21 +16,7 @@
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
       <span class="govuk-caption-xl">
-        {% if data['appType'] == "bh_02" %}
-          Add emergency PIN phone credit
-        {% elseif data['appType'] == "bh_03" %}
-          Top up PIN phone credit
-        {% elseif data['appType'] == "bh_04" %}
-          Remove PIN phone contact
-        {% elseif data['appType'] == "bh_05" %}
-          Swap visiting orders (VOs) for PIN credit
-        {% elseif data['appType'] == "bh_06" %}
-          Supply list of PIN phone contacts
-        {% elseif data['appType'] == "bh_07" %}
-          Add new legal PIN phone contact
-        {% else %}
-          Add new social PIN phone contact
-        {% endif %}
+        {% include "/staff/latest/applications/includes/application-type.html" %}
       </span>
       <h1 class="govuk-heading-xl">Log prisoner details</h1>
 

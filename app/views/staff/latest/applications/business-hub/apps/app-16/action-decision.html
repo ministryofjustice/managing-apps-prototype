@@ -53,7 +53,7 @@
             </a>
           </li>
 
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
+          {% if data['actionRespond16'] == "approved" or data['actionRespond16'] == "declined"  %}
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" aria-current="page" href="./action-decision.html">Action and reply</a>
           </li>
@@ -80,11 +80,11 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['actionRespond'] === 'approved' %}
+                  {% if data['actionRespond16'] === 'approved' %}
                     <strong class="govuk-tag govuk-tag--green">
                       Approved
                     </strong>
-                  {% elseif data['actionRespond'] === 'declined' %}
+                  {% elseif data['actionRespond16'] === 'declined' %}
                     <strong class="govuk-tag govuk-tag--red">
                       Declined
                     </strong>
@@ -123,11 +123,11 @@
               </div>
             </dl>
             <div class="moj-button-action">
-              {% if data['actionRespond'] === 'approved' %}
+              {% if data['actionRespond16'] === 'approved' %}
               <a href="/public/pdfs/app16-approved.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>
-              {% elseif data['actionRespond'] === 'declined' %}
+              {% elseif data['actionRespond16'] === 'declined' %}
               <a href="/public/pdfs/app16-declined.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>

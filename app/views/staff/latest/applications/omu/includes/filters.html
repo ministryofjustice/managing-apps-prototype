@@ -42,14 +42,12 @@
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
 
             {% for app in data['apps'] %}
-            {% if app.appid != "bh_03" %}
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" >
                 <label class="govuk-label govuk-checkboxes__label" for="type">
                   {{ app.type }} ({{ app.amount }})
                 </label>
               </div>
-              {% endif %}
             {% endfor %}
 
           </div>

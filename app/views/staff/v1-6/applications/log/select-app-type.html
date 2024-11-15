@@ -39,7 +39,7 @@
               </label>
             </div>
 
-            {% for app in data['apps'] %}
+            {% for app in data['oldapps'] %}
             {% if (app.appid != "bh_03") and (app.appid != "bh_07") and (app.appid != "bh_01")%}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="{{ app.appid }}" name="appType" type="radio" value="{{ app.appid }}">

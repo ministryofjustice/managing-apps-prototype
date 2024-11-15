@@ -28,23 +28,9 @@
   			</div>
   		</nav>
 
-      <span class="govuk-caption-xl">Business Hub applications</span>
+      <span class="govuk-caption-xl">OMU applications</span>
       <h1 class="govuk-heading-xl">
-        {% if data['appType'] == "bh_02" %}
-          Add emergency PIN phone credit
-        {% elseif data['appType'] == "bh_03" %}
-          Top up PIN phone credit
-        {% elseif data['appType'] == "bh_04" %}
-          Remove PIN phone contact
-        {% elseif data['appType'] == "bh_05" %}
-          Swap visiting orders (VOs) for PIN credit
-        {% elseif data['appType'] == "bh_06" %}
-          Supply list of PIN phone contacts
-        {% elseif data['appType'] == "bh_07" %}
-          Add new legal PIN phone contact
-        {% else %}
-          Add new social PIN phone contact
-        {% endif %}
+        {% include "/staff/latest/applications/includes/application-type.html" %}
       </h1>
     </div>
   </div>
@@ -107,7 +93,7 @@
                 {% if data['appDept'] %}
                   {{ data['appDept'] }}
                 {% else %}
-                  Business Hub
+                  OMU
                 {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
@@ -119,21 +105,7 @@
                 Application type
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['appType'] == "bh_02" %}
-                  Add emergency PIN phone credit
-                {% elseif data['appType'] == "bh_03" %}
-                  Top up PIN phone credit
-                {% elseif data['appType'] == "bh_04" %}
-                  Remove PIN phone contact
-                {% elseif data['appType'] == "bh_05" %}
-                  Swap visiting orders (VOs) for PIN credit
-                {% elseif data['appType'] == "bh_06" %}
-                    Supply list of PIN phone contacts
-                {% elseif data['appType'] == "bh_07" %}
-                  Add new legal PIN phone contact
-                {% else %}
-                  Add new social PIN phone contact
-                {% endif %}
+                {% include "/staff/latest/applications/includes/application-type.html" %}
                 </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -203,7 +175,7 @@
             </div>
           </dl>
 
-          {% if data['appType'] == "bh_02" %}
+          {% if data['appType'] == "bh_03" %}
           <div class="govuk-summary-list--header">
             <h2 class="govuk-heading-m">Emergency PIN phone credit</h2>
             <a href="/staff/latest/applications/log/emergency-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> Emergency PIN phone credit</span></a>
@@ -225,28 +197,6 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ data['emergencyPInReason'] }}
-              </dd>
-            </div>
-          </dl>
-
-          {% elseif data['appType'] == "bh_03" %}
-
-          <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Top up credit</h2>
-            <a href="/staff/latest/applications/log/topup-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> PIN phone credit</span></a>
-          </div>
-
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Amount
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {%  if data['pinCredit'] %}
-                  £{{ data['pinCredit'] }}
-                {% else %}
-                  £5
-                {% endif %}
               </dd>
             </div>
           </dl>
@@ -323,7 +273,7 @@
           </dl>
 
 
-          {% elseif data['appType'] == "bh_07" %}
+          {% elseif data['appType'] == "bh_02" %}
 
           <div class="govuk-summary-list--header">
             <h2 class="govuk-heading-m">Add new legal PIN phone contact</h2>

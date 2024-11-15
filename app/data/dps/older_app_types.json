@@ -2,23 +2,19 @@
   {
     "dept": "Business Hub",
     "appid": "bh_01",
-    "type": "Add new social PIN phone contact",
-    "amount": "53",
+    "type": "Add new PIN phone contact",
+    "omu_no": "53",
+    "bh_amount": "23",
+    "amount": "76",
     "status": "Active",
-    "url": "new-social-pin-contact"
-  },
-  {
-    "dept": "Business Hub",
-    "appid": "bh_07",
-    "type": "Add new legal PIN phone contact",
-    "amount": "34",
-    "status": "Active",
-    "url": "new-legal-social-pin-contact"
+    "url": "new-pin-contact"
   },
   {
     "dept": "Business Hub",
     "appid": "bh_02",
     "type": "Add emergency PIN phone credit",
+    "omu_no": "0",
+    "bh_amount": "12",
     "amount": "12",
     "status": "Active",
     "url": "emergency-pin-credit"
@@ -27,6 +23,8 @@
     "dept": "Business Hub",
     "appid": "bh_03",
     "type": "Top up PIN credit",
+    "omu_no": "0",
+    "bh_amount": "0",
     "amount": "0",
     "status": "Inactive",
     "url": "top-up-pin-credit"
@@ -35,7 +33,9 @@
     "dept": "Business Hub",
     "appid": "bh_04",
     "type": "Remove PIN phone contact",
-    "amount": "21",
+    "omu_no": "0",
+    "bh_amount": "15",
+    "amount": "15",
     "status": "Active",
     "url": "remove-pin-contact"
   },
@@ -43,7 +43,9 @@
     "dept": "Business Hub",
     "appid": "bh_05",
     "type": "Swap visiting orders (VOs) for PIN credit",
-    "amount": "0",
+    "omu_no": "0",
+    "bh_amount": "2",
+    "amount": "2",
     "status": "Active",
     "url": "swap-vos-pin-credit"
   },
@@ -51,7 +53,9 @@
     "dept": "Business Hub",
     "appid": "bh_06",
     "type": "Supply list of PIN phone contacts",
-    "amount": "34",
+    "omu_no": "34",
+    "bh_amount": "24",
+    "amount": "58",
     "status": "Active",
     "url": "supply-pin-contacts"
   }

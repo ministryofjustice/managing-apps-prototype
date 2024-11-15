@@ -33,14 +33,12 @@
           <div class="govuk-radios" data-module="govuk-radios">
 
             {% for app in data['apps'] %}
-            {% if app.appid != "bh_03" %}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="{{ app.appid }}" name="appType" type="radio" value="{{ app.appid }}">
               <label class="govuk-label govuk-radios__label" for="{{ app.appid }}">
                 {{ app.type }}
               </label>
             </div>
-            {% endif %}
             {% endfor %}
 
           </div>

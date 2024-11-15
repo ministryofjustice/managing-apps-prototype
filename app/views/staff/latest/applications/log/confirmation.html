@@ -17,17 +17,7 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-panel govuk-panel--confirmation">
               <div class="govuk-panel__body govuk-!-padding-bottom-3">
-                {% if data['appType'] == "bh_01" %}
-                  Top up PIN phone credit
-                {% elseif data['appType'] == "bh_02" %}
-                  Add emergency PIN phone credit
-                {% elseif data['appType'] == "bh_03" %}
-                  Add new PIN phone contact
-                {% elseif data['appType'] == "bh_04" %}
-                  Remove PIN phone contact
-                {% elseif data['appType'] == "bh_05" %}
-                  Swap visiting orders (VOs) for PIN credit
-                {% endif %}
+                {% include "/staff/latest/applications/includes/application-type.html" %}
               </div>
               <h1 class="govuk-panel__title">
                 Application submitted

@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Add new PIN phone contact" %}
+{% set pageName="Log new contact details" %}
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/latest/" %}
@@ -15,8 +15,8 @@
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
-      <span class="govuk-caption-xl">{{pageName}}</span>
-      <h1 class="govuk-heading-xl">New PIN phone contact</h1>
+      <span class="govuk-caption-xl">{% include "/staff/latest/applications/includes/application-type.html" %}</span>
+      <h1 class="govuk-heading-xl">{{pageName}}</h1>
 
       <div class="govuk-width-container">
 
@@ -53,7 +53,7 @@
               <div class="govuk-form-group govuk-!-margin-bottom-9">
                 <fieldset class="govuk-fieldset" aria-describedby="agedob-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                    Do you know this person's approximate age or date of birth?
+                    Approximate age or date of birth
                   </legend>
                   <div id="agedob-hint" class="govuk-hint">
                     Select one option
@@ -68,7 +68,7 @@
                     <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-agedob">
                       <div class="govuk-form-group">
                         <fieldset class="govuk-fieldset" role="group">
-                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-visually-hidden">
                             Date of birth
                           </legend>
                           <div class="govuk-date-input" id="contact-dob">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-agedob-2">
                       <div class="govuk-form-group">
-                        <label class="govuk-label" for="contact-approx-age">
+                        <label class="govuk-label" for="contact-approx-age govuk-visually-hidden">
                           Age
                         </label>
                         <input class="govuk-input govuk-!-width-one-third" id="contact-approx-age" name="contact-approx-age" value="{{ data['contact-approx-age'] }}"  >

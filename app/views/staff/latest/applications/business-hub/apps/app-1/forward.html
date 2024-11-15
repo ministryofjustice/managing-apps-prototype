@@ -23,17 +23,7 @@
         <fieldset class="govuk-fieldset" aria-describedby="changedDept-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <span class="govuk-caption-xl">
-              {% if data['appType'] == "bh_02" %}
-                Add emergency PIN phone credit
-              {% elseif data['appType'] == "bh_03" %}
-                Top up PIN phone credit
-              {% elseif data['appType'] == "bh_04" %}
-                Remove PIN phone contact
-              {% elseif data['appType'] == "bh_05" %}
-                Swap visiting orders (VOs) for PIN credit
-              {% else %}
-                Add new PIN phone contact
-              {% endif %}
+              {% include "/staff/latest/applications/includes/application-type.html" %}
             </span>
             <h1 class="govuk-fieldset__heading">
               {{pageName}}

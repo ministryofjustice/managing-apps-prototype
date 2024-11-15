@@ -53,7 +53,7 @@
             </a>
           </li>
 
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
+          {% if data['actionRespond16'] == "approved" or data['actionRespond16'] == "declined"  %}
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" aria-current="page" href="./action-decision.html">Action and reply</a>
           </li>
@@ -81,8 +81,8 @@
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
               {{ govukRadios({
-                idPrefix: "actionRespond",
-                name: "actionRespond",
+                idPrefix: "actionRespond16",
+                name: "actionRespond16",
                 fieldset: {
                   legend: {
                     text: "Select an action",
@@ -94,12 +94,12 @@
                   {
                     value: "approved",
                     text: "Approved",
-                    checked: checked("actionRespond", "approved")
+                    checked: checked("actionRespond16", "approved")
                   },
                   {
                     value: "declined",
                     text: "Declined",
-                    checked: checked("actionRespond", "declined")
+                    checked: checked("actionRespond16", "declined")
                   }
                 ]
               }) }}

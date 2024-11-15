@@ -30,17 +30,7 @@
 
       <span class="govuk-caption-xl">Business Hub applications</span>
       <h1 class="govuk-heading-xl">
-        {% if data['appType'] == "bh_02" %}
-          Add emergency PIN phone credit
-        {% elseif data['appType'] == "bh_03" %}
-          Top up PIN phone credit
-        {% elseif data['appType'] == "bh_04" %}
-          Remove PIN phone contact
-        {% elseif data['appType'] == "bh_05" %}
-          Swap visiting orders (VOs) for PIN credit
-        {% else %}
-          Add new PIN phone contact
-        {% endif %}
+        {% include "/staff/latest/applications/includes/application-type.html" %}
       </h1>
     </div>
   </div>
@@ -84,7 +74,16 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-
+          {% if data['appType'] %}
+          <div class="app-message govuk-body">
+            <div class="app-messages-metadata">
+              J. Smith | {{ -2 | getDate }} at 09:18
+            </div>
+            <div class="app-messages-content">
+              Logged with Business Hub.
+            </div>
+          </div>
+          {% else %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
           J. Smith | {{ -2 | getDate }} at 09:18
@@ -101,18 +100,26 @@
           Forwarded to OMU.
         </div>
       </div>
+      {% endif %}
+      {% if data['actionRespond'] == "approved" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
           S. Henderson | {{ 0 | getDate }} at 16:52
         </div>
         <div class="app-messages-content">
-          {% if data['actionRespond'] == "approved" %}
             Marked as approved.
-          {% else %}
-          Marked as declined.
-          {% endif %}
         </div>
       </div>
+      {% elseif data['actionRespond'] == "declined" %}
+      <div class="app-message govuk-body">
+        <div class="app-messages-metadata">
+          S. Henderson | {{ 0 | getDate }} at 16:52
+        </div>
+        <div class="app-messages-content">
+            Marked as declined.
+        </div>
+      </div>
+      {% endif %}
       </div>
       </div>
 

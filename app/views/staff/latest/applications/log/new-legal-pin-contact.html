@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Add new PIN phone legalContact" %}
+{% set pageName="Add new legal PIN phone contact" %}
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/latest/" %}
@@ -15,8 +15,8 @@
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
-      <span class="govuk-caption-xl">Add new legal PIN phone contact</span>
-      <h1 class="govuk-heading-xl">Log new contact details</h1>
+      <span class="govuk-caption-xl">{% include "/staff/latest/applications/includes/application-type.html" %}</span>
+      <h1 class="govuk-heading-xl">{{pageName}}</h1>
 
       <div class="govuk-width-container">
 

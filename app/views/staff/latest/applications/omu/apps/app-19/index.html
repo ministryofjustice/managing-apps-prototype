@@ -98,9 +98,12 @@
               <dd class="govuk-summary-list__value">
                   OMU
               </dd>
+              {% if data['actionRespond19'] == "approved" or data['actionRespond19'] == "declined"  %}
+              {% else %}
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="forward.html">Forward<span class="govuk-visually-hidden"> department</span></a>
               </dd>
+              {% endif %}
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -175,7 +178,10 @@
 
           <div class="govuk-summary-list--header">
             <h2 class="govuk-heading-m">Add new social PIN phone contact</h2>
+            {% if data['actionRespond19'] == "approved" or data['actionRespond19'] == "declined"  %}
+            {% else  %}
             <a href="" class="govuk-body">Change <span class="govuk-visually-hidden">social PIN phone contact</span></a>
+            {% endif  %}
           </div>
 
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">

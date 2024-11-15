@@ -53,7 +53,7 @@
             </a>
           </li>
 
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
+          {% if data['actionRespond16'] == "approved" or data['actionRespond16'] == "declined"  %}
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" href="./action-decision.html">Action and reply</a>
           </li>
@@ -80,9 +80,15 @@
                 Status
               </dt>
               <dd class="govuk-summary-list__value">
+                {% if data['actionRespond16'] == "approved" or data['actionRespond16'] == "declined"  %}
+                <strong class="govuk-tag govuk-tag--grey">
+                  Closed
+                </strong>
+                {% else %}
                 <strong class="govuk-tag govuk-tag--grey">
                   Pending
                 </strong>
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -92,9 +98,12 @@
               <dd class="govuk-summary-list__value">
                   Business Hub
               </dd>
+              {% if data['actionRespond16'] == "approved" or data['actionRespond16'] == "declined"  %}
+              {% else %}
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="forward.html">Forward<span class="govuk-visually-hidden"> department</span></a>
               </dd>
+              {% endif %}
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -178,7 +187,7 @@
                 Details
               </dt>
               <dd class="govuk-summary-list__value">
-                Provide list of active contacts
+                Provide list of active contacts.
               </dd>
             </div>
           </dl>

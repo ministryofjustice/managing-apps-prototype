@@ -1,5 +1,5 @@
 <div class="govuk-summary-list--header">
-  <h2 class="govuk-heading-m">Add new PIN phone contact</h2>
+  <h2 class="govuk-heading-m">{% include "/staff/latest/applications/includes/application-type.html" %}</h2>
   <a href="" class="govuk-body">Change <span class="govuk-visually-hidden">PIN phone contact</span></a>
 </div>
 
@@ -109,7 +109,8 @@
     <dd class="govuk-summary-list__value">
       {% if data['contactTel1'] %}
       <p>{{ data['contactTel1'] }}</p>
-      {% elseif data['contactTel2'] %}
+      {% endif %}
+      {% if data['contactTel2'] %}
       <p>{{ data['contactTel2'] }}</p>
       {% endif %}
     </dd>

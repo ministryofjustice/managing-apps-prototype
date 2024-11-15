@@ -12,22 +12,22 @@
   {
     "dept": "Business Hub",
     "appid": "bh_02",
+    "type": "Add new legal PIN phone contact",
+    "omu_no": "12",
+    "bh_amount": "19",
+    "amount": "31",
+    "status": "Active",
+    "url": "new-legal-contact"
+  },
+  {
+    "dept": "Business Hub",
+    "appid": "bh_03",
     "type": "Add emergency PIN phone credit",
     "omu_no": "0",
     "bh_amount": "12",
     "amount": "12",
     "status": "Active",
     "url": "emergency-pin-credit"
-  },
-  {
-    "dept": "Business Hub",
-    "appid": "bh_03",
-    "type": "Top up PIN credit",
-    "omu_no": "0",
-    "bh_amount": "0",
-    "amount": "0",
-    "status": "Inactive",
-    "url": "top-up-pin-credit"
   },
   {
     "dept": "Business Hub",
@@ -58,15 +58,5 @@
     "amount": "58",
     "status": "Active",
     "url": "supply-pin-contacts"
-  },
-  {
-    "dept": "Business Hub",
-    "appid": "bh_07",
-    "type": "Add new legal PIN phone contact",
-    "omu_no": "12",
-    "bh_amount": "19",
-    "amount": "31",
-    "status": "Active",
-    "url": "new-legal-contact"
   }
 ]

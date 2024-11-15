@@ -17,23 +17,13 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-        <form class="form" action="{{homeurl}}applications/business-hub/apps/app-1/">
+        <form class="form" action="{{homeurl}}applications/omu/apps/app-1/">
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="changedDept-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <span class="govuk-caption-xl">
-              {% if data['appType'] == "bh_02" %}
-                Add emergency PIN phone credit
-              {% elseif data['appType'] == "bh_03" %}
-                Top up PIN phone credit
-              {% elseif data['appType'] == "bh_04" %}
-                Remove PIN phone contact
-              {% elseif data['appType'] == "bh_05" %}
-                Swap visiting orders (VOs) for PIN credit
-              {% else %}
-                Add new PIN phone contact
-              {% endif %}
+              {% include "/staff/latest/applications/includes/application-type.html" %}
             </span>
             <h1 class="govuk-fieldset__heading">
               {{pageName}}
@@ -47,6 +37,12 @@
               <input class="govuk-radios__input" id="appDept" name="appDept" type="radio" value="Activities">
               <label class="govuk-label govuk-radios__label" for="appDept">
                 Activities
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Business Hub">
+              <label class="govuk-label govuk-radios__label" for="appDept-6">
+                Business Hub
               </label>
             </div>
             <div class="govuk-radios__item">
@@ -65,12 +61,6 @@
               <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Healthcare">
               <label class="govuk-label govuk-radios__label" for="appDept-4">
                 Healthcare
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="OMU">
-              <label class="govuk-label govuk-radios__label" for="appDept-6">
-                OMU
               </label>
             </div>
             <div class="govuk-radios__item">

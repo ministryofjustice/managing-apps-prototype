@@ -16,13 +16,14 @@ Example usage:
 let requests                 = require('./pip/requests.json')
 let menus                    = require('./pip/requests-menu.json')
 
+let oldapps                  = require('./dps/older_app_types.json')
 let apps                     = require('./dps/app_types.json')
 let wings                    = require('./dps/wings.json')
 let bhApps                   = require('./dps/business_hub_apps.json')
 let pinApps                  = require('./dps/pin_apps.json')
 
-let bhPendingApps           = require('./dps/bh_pending_apps.json')
-let bhClosedApps            = require('./dps/bh_closed_apps.json')
+let bhPendingApps            = require('./dps/bh_pending_apps.json')
+let bhClosedApps             = require('./dps/bh_closed_apps.json')
 let omuPendingApps           = require('./dps/omu_pending_apps.json')
 let omuClosedApps            = require('./dps/omu_closed_apps.json')
 
@@ -34,6 +35,7 @@ let countries                = require('./dps/countries.json')
 module.exports = {
   requests,
   menus,
+  oldapps,
   apps,
   wings,
   bhApps,

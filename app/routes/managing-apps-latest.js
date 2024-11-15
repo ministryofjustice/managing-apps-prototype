@@ -11,31 +11,27 @@ module.exports = function (router, content) {
     // Check whether the variable matches a condition
     if (appType == "bh_01") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/new-social-pin-contact')
+      res.redirect('/staff/latest/applications/log/new-social-pin-contact.html')
     }
     if (appType == "bh_02") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/emergency-pin-credit')
+      res.redirect('/staff/latest/applications/log/new-legal-pin-contact.html')
     }
     if (appType == "bh_03") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/topup-pin-credit')
+      res.redirect('/staff/latest/applications/log/emergency-pin-credit.html')
     }
     if (appType == "bh_04") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/remove-pin-contact')
+      res.redirect('/staff/latest/applications/log/remove-pin-contact.html')
     }
     if (appType == "bh_05") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/swap-vos-pin-credit')
+      res.redirect('/staff/latest/applications/log/swap-vos-pin-credit.html')
     }
     if (appType == "bh_06") {
       // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/supply-pin-contacts')
-    }
-    if (appType == "bh_07") {
-      // Send user to ineligible page
-      res.redirect('/staff/latest/applications/log/new-legal-pin-contact')
+      res.redirect('/staff/latest/applications/log/supply-pin-contacts.html')
     }
   })
 
@@ -47,7 +43,6 @@ module.exports = function (router, content) {
   router.post('/staff/latest/applications/business-hub/apps/app-16/action', function (req, res) {
       res.redirect('/staff/latest/applications/business-hub/apps/app-16/action-decision')
   })
-
 
   router.post('/staff/latest/applications/business-hub/apps/app-1/action', function (req, res) {
       res.redirect('/staff/latest/applications/business-hub/apps/app-1/action-decision')

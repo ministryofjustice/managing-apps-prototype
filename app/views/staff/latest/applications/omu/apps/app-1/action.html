@@ -30,17 +30,7 @@
 
       <span class="govuk-caption-xl">Business Hub applications</span>
       <h1 class="govuk-heading-xl">
-        {% if data['appType'] == "bh_02" %}
-          Add emergency PIN phone credit
-        {% elseif data['appType'] == "bh_03" %}
-          Top up PIN phone credit
-        {% elseif data['appType'] == "bh_04" %}
-          Remove PIN phone contact
-        {% elseif data['appType'] == "bh_05" %}
-          Swap visiting orders (VOs) for PIN credit
-        {% else %}
-          Add new PIN phone contact
-        {% endif %}
+        {% include "/staff/latest/applications/includes/application-type.html" %}
       </h1>
     </div>
   </div>
