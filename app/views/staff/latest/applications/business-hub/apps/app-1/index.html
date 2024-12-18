@@ -221,7 +221,11 @@
                 Full name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['removeName'] }}
+                {% if data['removeName'] %}
+                <p>{{ data['removeName'] }}</p>
+                {% else %}
+                <p>Leila Patel</p>
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -233,6 +237,8 @@
                 <p>{{ data['removeTel1'] }}</p>
                 {% elseif data['removeTel2'] %}
                 <p>{{ data['removeTel2'] }}</p>
+                {% else %}
+                <p>07777 123456</p>
                 {% endif %}
               </dd>
             </div>
@@ -241,7 +247,11 @@
                  Relation to prisoner
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['contactRelationship'] }}
+                {% if data['contactRelationship'] %}
+                <p>{{ data['contactRelationship'] }}</p>
+                {% else %}
+                <p>Sister</p>
+                {% endif %}
               </dd>
             </div>
 
@@ -343,7 +353,11 @@
                 First name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['socialContactFirstName'] }}
+                {% if data['socialContactFirstName'] %}
+                <p>{{ data['socialContactFirstName'] }}</p>
+                {% else %}
+                <p>Leila</p>
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -351,7 +365,11 @@
                 Last name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['socialContactLastName'] }}
+                {% if data['socialContactLastName'] %}
+                <p>{{ data['socialContactLastName'] }}</p>
+                {% else %}
+                <p>Patel</p>
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -365,6 +383,8 @@
                   {{ data['contact-approx-age'] }}
                 {% elseif data['agedob'] == "NoAgeDOB"  %}
                   Unknown
+                {% else %}
+                  <p>Unknown</p>
                 {% endif %}
               </dd>
             </div>
@@ -373,7 +393,11 @@
                  Relation to prisoner
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['contactRelationship'] }}
+                {% if data['contactRelationship'] %}
+                <p>{{ data['contactRelationship'] }}</p>
+                {% else %}
+                <p>Sister</p>
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -446,6 +470,8 @@
                 {% endif %}
                 {% if data['contactTel2'] %}
                 <p>{{ data['contactTel2'] }}</p>
+                {% else %}
+                <p>07777 123456</p>
                 {% endif %}
               </dd>
             </div>
