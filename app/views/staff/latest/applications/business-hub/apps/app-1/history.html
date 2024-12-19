@@ -74,27 +74,18 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          {% if data['appType'] %}
           <div class="app-message govuk-body">
             <div class="app-messages-metadata">
-              J. Smith | {{ -2 | getDate }} at 09:18
+              J. Smith | {{ 0 | getDate }} at 09:18
             </div>
             <div class="app-messages-content">
               Logged with Business Hub.
             </div>
           </div>
-          {% else %}
+          {% if data['appDept'] == "OMU" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
-          J. Smith | {{ -2 | getDate }} at 09:18
-        </div>
-        <div class="app-messages-content">
-          Logged.
-        </div>
-      </div>
-      <div class="app-message govuk-body">
-        <div class="app-messages-metadata">
-          J. Smith | {{ -1 | getDate }} at 12:04
+          J. Smith | {{ 0 | getDate }} at 12:04
         </div>
         <div class="app-messages-content">
           Forwarded to OMU.
