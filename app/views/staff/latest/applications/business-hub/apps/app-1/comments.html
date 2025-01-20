@@ -76,37 +76,37 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 
-          {% if data['newComment'] %}
+          {% if data['newComment'] or data['forwardReasons'] %}
 
-          <div class="app-message govuk-body">
-            <div class="app-messages-metadata">
-              J. Smith | {{ 0 | getDate }} at 16:52
-            </div>
-            <div class="app-messages-content">
-              {{ data['newComment'] }}
-            </div>
-          </div>
-          {% endif %}
+            {% if data['newComment'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  {{ data['newComment'] }}
+                </div>
+              </div>
+            {% endif %}
 
-          {% if data['forwardReasons'] %}
+            {% if data['forwardReasons'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  <p></p>
+                  {{ data['forwardReasons'] }}
+                </div>
+              </div>
+            {% endif %}
 
-          <div class="app-message govuk-body">
-            <div class="app-messages-metadata">
-              J. Smith | {{ 0 | getDate }} at 16:52
-            </div>
-            <div class="app-messages-content">
-              <p></p>
-              {{ data['forwardReasons'] }}
-            </div>
-          </div>
-          {% endif %}
-
-          {% if (newComment|length) and (forwardReasons|length) %}
-          <div class="app-message govuk-body">
-            <div class="app-messages-content">
-              <p>None</p>
-            </div>
-          </div>
+            {% else %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-content">
+                  <p class="none">None</p>
+                </div>
+              </div>
           {% endif %}
 
 

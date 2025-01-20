@@ -186,7 +186,7 @@
 
           {% if data['appType'] == "bh_03" %}
           <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Emergency PIN phone credit</h2>
+            <h2 class="govuk-heading-m">Emergency credit to add</h2>
             <a href="/staff/latest/applications/log/emergency-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> Emergency PIN phone credit</span></a>
           </div>
 
@@ -212,7 +212,7 @@
 
           {% elseif data['appType'] == "bh_04" %}
           <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Contact details</h2>
+            <h2 class="govuk-heading-m">Contact details to remove</h2>
             <a href="/staff/latest/applications/log/remove-pin-contact.html" class="govuk-body">Change <span class="govuk-visually-hidden"> contact details</span></a>
           </div>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -244,7 +244,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                 Relation to prisoner
+                 Relationship
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if data['contactRelationship'] %}
@@ -260,7 +260,7 @@
 
           {% elseif data['appType'] == "bh_05" %}
           <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Visiting orders</h2>
+            <h2 class="govuk-heading-m">VOs to swap</h2>
             <a href="/staff/latest/applications/log/swap-vos-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> Visiting orders</span></a>
           </div>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -295,7 +295,7 @@
           {% elseif data['appType'] == "bh_02" %}
 
           <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Add new legal PIN phone contact</h2>
+            <h2 class="govuk-heading-m">New legal contact details to add</h2>
             <a href="/staff/latest/applications/log/new-legal-pin-contact.html" class="govuk-body">Change <span class="govuk-visually-hidden">PIN phone contact</span></a>
           </div>
 
@@ -343,7 +343,7 @@
           {% else %}
 
           <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Contact's details</h2>
+            <h2 class="govuk-heading-m">New social contact details to add</h2>
             <a href="/staff/latest/applications/log/new-social-pin-contact.html" class="govuk-body">Change <span class="govuk-visually-hidden">PIN phone contact</span></a>
           </div>
 
@@ -390,7 +390,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                 Relation to prisoner
+                 Relationship
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if data['contactRelationship'] %}

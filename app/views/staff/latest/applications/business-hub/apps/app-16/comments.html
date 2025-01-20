@@ -76,24 +76,37 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 
-          {% if data['newComment'] %}
+          {% if data['newComment'] or data['forwardReasons'] %}
 
-          <div class="app-message govuk-body">
-            <div class="app-messages-metadata">
-              J. Smith | {{ -1 | getDate }} at 16:52
-            </div>
-            <div class="app-messages-content">
-              {{ data['newComment'] }}
-            </div>
-          </div>
-          {% else %}
+            {% if data['newComment'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  {{ data['newComment'] }}
+                </div>
+              </div>
+            {% endif %}
 
-          <div class="app-message govuk-body">
-            <div class="app-messages-content">
-              <p class="govuk-body govuk-!-margin-bottom-0">None</p>
-            </div>
-          </div>
+            {% if data['forwardReasons'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  <p></p>
+                  {{ data['forwardReasons'] }}
+                </div>
+              </div>
+            {% endif %}
 
+            {% else %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-content">
+                  <p class="none">None</p>
+                </div>
+              </div>
           {% endif %}
 
 

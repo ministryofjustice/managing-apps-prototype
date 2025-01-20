@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Manage Applications" %}
+{% block header %}
+{% set homeurl="/" %}
+
+{{ govukHeader({
+  homepageUrl: "/",
+  serviceName: serviceName,
+  serviceUrl: "/",
+  containerClasses: "govuk-width-container"
+}) }}
+
+
+<div class="app-masthead">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="app-masthead__title govuk-heading-xl govuk-!-margin-bottom-3">
+          {{ pageName }}
+        </h1>
+        <div class="app-masthead__description">
+          <p class="govuk-body-l">
+            This section of the Launchpad prototype hub contains prototypes for the Manage Applications service.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- from "moj/components/primary-navigation/macro.njk" import mojPrimaryNavigation -%}
+
+{{ mojPrimaryNavigation({
+  label: 'Primary navigation',
+  items: [
+    {
+      text: 'Prototypes',
+      href: '/'
+    },
+    {
+      text: 'Sandbox',
+      href: '/sandbox',
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+      <table class="govuk-table govuk-!-margin-top-5">
+        <caption class="govuk-table__caption govuk-caption-xl">Sandbox</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Version</th>
+            <th scope="col" class="govuk-table__header">Description</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <!--  example -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <a href="/sandbox/first-night-centre/v1/select-app-type" class="govuk-link govuk-link--no-visited-state" target="_blank">PIN apps / First night centre</a>
+            </td>
+            <td class="govuk-table__cell">
+              <p class="govuk-body">A test to split legal and social PIN apps and flag ones that come from first night centre.</p>
+            </td>
+          </tr>
+          <!--  end example -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Swap VOs for PIN credit" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">Swap VOs for PIN credit</span>
+      <h1 class="govuk-heading-xl">Log details</h1>
+
+      <div class="govuk-width-container">
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+
+
+            <form class="form" action="/staff/latest/applications/log/swap-vos-pin-credit/check-details">
+
+              {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+              {{ govukTextarea({
+                name: "vosDetail",
+                id: "vos-detail",
+                label: {
+                  text: "Details (optional)",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "Add a brief summary, for example, if this person is a Foreign National."
+                }
+
+              }) }}
+
+            <div class="moj-button-action">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}
