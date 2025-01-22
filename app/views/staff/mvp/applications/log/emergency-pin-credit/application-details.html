@@ -1,0 +1,69 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Add emergency PIN phone credit" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/mvp/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">Add emergency PIN phone credit</span>
+      <h1 class="govuk-heading-xl">Log details</h1>
+
+      <div class="govuk-width-container">
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+
+            <form class="form" action="/staff/mvp/applications/log/emergency-pin-credit/check-details">
+
+            <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label govuk-label--s" for="pinCredit">
+                Amount
+              </label>
+              <div id="pinCredit-hint" class="govuk-hint">
+                Use only multiples of £1, with a limit of £5
+              </div>
+              <div class="govuk-input__wrapper">
+                <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-5" id="pin-credit" name="pinCredit" type="text" spellcheck="false" value="{{ data['pinCredit'] }}">
+              </div>
+            </div>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="more-detail">
+                  Reason
+                </label>
+              <div id="more-detail-hint" class="govuk-hint">
+                Add a brief summary
+              </div>
+              <textarea class="govuk-textarea" id="with-hint" name="emergencyPInReason" rows="5" aria-describedby="more-detail-hint">{{ data['emergencyPInReason'] }}</textarea>
+            </div>
+
+            <div class="moj-button-action">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}

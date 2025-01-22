@@ -1,0 +1,116 @@
+<div class="moj-filter">
+
+  <div class="moj-filter__header">
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-s">Filter</h2>
+    </div>
+
+    <div class="moj-filter__header-action">
+
+    </div>
+  </div>
+
+  <div class="moj-filter__content">
+    <div class="moj-filter__selected">
+      <div class="moj-filter__selected-heading">
+        <div class="moj-filter__heading-title">
+          <h2 class="govuk-heading-s">Selected filters</h2>
+        </div>
+
+        <div class="moj-filter__heading-action">
+          <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="moj-filter__options">
+
+      <div class="govuk-form-group">
+				<h1 class="govuk-label-wrapper">
+					<label class="govuk-label govuk-label--s" for="event-name">
+						Prisoner name or number
+					</label>
+				</h1>
+				<input class="govuk-input govuk-!-margin-bottom-0" id="event-name" name="eventName" type="text">
+			</div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Application type
+          </legend>
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+            {% for app in data['apps'] %}
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" >
+                <label class="govuk-label govuk-checkboxes__label" for="type">
+                  {{ app.type }} ({{ app.amount }})
+                </label>
+              </div>
+            {% endfor %}
+
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Priority
+          </legend>
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="fnc" name="priority" type="checkbox" value="fnc" >
+            <label class="govuk-label govuk-checkboxes__label" for="fnc">
+              First night centre (32)
+            </label>
+          </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+
+      {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
+
+      {{ mojDatePicker({
+        id: "date",
+        name: "date",
+        label: {
+            text: "Submitted after",
+            classes: "govuk-label--s"
+        },
+        classes: "govuk-!-margin-bottom-5",
+        hint: {
+          text: "For example, 17/1/2025."
+        }
+      }) }}
+
+      {{ mojDatePicker({
+        id: "date",
+        name: "date",
+        label: {
+            text: "Submitted before",
+            classes: "govuk-label--s"
+        },
+        hint: {
+          text: "For example, 17/1/2025."
+        }
+      }) }}
+      </fieldset>
+    </div>
+
+			<button type="submit" class="govuk-button govuk-!-margin-top-5" data-module="govuk-button" data-test-id="submit-button">
+				Apply filters
+			</button>
+
+
+    </div>
+
+  </div>
+
+</div>
