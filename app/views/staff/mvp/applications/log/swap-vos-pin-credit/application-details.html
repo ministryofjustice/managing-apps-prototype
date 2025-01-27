@@ -26,11 +26,13 @@
 
             <form class="form" action="/staff/mvp/applications/log/swap-vos-pin-credit/check-details">
 
-              {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
-              {{ govukTextarea({
+              {{ govukCharacterCount({
                 name: "vosDetail",
                 id: "vos-detail",
+                maxlength: 1000,
+                threshold: 75,
                 label: {
                   text: "Details (optional)",
                   classes: "govuk-label--s"
@@ -38,7 +40,6 @@
                 hint: {
                   text: "Add a brief summary, for example, if this person is a Foreign National."
                 }
-
               }) }}
 
             <div class="moj-button-action">
