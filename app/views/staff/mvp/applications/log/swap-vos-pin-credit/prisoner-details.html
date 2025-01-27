@@ -59,37 +59,6 @@
               }) }}
 
 
-
-
-              {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-              {{ govukRadios({
-                classes: "govuk-radios--inline",
-                name: "prisonerFNC",
-                fieldset: {
-                  legend: {
-                    text: "Is this person in the first night or early days centre?",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                hint: {
-                },
-                items: [
-                  {
-                    value: "Yes",
-                    text: "Yes",
-                    checked: checked("prisonerFNC", "Yes")
-                  },
-                  {
-                    value: "No",
-                    text: "No",
-                    checked: checked("prisonerFNC", "No")
-                  }
-                ]
-              }) }}
-
-
             <div class="moj-button-action">
               {% from "govuk/components/button/macro.njk" import govukButton %}
               {{ govukButton({
