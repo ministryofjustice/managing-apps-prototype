@@ -54,7 +54,7 @@
               {% if data['prisonNumber'] %}
                 Patel, Taj ({{ data['prisonNumber'] }})
               {% else %}
-                Patel, Taj ({{ data['A1234BC'] }})
+                Patel, Taj (A1234BC)
               {% endif %}
             </dd>
           </div>
@@ -83,7 +83,11 @@
               Details
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['vosDetail'] }}
+              {% if data['vosDetail'] %}
+                {{ data['vosDetail'] }}
+              {% else %}
+                Request to swap all VOs from last month
+              {% endif %}
             </dd>
           </div>
         </dl>
