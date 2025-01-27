@@ -48,10 +48,14 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Prisoner name
+              Prisoner
             </dt>
             <dd class="govuk-summary-list__value">
-              Patel, Taj ({{ data['prisonNumber'] }})
+              {% if data['prisonNumber'] %}
+                Patel, Taj ({{ data['prisonNumber'] }})
+              {% else %}
+                Patel, Taj ({{ data['A1234BC'] }})
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -59,15 +63,11 @@
               Submitted on
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['submittedDate'] }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              First night centre
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['prisonerFNC'] }}
+              {% if data['submittedDate'] %}
+                {{ data['submittedDate'] }}
+              {% else %}
+                {{ 0 | getDate }}
+              {% endif %}
             </dd>
           </div>
         </dl>

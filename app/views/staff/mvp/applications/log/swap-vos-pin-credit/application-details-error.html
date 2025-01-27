@@ -39,6 +39,7 @@
                 name: "vosDetail",
                 id: "vos-detail",
                 maxlength: 1000,
+                threshold: 75,
                 label: {
                   text: "Details (optional)",
                   classes: "govuk-label--s"
@@ -47,9 +48,9 @@
                 hint: {
                   text: "Add a brief summary, for example, if this person is a Foreign National."
                 },
-  errorMessage: {
-    text: "Details must be 1000 characters or less"
-  }
+                errorMessage: {
+                  text: "Details must be 1000 characters or less"
+                }
               }) }}
 
             <div class="moj-button-action">
