@@ -63,6 +63,8 @@
               Submitted on
             </dt>
             <dd class="govuk-summary-list__value">
+              {{ "2021-08-17T18:30:00" | govukDate }}
+
               {% if data['submittedDate'] %}
                 {{ data['submittedDate'] }}
               {% else %}
