@@ -25,6 +25,14 @@ module.exports = function (router, content) {
     }
   })
 
+  router.post('/staff/mvp/applications/business-hub/apps/swap-vos-pin-credit/forward', function (req, res) {
+
+    var appDept = req.session.data['appDept']
+
+    if (appDept == "Activities") {
+      res.redirect('/staff/mvp/applications/business-hub/apps/swap-vos-pin-credit/forward-error.html')
+    }
+  })
 
 
   router.post('/staff/mvp/applications/omu/apps/app-19/action', function (req, res) {

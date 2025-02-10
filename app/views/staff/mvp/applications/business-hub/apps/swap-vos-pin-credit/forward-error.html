@@ -1,0 +1,140 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Forward this application " %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/mvp/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+    <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Choose where to send",
+              href: "#changedDept-error"
+            },
+            {
+              text: "Comments must be 1000 characters or less",
+              href: "#forwardReasons-error"
+            }
+          ]
+        }) }}
+
+        <form class="form" action="{{homeurl}}applications/business-hub/apps/app-1/">
+
+      <div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" aria-describedby="changedDept-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-fieldset__heading">
+              {{pageName}}
+            </h1>
+          </legend>
+          <p id="changedDept-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Choose where to send
+          </p>
+          <div id="changedDept-hint" class="govuk-hint">
+            Send to:
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept" name="appDept" type="radio" value="Activities">
+              <label class="govuk-label govuk-radios__label" for="appDept">
+                Activities
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-2" name="appDept" type="radio" value="Chaplaincy">
+              <label class="govuk-label govuk-radios__label" for="appDept-2">
+                Chaplaincy
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-3" name="appDept" type="radio" value="Education">
+              <label class="govuk-label govuk-radios__label" for="appDept-3">
+                Education
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Healthcare">
+              <label class="govuk-label govuk-radios__label" for="appDept-4">
+                Healthcare
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="OMU">
+              <label class="govuk-label govuk-radios__label" for="appDept-6">
+                OMU
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Safer Custody">
+              <label class="govuk-label govuk-radios__label" for="appDept-7">
+                Safer custody
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Security">
+              <label class="govuk-label govuk-radios__label" for="appDept-7">
+                Security
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="govuk-form-group govuk-character-count govuk-form-group--error"  data-module="govuk-character-count" data-maxlength="200">
+        <label class="govuk-label govuk-label--s" for="more-detail">
+          Reason for forwarding (optional)
+        </label>
+        <div id="forwardReasons-hint" class="govuk-hint">
+          This is added to the comments section for other staff to see
+        </div>
+        <p id="forwardReasons-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Comments must be 1000 characters or less
+        </p>
+        <textarea class="govuk-textarea govuk-js-character-count" id="forwardReasons" name="forwardReasons" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum vel elit vitae imperdiet. Pellentesque quis metus lectus. Ut ac neque nec urna cursus dictum sit amet consectetur mi. Duis fringilla commodo purus eu blandit. Vivamus fringilla magna ante, at cursus odio lobortis eu. Sed nisi nisi, mollis in fringilla sed, tincidunt at erat. Integer fermentum metus elementum mi lacinia sollicitudin. Cras odio dolor, fermentum in malesuada et, sodales id nulla. Morbi et feugiat felis. Vivamus vehicula purus aller artoacra nec viverra imperdiet. Nulla ut ex eu nisl maximus condimentum. Duis diam turpis, placerat nec tempor ac, placerat sit amet nisl. Viverra sapien libero non tortor. Sed dolor ligula, efficitur eget euismod vel, tincidunt et nibh. Nulla eros eros, ornare sed nisl eu, volutpat facilisis lacus. Nam euismod, ligula eget porta auctor, ex tortor lacinia ipsum, sed pretium enim nibh vel libero. Vivamus aliquet quis magna non rutrum. Etiam sit amet lacus condimentum arcu rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum vel elit vitae imperdiet. Pellentesque quis metus lectus. Ut ac neque nec urna cursus dictum sit amet consectetur mi. Duis fringilla commodo purus eu blandit. Vivamus fringilla magna ante, at cursus odio lobortis eu. Sed nisi nisi, mollis in fringilla sed, tincidunt at erat. Integer fermentum metus elementum mi lacinia sollicitudin. Cras odio dolor, fermentum in malesuada et, sodales id nulla. Morbi et feugiat felis. Vivamus vehicula purus aller artoacra nec viverra imperdiet. Nulla ut ex eu nisl maximus condimentum. Duis diam turpis, placerat nec tempor ac, placerat sit amet nisl. Viverra sapien libero non tortor. Sed dolor ligula, efficitur eget euismod vel, tincidunt et nibh. Nulla eros eros, ornare sed nisl eu, volutpat facilisis lacus. Nam euismod, ligula eget porta auctor, ex tortor lacinia ipsum, sed pretium enim nibh vel libero. Vivamus aliquet quis magna non rutrum. Etiam sit amet lacus condimentum arcu rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </textarea>
+        <div id="forwardReasons-info" class="govuk-hint govuk-character-count__message">
+          You can enter up to 200 characters
+        </div>
+      </div>
+
+      <div class="moj-button-action">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+  </div> <!-- end main content  -->
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#my-autocomplete')
+  })
+</script>
+
+{% endblock %}
