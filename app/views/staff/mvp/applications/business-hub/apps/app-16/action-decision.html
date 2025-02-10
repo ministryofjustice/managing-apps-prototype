@@ -28,7 +28,7 @@
   			</div>
   		</nav>
 
-      <span class="govuk-caption-xl">Business Hub applications</span>
+
       <h1 class="govuk-heading-xl">
         Supply list of PIN phone contacts
       </h1>
@@ -80,14 +80,10 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['actionRespond16'] === 'approved' %}
-                    <strong class="govuk-tag govuk-tag--green">
+                  {% if data['actionRespond'] === 'approved' %}
                       Approved
-                    </strong>
-                  {% elseif data['actionRespond16'] === 'declined' %}
-                    <strong class="govuk-tag govuk-tag--red">
+                  {% elseif data['actionRespond'] === 'declined' %}
                       Declined
-                    </strong>
                   {% endif %}
                 </dd>
                 <!---
