@@ -22,15 +22,19 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">View all applications</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
-      
       <h1 class="govuk-heading-xl">
-          Add new social PIN phone contact
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVPApps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
       </h1>
     </div>
   </div>
@@ -41,28 +45,33 @@
 
 
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="./index.html">Application</a>
+            <a class="moj-sub-navigation__link" aria-current="page" href="./app/details?url_id={{appID}}">
+              Application 
+            </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments.html">
+            <a class="moj-sub-navigation__link" href="./app/comments?url_id={{appID}}">
               Comments
             </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action-decision.html">Action and reply</a>
+            <a class="moj-sub-navigation__link" href="./app/action?url_id={{appID}}">
+              Action and reply
+              </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history.html">History</a>
+            <a class="moj-sub-navigation__link" href="./app/history?url_id={{appID}}">
+              History
+            </a>
           </li>
         </ul>
-
       </nav>
+
+      {% set appID = data['url_id'] %}
+      {% for app in data['allMVPApps'] %}
+      {% if app.app_id == appID  %}
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -74,9 +83,11 @@
                 Status
               </dt>
               <dd class="govuk-summary-list__value">
-                <strong class="govuk-tag govuk-tag--grey">
+                {% if data['app.decision'] == "Approved" or data['actionRespond16'] == "Declined"  %}
                   Closed
-                </strong>
+                {% else %}
+                  Pending
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -84,7 +95,10 @@
                 Department
               </dt>
               <dd class="govuk-summary-list__value">
-                  Business Hub
+                {{ app.current_dept }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="forward?url_id={{appID}}">Forward<span class="govuk-visually-hidden"> department</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -92,15 +106,15 @@
                 Application type
               </dt>
               <dd class="govuk-summary-list__value">
-                  Add new social PIN phone contact
-                </dd>
+                {{ app.app_type }}
+              </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date
+                Date sent
               </dt>
-              <dd class="govuk-summary-list__value">
-                <p class="govuk-body">{{ -5 | getDate }}</p>
+              <dd class="govuk-summary-list__value reldate">
+                {{ app.date_received }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -108,7 +122,7 @@
                 Application ID
               </dt>
               <dd class="govuk-summary-list__value">
-                123203
+                {{ app.app_id }}
               </dd>
             </div>
           </dl>
@@ -121,9 +135,7 @@
                 Prisoner
               </dt>
               <dd class="govuk-summary-list__value">
-                Singh, Hassan (
-                    68942213
-                  )
+                {{ app.prisoner_name }}
               </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="">View profile</a>
@@ -134,7 +146,7 @@
                 Location
               </dt>
               <dd class="govuk-summary-list__value">
-                A-1-002
+                {{ app.prisoner_location }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -142,7 +154,7 @@
                 IEP
               </dt>
               <dd class="govuk-summary-list__value">
-                <p class="govuk-body">Enhanced</p>
+                {{ app.iep_status }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -150,7 +162,7 @@
                 Alerts
               </dt>
               <dd class="govuk-summary-list__value">
-                <p class="govuk-body">3</p>
+                {{ app.prisoner_alerts }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="">View alerts</a>
@@ -158,98 +170,12 @@
             </div>
           </dl>
 
-          <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">New social contact details to add</h2>
-          </div>
-
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                First name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Yusuf
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Last name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Hassan
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                 Age or date of birth
-              </dt>
-              <dd class="govuk-summary-list__value">
-                24
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                 Relation to prisoner
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Cousin
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Address line 1
-              </dt>
-              <dd class="govuk-summary-list__value">
-                  123 Baker Street
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Rutherglen
-              </dt>
-              <dd class="govuk-summary-list__value">
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Town or city
-              </dt>
-              <dd class="govuk-summary-list__value">
-                  Glasgow
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                 Postcode
-              </dt>
-              <dd class="govuk-summary-list__value">
-                  G73 2AA
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                 Country
-              </dt>
-              <dd class="govuk-summary-list__value">
-                  United Kingdom
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                 Telephone numbers
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <p>07777 123456</p>
-              </dd>
-            </div>
-
-          </dl>
-
 
          </div>
       </div>
+
+      {% endif  %}
+      {% endfor  %}
 
       </div>
 

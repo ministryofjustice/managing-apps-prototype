@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="OMU" %}
+{% set pageName="View all applications in your prison" %}
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/mvp/" %}
@@ -44,6 +44,7 @@
 	    href: './closed.html'
 	  }]
 	}) }}
+
 </div>
 
 <div class="dps-content">
@@ -56,7 +57,7 @@
 
 			<div class="govuk-grid-column-two-thirds">
 
-				{% include "./includes/pending-apps.html" %}
+				{% include "./includes/pending_apps_table.html" %}
 
 			</div>
 		</div>

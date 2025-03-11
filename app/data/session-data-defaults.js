@@ -21,6 +21,8 @@ let apps                     = require('./dps/app_types.json')
 let wings                    = require('./dps/wings.json')
 let bhApps                   = require('./dps/business_hub_apps.json')
 let pinApps                  = require('./dps/pin_apps.json')
+let allMVPApps               = require('./dps/mvp/all-apps-data.json')
+let pin05data                = require('./dps/mvp//pin_05_data.json')
 
 let bhPendingApps            = require('./dps/bh_pending_apps.json')
 let bhClosedApps             = require('./dps/bh_closed_apps.json')
@@ -40,11 +42,13 @@ module.exports = {
   wings,
   bhApps,
   pinApps,
+  allMVPApps,
   bhPendingApps,
   bhClosedApps,
   omuPendingApps,
   omuClosedApps,
   addresses,
   prisonStaff,
-  countries
+  countries,
+  pin05data
 }

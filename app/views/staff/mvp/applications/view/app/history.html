@@ -22,7 +22,7 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">View all applications</a>
   					</li>
   				</ol>
   			</div>
@@ -30,7 +30,12 @@
 
       
       <h1 class="govuk-heading-xl">
-        Add new social PIN phone contact
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVPApps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
       </h1>
     </div>
   </div>
@@ -41,62 +46,71 @@
 
 
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./index.html">Application</a>
+            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+              Application 
+            </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments.html">
+            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
               Comments
             </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action-decision.html">Action and reply</a>
+            <a class="moj-sub-navigation__link" href="./action?url_id={{appID}}">
+              Action and reply
+              </a>
           </li>
-
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page"  href="./history.html">History</a>
+            <a class="moj-sub-navigation__link"  aria-current="page" href="./history?url_id={{appID}}">
+              History
+            </a>
           </li>
         </ul>
-
       </nav>
 
       <h2 class="govuk-heading-m">History of this application</h2>
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-
+          <div class="app-message govuk-body">
+            <div class="app-messages-metadata">
+              J. Smith | {{ 0 | getDate }} at 09:18
+            </div>
+            <div class="app-messages-content">
+              Logged with Business Hub.
+            </div>
+          </div>
+          {% if data['appDept'] == "OMU" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
-          J. Smith | {{ -3 | getDate }} at 09:18
-        </div>
-        <div class="app-messages-content">
-          Logged with Business Hub.
-        </div>
-      </div>
-
-      <div class="app-message govuk-body">
-        <div class="app-messages-metadata">
-          J. Smith | {{ -3 | getDate }} at 11:45
+          J. Smith | {{ 0 | getDate }} at 12:04
         </div>
         <div class="app-messages-content">
           Forwarded to OMU.
         </div>
       </div>
-
+      {% endif %}
+      {% if data['actionRespond'] == "approved" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
-          B. Ahmad | {{ 0 | getDate }} at 12:08
+          S. Henderson | {{ 0 | getDate }} at 16:52
         </div>
         <div class="app-messages-content">
-          Marked as approved.
+            Marked as approved.
         </div>
       </div>
-
-
+      {% elseif data['actionRespond'] == "declined" %}
+      <div class="app-message govuk-body">
+        <div class="app-messages-metadata">
+          S. Henderson | {{ 0 | getDate }} at 16:52
+        </div>
+        <div class="app-messages-content">
+            Marked as declined.
+        </div>
+      </div>
+      {% endif %}
       </div>
       </div>
 

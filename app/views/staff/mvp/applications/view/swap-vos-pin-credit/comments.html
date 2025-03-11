@@ -1,0 +1,145 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="New PIN phone contact" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/mvp/" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <nav aria-label="breadcrumb">
+  			<div class="govuk-breadcrumbs">
+  				<ol class="govuk-breadcrumbs__list">
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+  					</li>
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+  					</li>
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">View applications</a>
+  					</li>
+  				</ol>
+  			</div>
+  		</nav>
+
+      <h1 class="govuk-heading-xl">
+      	Comments about this VO swap
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row govuk-width-container govuk-!-margin-bottom-9">
+    <div class="govuk-grid-column-full govuk-!-padding-right-9 govuk-!-padding-left-0">
+
+
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+        <ul class="moj-sub-navigation__list">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./index.html">Application</a>
+          </li>
+
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page"  href="./comments.html">
+              Comments
+            </a>
+          </li>
+
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./action.html">Action and reply</a>
+          </li>
+
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./history.html">History</a>
+          </li>
+        </ul>
+
+      </nav>
+
+      <h2 class="govuk-heading-m">Only staff will see these comments</h2>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if data['newComment'] or data['forwardReasons'] %}
+
+            {% if data['newComment'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  {{ data['newComment'] }}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if data['forwardReasons'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  <p></p>
+                  {{ data['forwardReasons'] }}
+                </div>
+              </div>
+            {% endif %}
+
+            {% else %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-content">
+                  <p class="none">Comments already made about this application: <strong>None</strong></p>
+                </div>
+              </div>
+          {% endif %}
+
+
+
+      <div data-module="moj-add-another">
+
+      <form class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="newComment">
+            Add a comment
+          </label>
+          <textarea class="govuk-textarea" id="newComment" name="newComment" rows="5"></textarea>
+        </div>
+
+        <div class="moj-button-action">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save comment
+          </button>
+        </div>
+
+      </form>
+      </div>
+      </div>
+      </div>
+
+      </div>
+
+    </div>
+
+
+  </div> <!-- end main content  -->
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#my-autocomplete')
+  })
+</script>
+
+{% endblock %}

@@ -10,33 +10,14 @@
 			<th scope="col" class="govuk-table__header" aria-sort="descending">Date</th>
 			<th scope="col" class="govuk-table__header" aria-sort="none">Request</th>
 			<th scope="col" class="govuk-table__header" aria-sort="none">From</th>
+			<th scope="col" class="govuk-table__header" aria-sort="none">Owner</th>
 			<th scope="col" class="govuk-table__header" aria-sort="none">Decision</th>
 			<th scope="col" class="govuk-table__header" ></th>
 		</tr>
 	</thead>
 	<tbody class="govuk-table__body">
-		<tr class="govuk-table__row">
-			<td class="govuk-table__cell reldate">0</td>
-			<td class="govuk-table__cell">
-				{% include "/staff/mvp/applications/includes/application-type.html" %}
-			</td>
-			<td class="govuk-table__cell">
-				Patel, Taj
-				<span class="govuk-table__subtext govuk-body-s">
-					{% if data['prisonNumber'] %}
-						{{ data['prisonNumber'] }}
-					{% else %}
-						16539153
-					{% endif %}
-				</span>
-			</td>
-			<td class="govuk-table__cell">Approved</td>
-			<td class="govuk-table__cell"><a href="./apps/app-1/">View</a></td>
-		</tr>
-
-
-
-		{% for app in data['omuClosedApps'] %}
+		{% for app in data['allMVPApps'] %}
+		{% if app.decision == "Approved" or app.decision == "Declined" %}
 		<tr class="govuk-table__row">
 			<td class="govuk-table__cell reldate">{{ app.date_received }}</td>
 			<td class="govuk-table__cell">{{ app.app_type }}</td>
@@ -44,9 +25,11 @@
 				{{ app.prisoner_name }}
 				<span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>
 			</td>
+			<td class="govuk-table__cell">{{ app.current_dept }}</td>
 			<td class="govuk-table__cell">{{ app.decision }}</td>
-			<td class="govuk-table__cell"><a href="./apps/app-{{ app.app_url }}/">View</a></td>
+			<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View</a></td>
 		</tr>
+		{% endif %}
 		{% endfor %}
 	</tbody>
 </table>

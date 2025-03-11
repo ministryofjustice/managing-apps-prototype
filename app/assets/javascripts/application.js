@@ -33,9 +33,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
   })
 
   // Convert numbers to relative dates 0 = today, -1 = yesterday
-  $('td.reldate').each(function () {
+  $('.reldate').each(function () {
     var relDate = $(this).html();
-    $(this).text(DateTime.now().plus({days: relDate}).toFormat('dd MMMM yyyy'));
+    $(this).text(DateTime.now().plus({days: relDate}).toFormat('d MMMM yyyy'));
   })
 
 

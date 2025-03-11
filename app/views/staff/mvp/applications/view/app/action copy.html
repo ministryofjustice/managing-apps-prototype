@@ -22,7 +22,7 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">Business Hub</a>
   					</li>
   				</ol>
   			</div>
@@ -30,48 +30,55 @@
 
       
       <h1 class="govuk-heading-xl">
-        {% include "/staff/mvp/applications/includes/application-type.html" %}
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVPApps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
       </h1>
     </div>
   </div>
-
 
   <div class="govuk-grid-row govuk-width-container govuk-!-margin-bottom-9">
     <div class="govuk-grid-column-full govuk-!-padding-right-9 govuk-!-padding-left-0">
 
 
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./index.html">Application</a>
-          </li>
-
+            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+              Application 
+            </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments.html">
+            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
               Comments
             </a>
           </li>
-
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="./action-decision.html">Action and reply</a>
+            <a class="moj-sub-navigation__link"  aria-current="page" href="./action?url_id={{appID}}">
+              Action and reply
+              </a>
           </li>
-          {% else %}
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="./action.html">Action and reply</a>
-          </li>
-          {% endif %}
-
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history.html">History</a>
+            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+              History
+            </a>
           </li>
         </ul>
       </nav>
 
+
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 
+          <h2 class="govuk-heading-m">Action and reply</h2>
+
+          {% set appID = data['url_id'] %}
+          {% for app in data['allMVPApps'] %}
+          {% if app.app_id == appID  %}
+
+          {% if data['actionRespond'] %}
 
           <div id="response-approved" class="response-toggle form">
             <dl class="govuk-summary-list">
@@ -80,15 +87,7 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['actionRespond'] === 'approved' %}
-                    <strong class="govuk-tag govuk-tag--green">
-                      Approved
-                    </strong>
-                  {% elseif data['actionRespond'] === 'declined' %}
-                    <strong class="govuk-tag govuk-tag--red">
-                      Declined
-                    </strong>
-                  {% endif %}
+                  {{ app.decision }}
                 </dd>
                 <!---
                 <dd class="govuk-summary-list__actions">
@@ -123,11 +122,11 @@
               </div>
             </dl>
             <div class="moj-button-action">
-              {% if data['actionRespond'] === 'approved' %}
+              {% if data['actionRespond'] === 'Approved' %}
               <a href="/public/pdfs/approved.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>
-              {% elseif data['actionRespond'] === 'declined' %}
+              {% elseif data['actionRespond'] === 'Declined' %}
               <a href="/public/pdfs/declined.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>
@@ -135,6 +134,71 @@
             </div>
           </div>
 
+          {% endif  %}
+
+
+          {% if app.decision == null %}
+
+          <div id="response-form" class="response-toggle form">
+
+            <p class="govuk-body">This action and its reason will be seen by the prisoner.</p>
+
+            <form class="form" action="{{homeurl}}applications/view/app/action?url_id={{appID}}">
+              {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+              {{ govukRadios({
+                idPrefix: "actionRespond",
+                name: "actionRespond",
+                fieldset: {
+                  legend: {
+                    text: "Select an action",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: [
+                  {
+                    value: "approved",
+                    text: "Approved",
+                    checked: checked("actionRespond", "Approved")
+                  },
+                  {
+                    value: "declined",
+                    text: "Declined",
+                    checked: checked("actionRespond", "Declined")
+                  }
+                ]
+              }) }}
+
+
+              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+              {{ govukCharacterCount({
+                name: "decisionReason",
+                id: "decisionReason",
+                maxlength: 1000,
+                threshold: 75,
+                label: {
+                  text: "Reason",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                }
+              }) }}
+              
+
+              <div class="moj-button-action">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Reply
+                </button>
+              </div>
+            </form>
+          </div>
+          {% endif  %}
+
+
+          {% endif  %}
+          {% endfor  %}
+  
 
     </div>
   </div>

@@ -36,10 +36,11 @@
               {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
               {{ govukCharacterCount({
-                name: "vosDetail",
+                name: "pin_05_vosDetail",
                 id: "vos-detail",
                 maxlength: 1000,
                 threshold: 75,
+                value:  data['pin_05_vosDetail'] ,
                 label: {
                   text: "Details (optional)",
                   classes: "govuk-label--s"

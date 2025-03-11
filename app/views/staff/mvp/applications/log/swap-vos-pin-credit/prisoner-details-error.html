@@ -48,7 +48,7 @@
                 <p id="prisonNumber-error" class="govuk-error-message">
                   <span class="govuk-visually-hidden">Error:</span> Enter a valid prison number
                 </p>
-                <input class="govuk-input govuk-input--width-10 govuk-input--error" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
+                <input class="govuk-input govuk-input--width-10 govuk-input--error" id="prisonNumber" name="pin_05_prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
                 <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                   Find prisoner
                 </a>
@@ -58,12 +58,12 @@
 
                 {{ mojDatePicker({
                 id: "submittedDate",
-                name: "submittedDate",
+                name: "pin_05_submittedDate",
                 label: {
                     text: "Date",
                     classes: "govuk-label--s"
                 },
-                value:  data['submittedDate'] ,
+                value:  data['pin_05_submittedDate'] ,
                 classes: "govuk-!-margin-bottom-5",
                 errorMessage: {
                   text: "Enter or select a valid date"

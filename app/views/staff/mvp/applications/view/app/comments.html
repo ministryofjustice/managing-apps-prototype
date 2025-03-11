@@ -22,14 +22,20 @@
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
             <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/omu/pending.html">OMU</a>
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">View all applications</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
+      
       <h1 class="govuk-heading-xl">
-        {% include "/staff/mvp/applications/includes/application-type.html" %}
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVPApps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
       </h1>
     </div>
   </div>
@@ -40,37 +46,31 @@
 
 
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./index.html">Application</a>
-          </li>
-
+            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+              Application 
+            </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page"  href="./comments.html">
+            <a class="moj-sub-navigation__link" aria-current="page" href="./comments?url_id={{appID}}">
               Comments
             </a>
           </li>
-
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action-decision.html">Action and reply</a>
+            <a class="moj-sub-navigation__link" href="./action?url_id={{appID}}">
+              Action and reply
+              </a>
           </li>
-          {% else %}
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action.html">Action and reply</a>
-          </li>
-          {% endif %}
-
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history.html">History</a>
+            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+              History
+            </a>
           </li>
         </ul>
-
       </nav>
 
-      <h2 class="govuk-heading-m">Comments about this application</h2>
-      <p class="govuk-body">Only staff will see these comments</p>
+
+      <h2 class="govuk-heading-m">Only staff will see these comments</h2>
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -103,7 +103,7 @@
             {% else %}
               <div class="app-message govuk-body">
                 <div class="app-messages-content">
-                  <p class="none">None</p>
+                  <p class="none">Comments already made about this application: <strong>None</strong></p>
                 </div>
               </div>
           {% endif %}
@@ -114,35 +114,11 @@
 
       <form class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
         <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--s" for="more-detail">
+          <label class="govuk-label govuk-label--s" for="newComment">
             Add a comment
           </label>
           <textarea class="govuk-textarea" id="newComment" name="newComment" rows="5"></textarea>
         </div>
-
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--s"">Notify staff about this comment (optional)</legend>
-
-          <dl id="notify-list" class="govuk-summary-list">
-          </dl>
-
-          <div class="govuk-form-group">
-            <label for="my-autocomplete" class="govuk-label">Name</label>
-            <div class="notify-group">
-              <div id="my-autocomplete-wrapper">
-                  <select id="my-autocomplete">
-                    <option value="" selected disabled hidden></option>
-                    {% for individual in data['prisonStaff'] %}
-                    <option value="{{ individual.last_name }}, {{ individual.first_name }} ({{ individual.job_title }})">{{ individual.last_name }}, {{ individual.first_name }} ({{ individual.job_title }})</option>
-                    {% endfor %}
-                  </select>
-              </div>
-              <a id="addName" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                Add
-              </a>
-            </div>
-          </div>
-        </fieldset>
 
         <div class="moj-button-action">
           <button type="submit" class="govuk-button" data-module="govuk-button">

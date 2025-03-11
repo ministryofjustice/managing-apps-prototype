@@ -32,7 +32,7 @@
                 <label class="govuk-label govuk-label--s" for="prisonNumber">
                   Prison number
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
+                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="pin_05_prisonNumber" type="text" value="{{ data['pin_05_prisonNumber'] }}">
                 <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                   Find prisoner
                 </a>
@@ -46,12 +46,12 @@
 
                 {{ mojDatePicker({
                 id: "submittedDate",
-                name: "submittedDate",
+                name: "pin_05_submittedDate",
                 label: {
                     text: "Date",
                     classes: "govuk-label--s"
                 },
-                value:  data['submittedDate'] ,
+                value:  data['pin_05_submittedDate'] ,
                 classes: "govuk-!-margin-bottom-5"
               }) }}
 
