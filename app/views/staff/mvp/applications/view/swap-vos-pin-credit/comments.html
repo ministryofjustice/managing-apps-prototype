@@ -28,8 +28,9 @@
   			</div>
   		</nav>
 
+      <span class="govuk-caption-xl">Swap VOs for PIN credit</span>
       <h1 class="govuk-heading-xl">
-      	Comments about this VO swap
+      	Comments
       </h1>
     </div>
   </div>
@@ -43,7 +44,7 @@
 
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./index.html">Application</a>
+            <a class="moj-sub-navigation__link" href="./application.html">Application</a>
           </li>
 
           <li class="moj-sub-navigation__item">
@@ -63,7 +64,8 @@
 
       </nav>
 
-      <h2 class="govuk-heading-m">Only staff will see these comments</h2>
+      <h2 class="govuk-heading-m">Comments about this application</h2>
+      <p class="govuk-body">Only staff will see these comments</h2>
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -73,7 +75,7 @@
             {% if data['newComment'] %}
               <div class="app-message govuk-body">
                 <div class="app-messages-metadata">
-                  J. Smith | {{ 0 | getDate }} at 16:52
+                  Comment by J. Smith | {{ 0 | getDate }} at 16:52
                 </div>
                 <div class="app-messages-content">
                   {{ data['newComment'] }}
@@ -84,10 +86,9 @@
             {% if data['forwardReasons'] %}
               <div class="app-message govuk-body">
                 <div class="app-messages-metadata">
-                  J. Smith | {{ 0 | getDate }} at 16:52
+                  Forwarded to {{ data['pin_05_appDept'] }} by J. Smith | {{ 0 | getDate }} at 16:52
                 </div>
                 <div class="app-messages-content">
-                  <p></p>
                   {{ data['forwardReasons'] }}
                 </div>
               </div>
@@ -96,14 +97,15 @@
             {% else %}
               <div class="app-message govuk-body">
                 <div class="app-messages-content">
-                  <p class="none">Comments already made about this application: <strong>None</strong></p>
+                  <p class="none">No comments yet</p>
                 </div>
               </div>
           {% endif %}
 
 
 
-      <div data-module="moj-add-another">
+        {% if data['pin_05_actionRespond'] == "Approved" or data['pin_05_actionRespond'] == "Declined"  %}
+        {% else %}
 
       <form class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
         <div class="govuk-form-group">
@@ -120,7 +122,8 @@
         </div>
 
       </form>
-      </div>
+      {% endif %}
+
       </div>
       </div>
 

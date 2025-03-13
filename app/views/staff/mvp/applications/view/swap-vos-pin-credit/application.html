@@ -21,15 +21,15 @@
   					<li class="govuk-breadcrumbs__list-item">
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
-            <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/business-hub/pending.html">Business Hub</a>
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/pending.html">View applications</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
       <h1 class="govuk-heading-xl">
-        Add emergency PIN phone credit
+        	Swap visiting orders (VOs) for PIN credit
       </h1>
     </div>
   </div>
@@ -52,15 +52,9 @@
             </a>
           </li>
 
-          {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action-decision.html">Action and reply</a>
-          </li>
-          {% else %}
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" href="./action.html">Action and reply</a>
           </li>
-          {% endif %}
 
           <li class="moj-sub-navigation__item">
             <a class="moj-sub-navigation__link" href="./history.html">History</a>
@@ -79,7 +73,7 @@
                 Status
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
+                {% if data['pin_05_actionRespond'] == "Approved" or data['pin_05_actionRespond'] == "Declined"  %}
                   Closed
                 {% else %}
                   Pending
@@ -91,26 +85,25 @@
                 Department
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['appDept'] %}
-                  {{ data['appDept'] }}
+                {% if data['pin_05_appDept'] %}
+                  {{ data['pin_05_appDept'] }}
                 {% else %}
                   Business Hub
                 {% endif %}
               </dd>
-              {% if data['actionRespond'] == "approved" or data['actionRespond'] == "declined"  %}
-              {% else %}
+              {% if data['pin_05_actionRespond'] !== "Approved" and data['pin_05_actionRespond'] !== "Declined"  %}
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="forward.html">Forward<span class="govuk-visually-hidden"> department</span></a>
               </dd>
-              {% endif %}
+              {% endif %}              
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Application type
               </dt>
               <dd class="govuk-summary-list__value">
-                Add emergency PIN phone credit
-                </dd>
+                	Swap visiting orders (VOs) for PIN credit
+              </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -139,8 +132,8 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 Patel, Taj (
-                  {% if data['prisonNumber'] %}
-                    {{ data['prisonNumber'] }}
+                  {% if data['pin_05_prisonNumber'] %}
+                    {{ data['pin_05_prisonNumber'] }}
                   {% else %}
                     12345678
                   {% endif %}
@@ -179,34 +172,23 @@
             </div>
           </dl>
 
-          <div class="govuk-summary-list--header">
-            <h2 class="govuk-heading-m">Emergency credit to add</h2>
-            <a href="/staff/mvp/applications/log/emergency-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> Emergency PIN phone credit</span></a>
-          </div>
 
+          <div class="govuk-summary-list--header">
+            <h2 class="govuk-heading-m">VOs to swap</h2>
+            {% if data['pin_05_actionRespond'] !== "Approved" and data['pin_05_actionRespond'] !== "Declined"  %}
+            <a href="/staff/mvp/applications/log/swap-vos-pin-credit.html" class="govuk-body">Change <span class="govuk-visually-hidden"> Visiting orders</span></a>
+            {% endif %}
+          </div>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Amount
+                Details
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['pinCredit'] %}
-                  £{{ data['pinCredit'] }}
+                {% if data['pin_05_vosDetail'] %}
+                  {{ data['pin_05_vosDetail'] }}
                 {% else %}
-                  £2
-                {% endif %}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Reason
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['emergencyPInReason'] %}
-                  {{ data['emergencyPInReason'] }}
-                {% else %}
-                  Due to a bereavment Taj needs to make an uregnt family call
+                  Swap last 2 months VOs
                 {% endif %}
               </dd>
             </div>

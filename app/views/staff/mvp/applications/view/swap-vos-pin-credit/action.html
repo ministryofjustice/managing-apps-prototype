@@ -29,8 +29,9 @@
   		</nav>
 
       
+      <span class="govuk-caption-xl">Swap VOs for PIN credit</span>
       <h1 class="govuk-heading-xl">
-        Swap visiting orders (VOs) for PIN credit
+      	Action and reply
       </h1>
     </div>
   </div>
@@ -43,7 +44,7 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./index.html">
+            <a class="moj-sub-navigation__link" href="./application.html">
               Application 
             </a>
           <li class="moj-sub-navigation__item">
@@ -68,9 +69,9 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 
-          <h2 class="govuk-heading-m">Action and reply</h2>
+          <h2 class="govuk-heading-m">Action this application</h2>
 
-          {% if data['actionRespond'] %}
+          {% if data['pin_05_actionRespond'] %}
 
           <div id="response-approved" class="">
             <dl class="govuk-summary-list">
@@ -79,7 +80,7 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{ data['actionRespond'] }}
+                  {{ data['pin_05_actionRespond'] }}
                 </dd>
                 <!---
                 <dd class="govuk-summary-list__actions">
@@ -91,8 +92,8 @@
                   Reason
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['decisionReason'] %}
-                    {{ data['decisionReason'] }}
+                  {% if data['pin_05_decisionReason'] %}
+                    {{ data['pin_05_decisionReason'] }}
                   {% endif %}
                 </dd>
               </div>
@@ -114,11 +115,11 @@
               </div>
             </dl>
             <div class="moj-button-action">
-              {% if data['actionRespond'] === 'Approved' %}
+              {% if data['pin_05_actionRespond'] === 'Approved' %}
               <a href="/public/pdfs/approved.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>
-              {% elseif data['actionRespond'] === 'Declined' %}
+              {% elseif data['pin_05_actionRespond'] === 'Declined' %}
               <a href="/public/pdfs/declined.pdf" target="_blank" class="govuk-button">
                 Print reply
               </a>
@@ -136,8 +137,8 @@
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
               {{ govukRadios({
-                idPrefix: "actionRespond",
-                name: "actionRespond",
+                idPrefix: "pin_05_actionRespond",
+                name: "pin_05_actionRespond",
                 fieldset: {
                   legend: {
                     text: "Select an action",
@@ -163,8 +164,8 @@
               {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
               {{ govukCharacterCount({
-                name: "decisionReason",
-                id: "decisionReason",
+                name: "pin_05_decisionReason",
+                id: "pin_05_decisionReason",
                 maxlength: 1000,
                 threshold: 75,
                 label: {
