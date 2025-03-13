@@ -110,6 +110,9 @@
               </div>
           {% endif %}
 
+          {% for app in data['allMVPApps'] %}
+          {% if app.app_id == appID  %}
+  
         {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
         {% else %}
 
@@ -129,7 +132,12 @@
 
       </form>
 
+      
       {% endif %}
+      {% endif  %}
+      {% endfor  %}
+
+
     </div>
       </div>
 
