@@ -8,10 +8,10 @@
 	<thead class="govuk-table__head">
 		<tr class="govuk-table__row">
 			<th scope="col" class="govuk-table__header" aria-sort="descending">Date</th>
-			<th scope="col" class="govuk-table__header" aria-sort="none">Request</th>
-			<th scope="col" class="govuk-table__header" aria-sort="none">From</th>
-			<th scope="col" class="govuk-table__header" aria-sort="none">Owner</th>
-			<th scope="col" class="govuk-table__header" aria-sort="none">Decision</th>
+			<th scope="col" class="govuk-table__header">Application type</th>
+			<th scope="col" class="govuk-table__header">From</th>
+			<th scope="col" class="govuk-table__header">Department</th>
+			<th scope="col" class="govuk-table__header">Decision</th>
 			<th scope="col" class="govuk-table__header" ></th>
 		</tr>
 	</thead>
@@ -19,7 +19,7 @@
 		{% for app in data['allMVPApps'] %}
 		{% if app.decision == "Approved" or app.decision == "Declined" %}
 		<tr class="govuk-table__row">
-			<td class="govuk-table__cell reldate">{{ app.date_received }}</td>
+			<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
 			<td class="govuk-table__cell">{{ app.app_type }}</td>
 			<td class="govuk-table__cell">
 				{{ app.prisoner_name }}
