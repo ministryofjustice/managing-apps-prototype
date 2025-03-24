@@ -42,7 +42,7 @@
   {
     "dept": "Business Hub",
     "appid": "bh_05",
-    "type": "Swap visiting orders (VOs) for PIN credit",
+    "type": "Swap VOs for PIN credit",
     "omu_no": "0",
     "bh_amount": "2",
     "amount": "2",

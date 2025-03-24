@@ -4,7 +4,7 @@
 
 <div class="panel-content">
 
-<table class="govuk-table govuk-checkboxes--small" data-module="moj-sortable-table">
+<table id="dataTable" class="govuk-table apps-list" data-module="moj-sortable-table">
 	<thead class="govuk-table__head">
 		<tr class="govuk-table__row">
 			<th scope="col" class="govuk-table__header nowrap" aria-sort="descending">Date</th>
@@ -16,11 +16,11 @@
 	</thead>
 	<tbody class="govuk-table__body">
 		{% if data['pin_05_submitted'] === 'submitted' %}
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row" data-tags="Patel, Taj ({{ data['pin_05_prisonNumber'] }}) Business Hub Swap VOs for PIN credit">
 			<td class="govuk-table__cell">{{ 0 | getDate }}</td>
 			<td class="govuk-table__cell">Swap VOs for PIN credit</td>
 			<td class="govuk-table__cell">
-				Taj Patel
+				Patel, Taj
 				<span class="govuk-table__subtext govuk-body-s">{{ data['pin_05_prisonNumber'] }}</span>
 			</td>
 			<td class="govuk-table__cell">Business Hub</td>
@@ -30,7 +30,7 @@
 
 		{% for app in data['allMVPApps'] %}
 		{% if app.decision == null %}
-		<tr class="govuk-table__row">
+		<tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
 			<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
 			<td class="govuk-table__cell">{{ app.app_type }}</td>
 			<td class="govuk-table__cell">
