@@ -1,24 +1,14 @@
-window.GOVUKPrototypeKit.documentReady(() => {
+window.GOVUKPrototypeKit.documentReady(function() {
 
     $('.moj-filter-tags--group').hide();
 
-    function filterTable() {
-        var prisonerNameNumber = $('#prisoner-autocomplete').val();
-        var nameOrNumber = $('#prisoner-autocomplete').val().toLowerCase();
-
+    function filterTable(tableId, noResultsId, prisonerNameNumber, selectedDepartments, selectedTypes) {
+        var nameOrNumber = prisonerNameNumber.toLowerCase();
         var prisonNumber = (nameOrNumber.slice(-8, -1));
         
-        var selectedDepartments = $('input[name="departmentFilter"]:checked').map(function() {
-            return $(this).val();
-        }).get();
-        
-        var selectedTypes = $('input[name="typeFilter"]:checked').map(function() {
-            return $(this).val();
-        }).get();
-
         var hasResults = false;
 
-        $('.dataTable tbody tr').each(function() {
+        $(tableId + ' tbody tr').each(function() {
             var tags = $(this).data('tags').toLowerCase();
 
             var showRow = (tags.indexOf(prisonNumber) > -1 || prisonNumber === '') &&
@@ -32,17 +22,15 @@ window.GOVUKPrototypeKit.documentReady(() => {
             }
         });
 
-        var visibleRows = $('.dataTable tbody tr:visible').length;
+        var visibleRows = $(tableId + ' tbody tr:visible').length;
 
         if (visibleRows > 0) {
-            $('.results').show();
-            $('.noResults').hide();
+            $(tableId).show();
+            $(noResultsId).hide();
         } else {
-            $('.results').hide();
-            $('.noResults').show();
+            $(tableId).hide();
+            $(noResultsId).show();
         }
-
-        updateFilterTags(prisonerNameNumber, selectedDepartments, selectedTypes);
     }
 
     function updateFilterTags(prisonerNameNumber, selectedDepartments, selectedTypes) {
@@ -61,9 +49,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
             selectedDepartments.forEach(function(dept) {
                 $('#dept-tags').append('<li><a href="#" class="moj-filter__tag">' + dept + '</a></li>');
             });
-            $('#moj-filter-tags--dept').show(); // Corrected selector
+            $('#moj-filter-tags--dept').show();
         } else {
-            $('#moj-filter-tags--dept').hide(); // Corrected selector
+            $('#moj-filter-tags--dept').hide();
         }
 
         if (selectedTypes.length > 0) {
@@ -80,15 +68,21 @@ window.GOVUKPrototypeKit.documentReady(() => {
         $('#prisoner-autocomplete').val('');
         $('input[name="departmentFilter"]').prop('checked', false);
         $('input[name="typeFilter"]').prop('checked', false);
-        filterTable();
+        filterTable('#dataTable', '#noResults', $('#prisoner-autocomplete').val(), $('input[name="departmentFilter"]:checked').map(function() { return $(this).val(); }).get(), $('input[name="typeFilter"]:checked').map(function() { return $(this).val(); }).get());
+        filterTable('#dataTable2', '#noResults2', $('#prisoner-autocomplete').val(), $('input[name="departmentFilter"]:checked').map(function() { return $(this).val(); }).get(), $('input[name="typeFilter"]:checked').map(function() { return $(this).val(); }).get());
         return false;
     }
 
-    $('#applyFiltersButton').on('click', filterTable);
+    $('#applyFiltersButton').on('click', function() {
+        filterTable('#dataTable', '#noResults', $('#prisoner-autocomplete').val(), $('input[name="departmentFilter"]:checked').map(function() { return $(this).val(); }).get(), $('input[name="typeFilter"]:checked').map(function() { return $(this).val(); }).get());
+        filterTable('#dataTable2', '#noResults2', $('#prisoner-autocomplete').val(), $('input[name="departmentFilter"]:checked').map(function() { return $(this).val(); }).get(), $('input[name="typeFilter"]:checked').map(function() { return $(this).val(); }).get());
+    });
     $('#clearFiltersButton').on('click', clearFilters);
 
     // Show all results by default
-    $('.results').show();
-    $('.noResults').hide();
+    $('#results').show();
+    $('#noResults').hide();
+    $('#results2').show();
+    $('#noResults2').hide();
 
 });
