@@ -1,71 +1,63 @@
 <div class="panel-header">
-<h2 class="govuk-heading-m">Pending applications</h2>
+	<h2 class="govuk-heading-m">Pending applications</h2>
+  </div>
+  <div class="panel-content">
+
+	<div class="noResults" style="display:none;">
+		<p>No results found.</p>
+	  </div>
+	
+	<div class="results">
+		<table class="dataTable govuk-table apps-list" data-module="moj-sortable-table">
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+				  <th scope="col" class="govuk-table__header nowrap" aria-sort="descending">Date</th>
+				  <th scope="col" class="govuk-table__header">Application type</th>
+				  <th scope="col" class="govuk-table__header">From</th>
+				  <th scope="col" class="govuk-table__header">Department</th>
+				  <th scope="col" class="govuk-table__header" ></th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				{% for app in data['allMVPApps'] %}
+				{% if app.decision == null %}
+		        <tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
+					<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
+					<td class="govuk-table__cell">{{ app.app_type }}</td>
+					<td class="govuk-table__cell">
+					  {{ app.prisoner_name }}
+					  <span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>
+					</td>
+					<td class="govuk-table__cell">{{ app.current_dept }}</td>
+					<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View</a></td>
+				  </tr>
+				{% endif %}
+				{% endfor %}
+		</tbody>
+		</table>
+		{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+	
+		{{ govukPagination({
+		  next: {
+			href: "#"
+		  },
+		  items: [
+			{
+			  number: 1,
+			  current: true,
+			  href: "#"
+			},
+			{
+			  number: 2,
+			  href: "#"
+			},
+			{
+			  number: 3,
+			  href: "#"
+			}
+		  ]
+		}) }}
+
+	</div>
+
 </div>
-
-<div class="panel-content">
-
-<table id="dataTable" class="govuk-table apps-list" data-module="moj-sortable-table">
-	<thead class="govuk-table__head">
-		<tr class="govuk-table__row">
-			<th scope="col" class="govuk-table__header nowrap" aria-sort="descending">Date</th>
-			<th scope="col" class="govuk-table__header">Application type</th>
-			<th scope="col" class="govuk-table__header">From</th>
-			<th scope="col" class="govuk-table__header">Department</th>
-			<th scope="col" class="govuk-table__header" ></th>
-		</tr>
-	</thead>
-	<tbody class="govuk-table__body">
-		{% if data['pin_05_submitted'] === 'submitted' %}
-		<tr class="govuk-table__row" data-tags="Patel, Taj ({{ data['pin_05_prisonNumber'] }}) Business Hub Swap VOs for PIN credit">
-			<td class="govuk-table__cell">{{ 0 | getDate }}</td>
-			<td class="govuk-table__cell">Swap VOs for PIN credit</td>
-			<td class="govuk-table__cell">
-				Patel, Taj
-				<span class="govuk-table__subtext govuk-body-s">{{ data['pin_05_prisonNumber'] }}</span>
-			</td>
-			<td class="govuk-table__cell">Business Hub</td>
-			<td class="govuk-table__cell"><a href="{{homeurl}}/applications/view/swap-vos-pin-credit/">View</a></td>
-		</tr>
-		{% endif %}
-
-		{% for app in data['allMVPApps'] %}
-		{% if app.decision == null %}
-		<tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
-			<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
-			<td class="govuk-table__cell">{{ app.app_type }}</td>
-			<td class="govuk-table__cell">
-				{{ app.prisoner_name }}
-				<span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>
-			</td>
-			<td class="govuk-table__cell">{{ app.current_dept }}</td>
-			<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View</a></td>
-		</tr>
-		{% endif %}
-		{% endfor %}
-	</tbody>
-</table>
-</div>
-
-
-{% from "govuk/components/pagination/macro.njk" import govukPagination %}
-
-{{ govukPagination({
-  next: {
-    href: "#"
-  },
-  items: [
-    {
-      number: 1,
-      current: true,
-      href: "#"
-    },
-    {
-      number: 2,
-      href: "#"
-    },
-    {
-      number: 3,
-      href: "#"
-    }
-  ]
-}) }}
