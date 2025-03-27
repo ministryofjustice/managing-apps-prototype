@@ -32,27 +32,61 @@
                 <label class="govuk-label govuk-label--s" for="prisonNumber">
                   Prison number
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="pin_03_prisonNumber" type="text" value="{{ data['pin_03_prisonNumber'] }}">
+                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
                 <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                   Find prisoner
                 </a>
               </div>
 
-              <div id="prisoner-name-row"  class="govuk-inset-text govuk-!-margin-top-0">
-                Prisoner name: Patel, Taj
+              <div id="prisoner-name-row" class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="prisonerName">
+                  Prisoner name
+                </label>
+                <input class="govuk-input" id="prisonerName" name="prisonerName" type="text" value="Taj Patel" disabled>
               </div>
 
               {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
 
                 {{ mojDatePicker({
                 id: "submittedDate",
-                name: "pin_03_submittedDate",
+                name: "submittedDate",
                 label: {
                     text: "Date",
                     classes: "govuk-label--s"
                 },
-                value:  data['pin_03_submittedDate'] ,
+                value:  data['submittedDate'] ,
                 classes: "govuk-!-margin-bottom-5"
+              }) }}
+
+
+
+
+              {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+              {{ govukRadios({
+                classes: "govuk-radios--inline",
+                name: "prisonerFNC",
+                fieldset: {
+                  legend: {
+                    text: "Is this person in the first night or early days centre?",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                hint: {
+                },
+                items: [
+                  {
+                    value: "Yes",
+                    text: "Yes",
+                    checked: checked("prisonerFNC", "Yes")
+                  },
+                  {
+                    value: "No",
+                    text: "No",
+                    checked: checked("prisonerFNC", "No")
+                  }
+                ]
               }) }}
 
 
@@ -72,5 +106,15 @@
   </div>
 
 </div> <!-- end main content  -->
+
+{% endblock %}
+
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#address-picker')
+  })
+</script>
 
 {% endblock %}

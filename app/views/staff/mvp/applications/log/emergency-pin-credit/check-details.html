@@ -48,10 +48,14 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Prisoner name
+              Prisoner
             </dt>
             <dd class="govuk-summary-list__value">
-              Patel, Taj ({{ data['prisonNumber'] }})
+              {% if data['pin_03_prisonNumber'] %}
+                Patel, Taj ({{ data['pin_03_prisonNumber'] }})
+              {% else %}
+                Patel, Taj (A1234BC)
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -59,52 +63,74 @@
               Submitted on
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['submittedDate'] }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              First night centre
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['prisonerFNC'] }}
+              {% if data['pin_03_submittedDate'] %}
+                {{ data['pin_03_submittedDate'] }}
+              {% else %}
+                {{ 0 | getDate }}
+              {% endif %}
             </dd>
           </div>
         </dl>
 
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">Emergency credit to add</h2>
-          <a href="javascript:window.history.go(-1)"  class="govuk-body">Change <span class="govuk-visually-hidden">PIN phone credit</span></a>
+          <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden"> Visiting orders</span></a>
         </div>
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Amount
-            </dt>
-            <dd class="govuk-summary-list__value">
-              £{{ data['pinCredit'] }}
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
               Reason
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['emergencyPInReason'] }}
+              {% if data['pin_03_amount'] %}
+              £{{ data['pin_03_amount'] }}
+              {% endif %}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['pin_03_reason'] %}
+                {{ data['pin_03_reason'] }}
+              {% else %}
+                Bereavement
+              {% endif %}
             </dd>
           </div>
         </dl>
 
-        <div class="moj-button-action">
-          {% from "govuk/components/button/macro.njk" import govukButton %}
-          {{ govukButton({
-            text: "Continue",
-            href: "/staff/mvp/applications/log/emergency-pin-credit/confirmation.html"
-          }) }}
+        <form class="form" action="/staff/mvp/applications/log/emergency-pin-credit/confirmation">
+        
+        <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
+
+        <div class="govuk-form-group govuk-visually-hidden">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+                PIN 03 submitted
+            </legend>
+            <div class="govuk-radios--small" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="pin_03_submitted" name="pin_03_submitted" type="radio" value="submitted" checked="checked" />
+                <label class="govuk-label govuk-radios__label" for="pin_03_submitted">
+                  submitted
+                </label>
+              </div>
+            </div>
+          </fieldset>
         </div>
 
+        <!-- /end note -->
+
+        <div class="moj-button-action">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </div>
+
+      </form>
       </div>
     </div>
 

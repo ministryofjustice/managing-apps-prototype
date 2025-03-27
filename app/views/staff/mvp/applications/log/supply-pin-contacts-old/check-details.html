@@ -48,14 +48,10 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Prisoner
+              Prisoner name
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_06_prisonNumber'] %}
-                Patel, Taj ({{ data['pin_06_prisonNumber'] }})
-              {% else %}
-                Patel, Taj (A1234BC)
-              {% endif %}
+              Patel, Taj ({{ data['prisonNumber'] }})
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -63,18 +59,22 @@
               Submitted on
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_06_submittedDate'] %}
-                {{ data['pin_06_submittedDate'] }}
-              {% else %}
-                {{ 0 | getDate }}
-              {% endif %}
+              {{ data['submittedDate'] }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              First night centre
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['prisonerFNC'] }}
             </dd>
           </div>
         </dl>
 
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">Supply contact list</h2>
-          <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden"> Visiting orders</span></a>
+          <a href="javascript:window.history.go(-1)"  class="govuk-body">Change <span class="govuk-visually-hidden"> PIN contact list</span></a>
         </div>
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -83,44 +83,19 @@
               Details
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_06_detail'] %}
-                {{ data['pin_06_detail'] }}
-              {% else %}
-                Print all contacts inclusing deactivated ones.
-              {% endif %}
+              {{ data['printPINsDetail'] }}
             </dd>
           </div>
         </dl>
 
-        <form class="form" action="/staff/mvp/applications/log/supply-pin-contacts/confirmation">
-        
-        <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
-
-        <div class="govuk-form-group govuk-visually-hidden">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend">
-                PIN 06 submitted
-            </legend>
-            <div class="govuk-radios--small" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="pin_06_submitted" name="pin_06_submitted" type="radio" value="submitted" checked="checked" />
-                <label class="govuk-label govuk-radios__label" for="pin_06_submitted">
-                  submitted
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <!-- /end note -->
-
         <div class="moj-button-action">
-          <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
-          </button>
+          {% from "govuk/components/button/macro.njk" import govukButton %}
+          {{ govukButton({
+            text: "Continue",
+            href: "/staff/mvp/applications/log/supply-pin-contacts/confirmation.html"
+          }) }}
         </div>
 
-      </form>
       </div>
     </div>
 

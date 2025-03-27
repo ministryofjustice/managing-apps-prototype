@@ -32,7 +32,7 @@
           </div>
           <div class="govuk-radios" data-module="govuk-radios">
 
-            {% for app in data['apps'] %}
+            {% for app in data['mvpapptypes'] %}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="{{ app.appid }}" name="appType" type="radio" value="{{ app.appid }}">
               <label class="govuk-label govuk-radios__label" for="{{ app.appid }}">

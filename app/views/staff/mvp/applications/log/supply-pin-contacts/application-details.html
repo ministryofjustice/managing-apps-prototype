@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Supply list of PIN phone contacts" %}
+{% set pageName="Log details" %}
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/mvp/" %}
@@ -26,11 +26,14 @@
 
             <form class="form" action="/staff/mvp/applications/log/supply-pin-contacts/check-details">
 
-              {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
-              {{ govukTextarea({
-                name: "printPINsDetail",
-                id: "print-pins-detail",
+              {{ govukCharacterCount({
+                name: "pin_06_detail",
+                id: "vos-detail",
+                maxlength: 1000,
+                threshold: 75,
+                value:  data['pin_06_detail'] ,
                 label: {
                   text: "Details (optional)",
                   classes: "govuk-label--s"
@@ -38,9 +41,7 @@
                 hint: {
                   text: "Add a brief summary"
                 }
-
-              }) }}
-
+              }) }}      
 
             <div class="moj-button-action">
               <button type="submit" class="govuk-button" data-module="govuk-button">
