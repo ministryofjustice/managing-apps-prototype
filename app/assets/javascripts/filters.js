@@ -1,4 +1,5 @@
 window.GOVUKPrototypeKit.documentReady(function() {
+
     // Hide filter tag groups that don't have tags yet
     $('.moj-filter-tags--group').each(function() {
         var $group = $(this);

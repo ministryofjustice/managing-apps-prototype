@@ -4,6 +4,26 @@
 //
 
 window.GOVUKPrototypeKit.documentReady(() => {
+
+
+  function convertDate(dateStr) {
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+  
+    const [day, month, year] = dateStr.split("/");
+  
+    return `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
+  }
+  
+  // Apply to all elements with the class 'convertDate'
+  const dateElements = document.querySelectorAll(".convertDate");
+  dateElements.forEach(element => {
+      element.textContent = convertDate(element.textContent);
+  });
+  
+
   // Add JavaScript here
   var DateTime = luxon.DateTime;
 
@@ -25,7 +45,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
   })
 
-// Convert spreadsheet date formats to readable dates
+  // Convert spreadsheet date formats to readable dates
   $('td.date').each(function () {
     var due = $(this).html();
     const date = DateTime.fromISO(due)
@@ -63,7 +83,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
   $( "#applicationsSuccess" ).delay(5000).fadeOut('slow');
 
 
-// Add people to the notify list
+  // Add people to the notify list
   var notifyCount = 0;
 
   $('a#addName').click(function() {
@@ -79,7 +99,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     e.preventDefault();
   });
 
-// POSTCODE
+  // POSTCODE
 
 // Hide the full address fields and lookup button
   $('.full-address').hide();
@@ -111,6 +131,5 @@ window.GOVUKPrototypeKit.documentReady(() => {
   });
 
   $('span#age').append(contactDOByear);
-    
-
+     
 });
