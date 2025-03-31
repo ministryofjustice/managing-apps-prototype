@@ -4,6 +4,8 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/mvp/" %}
+{% set error="yes" %}
+
 
 {% block content %}
 
@@ -21,6 +23,18 @@
 			</ol>
 		</div>
 	</nav>
+
+	{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+	{{ govukErrorSummary({
+	  titleText: "There is a problem",
+	  errorList: [
+		{
+		  text: "Check your spelling or clear the search, then try again ",
+		  href: "#"
+		}
+	  ]
+	}) }}
 
 	<span class="govuk-caption-xl">Applications</span>
 	<h1 class="govuk-heading-xl">
