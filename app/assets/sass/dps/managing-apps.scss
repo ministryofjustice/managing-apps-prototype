@@ -72,3 +72,7 @@ table {
 p.none {margin-bottom: 0;}
 
 .nowrap {white-space: nowrap;}
+
+.govuk-form-group--error .autocomplete__input {
+  border-color:#d4351c !important;
+}
