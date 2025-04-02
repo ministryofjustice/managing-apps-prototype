@@ -31,7 +31,7 @@
 					</td>
 					<td class="govuk-table__cell">{{ app.current_dept }}</td>
 					<td class="govuk-table__cell">{{ app.decision }}</td>
-					<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View</a></td>
+					<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View<span class="govuk-visually-hidden"> {{ app.app_type }} for {{ app.prisoner_name }} from {{ app.date_received }}</span></a></td>
 				  </tr>
 				{% endif %}
 				{% endfor %}
