@@ -62,13 +62,15 @@
             <dt class="govuk-summary-list__key">
               Submitted on
             </dt>
-            <dd class="govuk-summary-list__value convertDate">
               {% if data['pin_05_submittedDate'] %}
+              <dd class="govuk-summary-list__value convertDate">
                 {{ data['pin_05_submittedDate'] }}
+              </dd>
               {% else %}
+              <dd class="govuk-summary-list__value">
                 {{ 0 | getDate }}
+              </dd>
               {% endif %}
-            </dd>
           </div>
         </dl>
 

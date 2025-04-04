@@ -59,18 +59,20 @@
             </dd>
           </div>
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Submitted on
-            </dt>
-            <dd class="govuk-summary-list__value convertDate">
-              {% if data['pin_03_submittedDate'] %}
-                {{ data['pin_03_submittedDate'] }}
-              {% else %}
-                {{ 0 | getDate }}
-              {% endif %}
-            </dd>
-          </div>
-        </dl>
+              <dt class="govuk-summary-list__key">
+                Submitted on
+              </dt>
+                {% if data['pin_03_submittedDate'] %}
+                <dd class="govuk-summary-list__value convertDate">
+                  {{ data['pin_03_submittedDate'] }}
+                </dd>
+                {% else %}
+                <dd class="govuk-summary-list__value">
+                  {{ 0 | getDate }}
+                </dd>
+                {% endif %}
+            </div>
+          </dl>
 
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">Emergency credit to add</h2>
