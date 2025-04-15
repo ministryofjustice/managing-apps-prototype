@@ -10,7 +10,7 @@
     "@x-govuk/govuk-prototype-filters": "^1.4.3",
     "accessible-autocomplete": "^3.0.1",
     "govuk-frontend": "^5.4.1",
-    "govuk-prototype-kit": "13.13.3",
+    "govuk-prototype-kit": "13.16.2",
     "jquery": "3.7.1",
     "moment": "^2.29.4"
   }
