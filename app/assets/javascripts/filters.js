@@ -1,5 +1,18 @@
 window.GOVUKPrototypeKit.documentReady(function() {
 
+  // Show and hide the nested checkboxes
+
+  $('.govuk-checkboxes__children').hide();
+
+    $('.govuk-checkboxes__parent .govuk-checkboxes__input').on('change', function() {
+        var $childrenDiv = $(this).closest('.govuk-checkboxes__nested').find('.govuk-checkboxes__children');
+        if ($(this).is(':checked')) {
+            $childrenDiv.show();
+        } else {
+            $childrenDiv.hide();
+        }
+    });
+    
     // Hide filter tag groups that don't have tags yet
     $('.moj-filter-tags--group').each(function() {
         var $group = $(this);

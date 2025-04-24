@@ -1,0 +1,161 @@
+<div class="moj-filter">
+
+  <div class="moj-filter__header">
+
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
+    </div>
+
+    <div class="moj-filter__header-action">
+
+    </div>
+
+  </div>
+
+  <div class="moj-filter__content">
+
+    <div class="moj-filter__selected">
+
+      <div class="moj-filter__selected-heading">
+
+        <div class="moj-filter__heading-title">
+          <h2 class="govuk-heading-m">Selected filters</h2>
+        </div>
+
+        <div class="moj-filter__heading-action">
+          <p><a id="clearFiltersButton" class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+        </div>
+
+      </div>
+      
+      <div id="moj-filter-tags--prisoner" class="moj-filter-tags--group">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prisoner</h3>
+
+        <ul class="moj-filter-tags" id="prisoner-tags">
+        </ul>
+    </div>
+
+    <div id="moj-filter-tags--dept" class="moj-filter-tags--group">
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Department</h3>
+
+      <ul class="moj-filter-tags" id="dept-tags">
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Business Hub</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> OMU</a></li>
+      </ul>
+    </div>
+
+    <div id="moj-filter-tags--type" class="moj-filter-tags--group">
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Application type</h3>
+
+      <ul class="moj-filter-tags" id="type-tags">
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Add emergency PIN phone credit</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Supply list of PIN phone contacts</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Swap VOs for PIN credit</a></li>
+      </ul>
+    </div>
+
+    </div>
+
+    <div class="moj-filter__options">
+
+      <button type="submit" id="applyFiltersButton" class="govuk-button" data-module="govuk-button" data-test-id="submit-button">
+        Apply filters
+      </button>
+
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label govuk-label--m" for="nameOrNumberFilter">
+          Prisoner
+        </label>
+        <p id="prisoner-autocomplete-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Check your spelling or clear the search, then try again
+        </p>
+          <div id="my-autocomplete-wrapper">
+          <select id="prisoner-autocomplete">
+            <option value="" selected disabled hidden></option>
+            {% for prisoner in data['prisoners'] %}
+              <option value="{{ prisoner.prison_number }}">{{ prisoner.prisoners_name }} ({{ prisoner.prison_number }})</option>
+            {% endfor %}
+          </select>
+      </div>
+      
+      </div>
+
+
+      <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Department
+          </legend>
+
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="dept-1" name="departmentFilter" type="checkbox" value="Business Hub">
+              <label class="govuk-label govuk-checkboxes__label" for="dept-1">
+                Business Hub (2)
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="dept-2" name="departmentFilter" type="checkbox" value="OMU">
+              <label class="govuk-label govuk-checkboxes__label" for="dept-2">
+                OMU (5)
+              </label>
+            </div>
+
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="dept-3" name="departmentFilter" type="checkbox" value="Fake">
+              <label class="govuk-label govuk-checkboxes__label" for="dept-3">
+                Fake (2)
+              </label>
+            </div>
+
+
+          </div>
+        </fieldset>
+      </div>
+
+
+      <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Type
+          </legend>
+
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="type-1" name="typeFilter" type="checkbox" value="Supply list of PIN phone contacts">
+              <label class="govuk-label govuk-checkboxes__label" for="type-1">
+                Supply list of PIN phone contacts (18)
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="type-2" name="typeFilter" type="checkbox" value="Add emergency PIN phone credit">
+              <label class="govuk-label govuk-checkboxes__label" for="type-2">
+                Add emergency PIN phone credit (5)
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="type-3" name="typeFilter" type="checkbox" value="Swap VOs for PIN credit">
+              <label class="govuk-label govuk-checkboxes__label" for="type-3">
+                Swap VOs for PIN credit (2)
+              </label>
+            </div>
+
+        </fieldset>
+
+      </div>
+
+    </div>
+  </div>
+</div>

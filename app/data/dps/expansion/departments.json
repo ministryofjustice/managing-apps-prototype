@@ -1,0 +1,38 @@
+[
+  {
+    "department_id": "dept_01",
+    "department_name": "Activities"
+  },
+  {
+    "department_id": "dept_02",
+    "department_name": "Business Hub"
+  },
+  {
+    "department_id": "dept_03",
+    "department_name": "OMU"
+  },
+  {
+    "department_id": "dept_04",
+    "department_name": "Chaplaincy"
+  },
+  {
+    "department_id": "dept_05",
+    "department_name": "Education"
+  },
+  {
+    "department_id": "dept_06",
+    "department_name": "Healthcare"
+  },
+  {
+    "department_id": "dept_07",
+    "department_name": "Reception"
+  },
+  {
+    "department_id": "dept_08",
+    "department_name": "Safer Custody"
+  },
+  {
+    "department_id": "dept_09",
+    "department_name": "Visits"
+  }
+]

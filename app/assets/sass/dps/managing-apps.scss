@@ -76,3 +76,8 @@ p.none {margin-bottom: 0;}
 .govuk-form-group--error .autocomplete__input {
   border-color:#d4351c !important;
 }
+
+.govuk-checkboxes__children {
+  padding-left: 2.25em;
+  display: none;;
+}

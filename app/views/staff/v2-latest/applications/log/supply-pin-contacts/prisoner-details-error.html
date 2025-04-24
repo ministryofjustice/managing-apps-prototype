@@ -1,0 +1,100 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Log prisoner details" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/v2-latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Enter a valid prison number ",
+            href: "#prisonNumber-error"
+          },
+          {
+            text: "Enter or select a valid date ",
+            href: "#submittedDate-error"
+          }
+        ]
+      }) }}
+
+      <span class="govuk-caption-xl">
+        Supply list of PIN phone contacts
+      </span>
+      <h1 class="govuk-heading-xl">Log prisoner details</h1>
+
+            <form class="form" method="post" action="/staff/mvp/applications/log/supply-pin-contacts/application-details">
+
+              <div class="govuk-form-group  govuk-form-group--error govuk-!-margin-bottom-0">
+                <label class="govuk-label govuk-label--s" for="prisonNumber">
+                  Prison number
+                </label>
+                <p id="prisonNumber-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Enter a valid prison number
+                </p>
+                <input class="govuk-input govuk-input--width-10 govuk-input--error" id="prisonNumber" name="pin_06_prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
+                <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                  Find prisoner
+                </a>
+              </div>
+
+              {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
+
+                {{ mojDatePicker({
+                id: "submittedDate",
+                name: "pin_06_submittedDate",
+                label: {
+                    text: "Date",
+                    classes: "govuk-label--s"
+                },
+                value:  data['pin_06_submittedDate'] ,
+                classes: "govuk-!-margin-bottom-5",
+                errorMessage: {
+                  text: "Enter or select a valid date"
+                }
+              }) }}
+
+
+            <div class="moj-button-action">
+              {% from "govuk/components/button/macro.njk" import govukButton %}
+              {{ govukButton({
+                text: "Continue"
+              }) }}
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div> <!-- end main content  -->
+
+{% endblock %}
+
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#address-picker')
+  })
+</script>
+
+{% endblock %}
