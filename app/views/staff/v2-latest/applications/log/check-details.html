@@ -121,7 +121,14 @@
         </dl>
 
         <form class="form" action="{{homeurl}}applications/log/confirmation?url_cat={{appName}}">
-        
+
+          <div class="govuk-form-group" style="display: none;">
+            <label class="govuk-label" for="width-10">
+              Application name
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="appName" name="appName" type="text" value="{{ data['appName'] }}">
+          </div>
+      
         <div class="moj-button-action">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue

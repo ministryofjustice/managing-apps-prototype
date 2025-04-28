@@ -5,6 +5,7 @@
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/v2-latest/" %}
 {% set selectedAppId = data['appName'] %}
+{% set selectedAppType = data['appType'] %}
 
 {% block content %}
 
@@ -112,7 +113,7 @@
                 Application type
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ app.app_type }}
+                {{ type }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">

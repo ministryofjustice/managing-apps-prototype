@@ -4,6 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/v2-latest/" %}
+{% set appType = data['appType'] %}
 {% set appName = data['appName'] %}
 
 {% block content %}
@@ -16,7 +17,7 @@
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
       {% for type, details in data['unstructured'] %}
         {% for app in details.apps %}
-          {% if app.app_id == appName %}
+          {% if app.app_id == data['appName'] %}
 
       <span class="govuk-caption-xl">{{ app.app_name }}</span>
       <h1 class="govuk-heading-xl">Log details</h1>
