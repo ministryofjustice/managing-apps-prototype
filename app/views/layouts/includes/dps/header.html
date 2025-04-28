@@ -160,3 +160,19 @@
     </div>
   </nav>
 </header>
+
+{% if phasebanner === "yes" %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+    {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+    {{ govukPhaseBanner({
+      tag: {
+        text: "Alpha"
+      },
+      html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
+    }) }}
+</div>
+</div>
+</div>
+{% endif %}

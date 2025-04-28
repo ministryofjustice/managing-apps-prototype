@@ -18,6 +18,7 @@ let menus                    = require('./pip/requests-menu.json')
 
 let oldapps                  = require('./dps/older_app_types.json')
 let mvpapptypes              = require('./dps/mvp_app_types.json')
+let mvp2apptypes             = require('./dps/mvp2_app_types.json')
 let wings                    = require('./dps/wings.json')
 let bhApps                   = require('./dps/business_hub_apps.json')
 let pinApps                  = require('./dps/pin_apps.json')
@@ -43,6 +44,7 @@ module.exports = {
   menus,
   oldapps,
   mvpapptypes,
+  mvp2apptypes,
   wings,
   bhApps,
   pinApps,

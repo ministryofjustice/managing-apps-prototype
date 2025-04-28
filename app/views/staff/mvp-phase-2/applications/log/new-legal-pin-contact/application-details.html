@@ -1,9 +1,10 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Log new contact details" %}
+{% set pageName="Log details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/staff/mvp/" %}
+{% set homeurl="/staff/mvp-phase-2/" %}
 
 
 {% block content %}
@@ -15,8 +16,10 @@
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
-      <span class="govuk-caption-xl">Add new legal PIN phone contact</span>
-      <h1 class="govuk-heading-xl">Log new contact details</h1>
+      <span class="govuk-caption-xl">
+        Remove PIN phone contact
+      </span>
+      <h1 class="govuk-heading-xl">Log details</h1>
 
       <div class="govuk-width-container">
 
@@ -24,51 +27,52 @@
           <div class="govuk-grid-column-one-half">
 
 
-            <form class="form" action="/staff/mvp/applications/log/new-legal-pin-contact/check-details">
+            <form class="form" action="/staff/mvp-phase-2/applications/log/remove-pin-phone-contact/check-details">
 
-            <div class="govuk-form-group govuk-!-margin-bottom-5">
-              <label class="govuk-label govuk-label--s" for="legalFirstName">
-                First name
-              </label>
-              <input class="govuk-input" id="legalFirstName" name="legalFirstName" type="text" value="{{ data['legalFirstName'] }}">
-            </div>
-
-            <div class="govuk-form-group govuk-!-margin-bottom-5">
-              <label class="govuk-label govuk-label--s" for="legalLastName">
-                Last name
-              </label>
-              <input class="govuk-input" id="legalLastName" name="legalLastName" type="text" value="{{ data['legalLastName'] }}">
-            </div>
-
-            <div class="govuk-form-group govuk-!-margin-bottom-9">
-              <label class="govuk-label govuk-label--s" for="companyName">
-                Company
-              </label>
-              <input class="govuk-input" id="companyName" name="companyName" type="text" value="{{ data['companyName'] }}">
-            </div>
-
-            <div class="govuk-form-group govuk-!-margin-bottom-9 govuk-!-margin-top-9">
-              <label class="govuk-label govuk-label--s" for="legalContactTel1" aria-describedby="legalContactTel1-hint">
-                Telephone numbers
-              </label>
-              <div id="legalContactTel1-hint" class="govuk-hint">
-                Include area code or international code, if overseas
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalFirstName">
+                  First name
+                </label>
+                <input class="govuk-input" id="legalFirstName" name="pin_04_legalFirstName" type="text" value="{{ data['pin_04_legalFirstName'] }}">
               </div>
-              <input class="govuk-input govuk-!-margin-bottom-2" id="legalContactTel1" name="legalContactTel1" type="tel" value="{{ data['legalContactTel1'] }}">
-              <label class="govuk-label govuk-label--s govuk-visually-hidden" for="legalContactTel2">
-                Other telephone numbers
-              </label>
-              <input class="govuk-input" id="legalContactTel2" name="legalContactTel2" type="tel" value="{{ data['legalContactTel2'] }}">
-
-            </div>
-
-            <div class="moj-button-action">
-              <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-              </button>
-            </div>
-
-            </form>
+  
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalLastName">
+                  Last name
+                </label>
+                <input class="govuk-input" id="legalLastName" name="pin_04_legalLastName" type="text" value="{{ data['pin_04_legalLastName'] }}">
+              </div>
+  
+              <div class="govuk-form-group govuk-!-margin-bottom-9">
+                <label class="govuk-label govuk-label--s" for="companyName">
+                  Company
+                </label>
+                <input class="govuk-input" id="companyName" name="pin_04_companyName" type="text" value="{{ data['pin_04_companyName'] }}">
+              </div>
+  
+              <div class="govuk-form-group govuk-!-margin-bottom-9 govuk-!-margin-top-9">
+                <label class="govuk-label govuk-label--s" for="legalContactTel1" aria-describedby="legalContactTel1-hint">
+                  Telephone numbers
+                </label>
+                <div id="legalContactTel1-hint" class="govuk-hint">
+                  Include area code or international code, if overseas
+                </div>
+                <input class="govuk-input govuk-!-margin-bottom-2" id="legalContactTel1" name="pin_04_legalContactTel1" type="tel" value="{{ data['pin_04_legalContactTel1'] }}">
+                <label class="govuk-label govuk-label--s govuk-visually-hidden" for="legalContactTel2">
+                  Other telephone numbers
+                </label>
+                <input class="govuk-input" id="legalContactTel2" name="pin_04_legalContactTel2" type="tel" value="{{ data['pin_04_legalContactTel2'] }}">
+  
+              </div>
+  
+              <div class="moj-button-action">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Continue
+                </button>
+              </div>
+  
+              </form>
+    
 
           </div>
         </div>
@@ -78,14 +82,6 @@
 
 </div> <!-- end main content  -->
 
-{% endblock %}
 
-
-{% block pageScripts %}
-<script>
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#address-picker')
-  })
-</script>
 
 {% endblock %}

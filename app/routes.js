@@ -11,8 +11,9 @@ const router = govukPrototypeKit.requests.setupRouter()
 require('./routes/managing-apps-1.js')(router);
 require('./routes/managing-apps-1-5.js')(router);
 require('./routes/managing-apps-1-6.js')(router);
-require('./routes/managing-apps-latest.js')(router);
+require('./routes/managing-apps-1-7.js')(router);
 require('./routes/managing-apps-mvp.js')(router);
+require('./routes/managing-apps-mvp-phase-2.js')(router);
 require('./routes/admin-latest.js')(router);
 require('./routes/sandbox.js')(router);
 
