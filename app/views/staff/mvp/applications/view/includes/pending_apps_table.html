@@ -25,8 +25,18 @@
 					<td class="govuk-table__cell nowrap">{{ 0 | getDate }}</td>
 					<td class="govuk-table__cell">Add emergency PIN phone credit</td>
 					<td class="govuk-table__cell">
-						Patel, Taj
-						<span class="govuk-table__subtext govuk-body-s">{{ data['pin_03_prisonNumber'] }}</span>
+						{% if data['pin_03_prisonerName'] %}
+							{{ data['pin_03_prisonerName'] }}
+						{% else %}
+							Patel, Taj
+						{% endif %}
+						<span class="govuk-table__subtext govuk-body-s">
+							{% if data['pin_03_prisonNumber'] %}
+								{{ data['pin_03_prisonNumber'] }}
+							{% else %}
+								(AB1234C)
+							{% endif %}
+						</span>
 					</td>
 					<td class="govuk-table__cell">Business Hub</td>
 					<td class="govuk-table__cell"><a href="{{homeurl}}applications/view/emergency-pin-credit/application.html">View</a></td>
@@ -38,8 +48,18 @@
 					<td class="govuk-table__cell nowrap">{{ 0 | getDate }}</td>
 					<td class="govuk-table__cell">Swap VOs for PIN credit</td>
 					<td class="govuk-table__cell">
-						Patel, Taj
-						<span class="govuk-table__subtext govuk-body-s">{{ data['pin_05_prisonNumber'] }}</span>
+						{% if data['pin_05_prisonerName'] %}
+							{{ data['pin_05_prisonerName'] }}
+						{% else %}
+							Patel, Taj
+						{% endif %}
+						<span class="govuk-table__subtext govuk-body-s">
+							{% if data['pin_05_prisonNumber'] %}
+								{{ data['pin_05_prisonNumber'] }}
+							{% else %}
+								(AB1234C)
+							{% endif %}
+						</span>
 					</td>
 					<td class="govuk-table__cell">Business Hub</td>
 					<td class="govuk-table__cell"><a href="{{homeurl}}applications/view/swap-vos-pin-credit/application.html">View</a></td>
@@ -51,8 +71,18 @@
 					<td class="govuk-table__cell nowrap">{{ 0 | getDate }}</td>
 					<td class="govuk-table__cell">Supply list of PIN phone contacts</td>
 					<td class="govuk-table__cell">
-						Patel, Taj
-						<span class="govuk-table__subtext govuk-body-s">{{ data['pin_06_prisonNumber'] }}</span>
+						{% if data['pin_06_prisonerName'] %}
+							{{ data['pin_06_prisonerName'] }}
+						{% else %}
+							Patel, Taj
+						{% endif %}
+						<span class="govuk-table__subtext govuk-body-s">
+							{% if data['pin_06_prisonNumber'] %}
+								{{ data['pin_06_prisonNumber'] }}
+							{% else %}
+								(AB1234C)
+							{% endif %}
+						</span>
 					</td>
 					<td class="govuk-table__cell">Business Hub</td>
 					<td class="govuk-table__cell"><a href="{{homeurl}}applications/view/supply-pin-contacts/application.html">View</a></td>

@@ -131,13 +131,11 @@
                 Prisoner
               </dt>
               <dd class="govuk-summary-list__value">
-                Patel, Taj (
-                  {% if data['pin_03_prisonNumber'] %}
-                    {{ data['pin_03_prisonNumber'] }}
-                  {% else %}
-                    12345678
-                  {% endif %}
-                  )
+                {% if (data['pin_03_prisonerName']) and (data['pin_03_prisonNumber']) %}
+                  {{ data['pin_03_prisonerName'] }} ({{ data['pin_03_prisonNumber'] }})
+                {% else %}
+                  Patel, Taj (AB1234C)
+                {% endif %}
               </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">View profile</a>

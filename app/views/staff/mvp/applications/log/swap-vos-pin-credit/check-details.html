@@ -51,12 +51,12 @@
               Prisoner
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_05_prisonNumber'] %}
-                Patel, Taj ({{ data['pin_05_prisonNumber'] }})
+              {% if (data['pin_05_prisonerName']) and (data['pin_05_prisonNumber']) %}
+                {{ data['pin_05_prisonerName'] }} ({{ data['pin_05_prisonNumber'] }})
               {% else %}
-                Patel, Taj (A1234BC)
+                Patel, Taj (AB1234C)
               {% endif %}
-            </dd>
+              </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
