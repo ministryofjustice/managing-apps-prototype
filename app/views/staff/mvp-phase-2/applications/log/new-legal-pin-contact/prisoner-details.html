@@ -2,8 +2,9 @@
 
 {% set pageName="Log prisoner details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/staff/mvp/" %}
+{% set homeurl="/staff/mvp-phase-2/" %}
 
 
 {% block content %}
@@ -16,7 +17,7 @@
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
       <span class="govuk-caption-xl">
-        Add new legal PIN phone contact
+        Remove PIN phone contact
       </span>
       <h1 class="govuk-heading-xl">Log prisoner details</h1>
 
@@ -25,70 +26,41 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
 
-
-            <form class="form" method="post" action="/staff/mvp/applications/log/new-legal-pin-contact/application-details">
+            <form class="form" method="post" action="/staff/mvp-phase-2/applications/log/remove-pin-phone-contact/application-details">
 
               <div class="govuk-form-group govuk-!-margin-bottom-0">
                 <label class="govuk-label govuk-label--s" for="prisonNumber">
                   Prison number
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="prisonNumber" type="text" value="{{ data['prisonNumber'] }}">
+                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="pin_04_prisonNumber" type="text" value="{{ data['pin_04_prisonNumber'] }}">
                 <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
                   Find prisoner
                 </a>
               </div>
 
-              <div id="prisoner-name-row" class="govuk-form-group">
+              <div class="govuk-form-group govuk-!-margin-bottom-0" style="display: none;">
                 <label class="govuk-label govuk-label--s" for="prisonerName">
                   Prisoner name
                 </label>
-                <input class="govuk-input" id="prisonerName" name="prisonerName" type="text" value="Taj Patel" disabled>
+                <input class="govuk-input govuk-input--width-10" id="prisonerName" name="pin_04_prisonerName" type="text" value="{{ data['pin_04_prisonerName'] }}">
+              </div>
+              
+              <div id="prisoner-name-row"  class="govuk-inset-text govuk-!-margin-top-0">
+                Prisoner name: Patel, Taj
               </div>
 
               {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
 
                 {{ mojDatePicker({
                 id: "submittedDate",
-                name: "submittedDate",
+                name: "pin_04_submittedDate",
                 label: {
                     text: "Date",
                     classes: "govuk-label--s"
                 },
-                value:  data['submittedDate'] ,
+                value:  data['pin_04_submittedDate'] ,
                 classes: "govuk-!-margin-bottom-5"
               }) }}
-
-
-
-
-              {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-              {{ govukRadios({
-                classes: "govuk-radios--inline",
-                name: "prisonerFNC",
-                fieldset: {
-                  legend: {
-                    text: "Is this person in the first night or early days centre?",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                hint: {
-                },
-                items: [
-                  {
-                    value: "Yes",
-                    text: "Yes",
-                    checked: checked("prisonerFNC", "Yes")
-                  },
-                  {
-                    value: "No",
-                    text: "No",
-                    checked: checked("prisonerFNC", "No")
-                  }
-                ]
-              }) }}
-
 
             <div class="moj-button-action">
               {% from "govuk/components/button/macro.njk" import govukButton %}

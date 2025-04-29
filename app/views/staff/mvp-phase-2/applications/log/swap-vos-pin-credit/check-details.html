@@ -2,8 +2,9 @@
 
 {% set pageName="Check details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/staff/mvp/" %}
+{% set homeurl="/staff/mvp-phase-2/" %}
 
 
 {% block content %}
@@ -33,7 +34,7 @@
               Swap VOs for PIN credit
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/staff/mvp/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+              <a href="/staff/mvp-phase-2/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
         </dl>
@@ -85,8 +86,8 @@
               Details
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_06_detail'] %}
-                {{ data['pin_06_detail'] }}
+              {% if data['pin_05_detail'] %}
+                {{ data['pin_05_detail'] }}
               {% else %}
                 Request to swap all VOs from last month
               {% endif %}
@@ -94,14 +95,14 @@
           </div>
         </dl>
 
-        <form class="form" action="/staff/mvp/applications/log/swap-vos-pin-credit/confirmation">
+        <form class="form" action="/staff/mvp-phase-2/applications/log/swap-vos-pin-credit/confirmation">
         
         <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
 
         <div class="govuk-form-group govuk-visually-hidden">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend">
-                PIN 06 submitted
+                PIN 05 submitted
             </legend>
             <div class="govuk-radios--small" data-module="govuk-radios">
               <div class="govuk-radios__item">

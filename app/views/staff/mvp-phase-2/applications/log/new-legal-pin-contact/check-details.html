@@ -2,8 +2,9 @@
 
 {% set pageName="Check details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/staff/mvp/" %}
+{% set homeurl="/staff/mvp-phase-2/" %}
 
 
 {% block content %}
@@ -18,7 +19,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <span class="govuk-caption-xl">
-          Add new legal PIN phone contact
+          Remove PIN phone contact
         </span>
 
         <h1 class="govuk-heading-xl">Check details</h1>
@@ -30,10 +31,10 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              Add new legal PIN phone contact
+              Remove PIN phone contact
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/staff/mvp/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+              <a href="/staff/mvp-phase-2/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
         </dl>
@@ -51,24 +52,26 @@
               Prisoner name
             </dt>
             <dd class="govuk-summary-list__value">
-              Patel, Taj ({{ data['prisonNumber'] }})
+              {% if (data['pin_04_prisonerName']) and (data['pin_04_prisonNumber']) %}
+                {{ data['pin_04_prisonerName'] }} ({{ data['pin_04_prisonNumber'] }})
+              {% else %}
+                Patel, Taj (AB1234C)
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Submitted on
             </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['submittedDate'] }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              First night centre
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['prisonerFNC'] }}
-            </dd>
+              {% if data['pin_04_submittedDate'] %}
+              <dd class="govuk-summary-list__value convertDate">
+                {{ data['pin_04_submittedDate'] }}
+              </dd>
+              {% else %}
+              <dd class="govuk-summary-list__value">
+                {{ 0 | getDate }}
+              </dd>
+              {% endif %}
           </div>
         </dl>
 
@@ -83,7 +86,7 @@
               First name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['legalFirstName'] }}
+              {{ data['pin_04_legalFirstName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -91,7 +94,7 @@
               Last name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['legalLastName'] }}
+              {{ data['pin_04_legalLastName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -99,7 +102,7 @@
               Company
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['companyName'] }}
+              {{ data['pin_04_companyName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -107,24 +110,46 @@
                Telephone numbers
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['legalContactTel1'] %}
-              <p>{{ data['legalContactTel1'] }}</p>
+              {% if data['pin_04_legalContactTel1'] %}
+              <p>{{ data['pin_04_legalContactTel1'] }}</p>
               {% endif %}
-              {% if data['legalContactTel2'] %}
-              <p>{{ data['legalContactTel2'] }}</p>
+              {% if data['pin_04_legalContactTel2'] %}
+              <p>{{ data['pin_04_legalContactTel2'] }}</p>
               {% endif %}
             </dd>
           </div>
 
         </dl>
 
-        <div class="moj-button-action">
-          {% from "govuk/components/button/macro.njk" import govukButton %}
-          {{ govukButton({
-            text: "Continue",
-            href: "/staff/mvp/applications/log/new-legal-pin-contact/confirmation.html"
-          }) }}
-        </div>
+        <form class="form" action="/staff/mvp-phase-2/applications/log/remove-pin-phone-contact/confirmation">
+        
+          <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
+  
+          <div class="govuk-form-group govuk-visually-hidden">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend">
+                  PIN 02 submitted
+              </legend>
+              <div class="govuk-radios--small" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="pin_04_submitted" name="pin_04_submitted" type="radio" value="submitted" checked="checked" />
+                  <label class="govuk-label govuk-radios__label" for="pin_04_submitted">
+                    submitted
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+  
+          <!-- /end note -->
+  
+          <div class="moj-button-action">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+          </div>
+  
+        </form>
 
       </div>
     </div>
@@ -133,7 +158,5 @@
   </div>
 
   </div> <!-- end main content  -->
-
-
-
 {% endblock %}
+
