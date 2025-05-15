@@ -15,13 +15,14 @@ body.dps .govuk-main-wrapper {
 }
 
 body.dps {
+  
 
   .govuk-breadcrumbs {
       font-family: "GDS Transport", arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       font-weight: 400;
-      font-size: 1rem;
+      font-size: 0.5rem !important;
       line-height: 1.25;
       color: #0b0c0c;
       margin-top: 15px;
@@ -37,6 +38,15 @@ body.dps {
   .govuk-breadcrumbs__link:active,
   .govuk-breadcrumbs__link:focus {
       color: #0b0c0c
+  }
+
+  .dps-landing-page-header__container__wrapper {
+    .govuk-breadcrumbs__link:link,
+    .govuk-breadcrumbs__link:visited,
+    .govuk-breadcrumbs__link:active,
+    .govuk-breadcrumbs__link:focus {
+        color: white;
+    }
   }
 
 }
@@ -89,7 +99,7 @@ body.dps {
 .dps-landing-page-header__container__wrapper {
   background: rgb(38, 49, 53);
     .dps-landing-page-header__container{
-      padding: 25px 0;
+      padding: 0;
       .dps-landing-page-header__text {
         * { color: white;}
       }
