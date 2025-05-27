@@ -190,21 +190,26 @@
                 <a href="#" id="lookup-address" class="govuk-body govuk-link">Lookup address</a>
                 <a href="#" id="enter-manually" class="govuk-body govuk-link">Enter address manually</a>
   
-                <div class="govuk-form-group govuk-form-group govuk-!-margin-top-5 govuk-!-margin-bottom-9">
+                <div class="govuk-form-group govuk-form-group govuk-!-margin-top-8  govuk-!-margin-bottom-5 ">
                   <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
-                    Telephone numbers
+                    Telephone number 1
                   </label>
                   <div id="contactTel1-hint" class="govuk-hint">
                     Include area code or international code, if overseas
                   </div>
                   <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel1" name="pin_01_contactTel1" type="text" value="{{ data['pin_01_contactTel1'] }}">
-                  <label class="govuk-label govuk-label--s govuk-visually-hidden" for="contactTel2">
-                    Other telephone numbers
-                  </label>
-                  <input class="govuk-input" id="contactTel2" name="pin_01_contactTel2" type="text" value="{{ data['pin_01_contactTel2'] }}">
-  
                 </div>
-  
+
+                <div class="govuk-form-group govuk-form-group govuk-!-margin-bottom-5">
+                  <label class="govuk-label govuk-label--s" for="contactTel2" aria-describedby="contactTel1-hint">
+                    Telephone number 2
+                  </label>
+                  <div id="contactTel1-hint" class="govuk-hint">
+                    Include area code or international code, if overseas
+                  </div>
+                  <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_01_contactTel2" type="text" value="{{ data['pin_01_contactTel2'] }}">
+                </div>
+
                 <div class="moj-button-action">
                   {% from "govuk/components/button/macro.njk" import govukButton %}
                   {{ govukButton({
