@@ -5,10 +5,10 @@
 
 	<div id="noResults" style="display:none;">
 		<p>No results found.</p>
-	  </div>
+	</div>
 	
 	<div id="results">
-		<table id="dataTable" class="dataTable govuk-table apps-list" data-module="moj-sortable-table">
+		<table id="dataTable2" class="dataTable govuk-table apps-list" data-module="moj-sortable-table">
 			<thead class="govuk-table__head">
 				<tr class="govuk-table__row">
 				  <th scope="col" class="govuk-table__header nowrap" aria-sort="descending">Date</th>
@@ -184,7 +184,7 @@
 				</tr>
 				{% endif %}				
 				<!-- Load all other apps from json -->
-				{% for app in data['allMVPApps'] %}
+				{% for app in data['allMVP2Apps'] %}
 				{% if app.decision == null %}
 		        <tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
 					<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>

@@ -1,5 +1,5 @@
 <div class="panel-header">
-	<h2 class="govuk-heading-m">Pending applications</h2>
+	<h2 class="govuk-heading-m">Closed applications</h2>
   </div>
   <div class="panel-content">
 
@@ -20,7 +20,7 @@
 				</tr>
 			</thead>
 			<tbody class="govuk-table__body">
-				{% for app in data['allMVPApps'] %}
+				{% for app in data['allMVP2Apps'] %}
 				{% if app.decision == "Approved" or app.decision == "Declined" %}
 		        <tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
 					<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>

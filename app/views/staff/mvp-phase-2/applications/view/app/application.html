@@ -31,7 +31,7 @@
 
       <h1 class="govuk-heading-xl">
         {% set appID = data['url_id'] %}
-        {% for app in data['allMVPApps'] %}
+        {% for app in data['allMVP2Apps'] %}
         {% if app.app_id == appID  %}
         {{ app.app_type }}
         {% endif  %}
@@ -71,7 +71,7 @@
       </nav>
 
       {% set appID = data['url_id'] %}
-      {% for app in data['allMVPApps'] %}
+      {% for app in data['allMVP2Apps'] %}
       {% if app.app_id == appID  %}
 
       <div class="govuk-grid-row">

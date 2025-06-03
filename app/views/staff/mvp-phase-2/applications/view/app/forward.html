@@ -26,7 +26,7 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <span class="govuk-caption-xl">
               {% set appID = data['url_id'] %}
-              {% for app in data['allMVPApps'] %}
+              {% for app in data['allMVP2Apps'] %}
               {% if app.app_id == appID  %}
               {{ app.app_type }}
               {% endif  %}
