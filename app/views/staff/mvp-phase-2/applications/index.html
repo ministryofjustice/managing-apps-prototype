@@ -3,7 +3,7 @@
 {% set pageName="Home" %}
 {% set version="latest" %}
 {% set phasebanner="no" %}
-{% set bodyClasses = 'dps staff-v1' %}
+{% set bodyClasses = 'dps landing-page staff-v1' %}
 {% set homeurl="/staff/mvp-phase-2/" %}
 
 
@@ -15,6 +15,19 @@
       <div class="dps-landing-page-header__text">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
+
+           {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+            {{ govukBreadcrumbs({
+              classes: "govuk-breadcrumbs--inverse govuk-breadcrumbs__list",
+              items: [
+                {
+                  text: "Digital Prison Services",
+                  href: "/staff/mvp"
+                }
+              ]
+            }) }}
+            
             <h1 class="govuk-heading-l">Applications</h1>
             <p class="govuk-body-l">Log, action and reply to prisoner applications. You can also forward applications to other departments.</p>
             <p class="govuk-body">Give us your <a href="">feedback</a>.</p>

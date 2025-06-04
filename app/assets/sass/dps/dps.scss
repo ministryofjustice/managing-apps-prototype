@@ -9,9 +9,9 @@ body.dps > .govuk-width-container {
   max-width: none;
 }
 
-body.dps .govuk-main-wrapper {
+body.dps #main-content {
   padding-top: 0;
-
+  padding-bottom: 0;
 }
 
 body.dps {
@@ -38,15 +38,6 @@ body.dps {
   .govuk-breadcrumbs__link:active,
   .govuk-breadcrumbs__link:focus {
       color: #0b0c0c
-  }
-
-  .dps-landing-page-header__container__wrapper {
-    .govuk-breadcrumbs__link:link,
-    .govuk-breadcrumbs__link:visited,
-    .govuk-breadcrumbs__link:active,
-    .govuk-breadcrumbs__link:focus {
-        color: white;
-    }
   }
 
 }
@@ -97,16 +88,15 @@ body.dps {
 // DPS landing page styles
 
 .dps-landing-page-header__container__wrapper {
-  background: rgb(38, 49, 53);
     .dps-landing-page-header__container{
       padding: 0;
       .dps-landing-page-header__text {
-        * { color: white;}
       }
     }
 }
 
 .dps-landing-page-content__container__wrapper  {
+    background: #f0f4f5;
   .dps-landing-page-content__container {
     padding: 25px 0;
   }
