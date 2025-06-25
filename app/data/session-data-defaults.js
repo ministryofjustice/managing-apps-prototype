@@ -26,8 +26,8 @@ let allMVPApps               = require('./dps/mvp/all-apps-data.json')
 let allMVP2Apps              = require('./dps/mvp/all-mvp2-apps-data.json')
 let pin05data                = require('./dps/mvp/pin_05_data.json')
 let prisoners                = require('./dps/mvp/prisoners.json')
-let unstructured             = require('./dps/expansion/unstructured_apps.json')
-let departments              = require('./dps/expansion/departments.json')
+let unstructured             = require('./dps/general-apps/general_apps.json')
+let departments              = require('./dps/general-apps/departments.json')
 
 
 let bhPendingApps            = require('./dps/bh_pending_apps.json')

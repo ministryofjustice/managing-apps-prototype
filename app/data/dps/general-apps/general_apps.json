@@ -253,5 +253,14 @@
           "app_name": "Something else"
         }
       ]
+    },
+    "Something else": {
+      "type_id": "cat_00",
+      "apps": [
+              {
+                "app_id": "app_51",
+                "app_name": "Something else"
+              }
+            ]
     }
 }
