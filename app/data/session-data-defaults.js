@@ -28,6 +28,8 @@ let pin05data                = require('./dps/mvp/pin_05_data.json')
 let prisoners                = require('./dps/mvp/prisoners.json')
 let unstructured             = require('./dps/general-apps/general_apps.json')
 let departments              = require('./dps/general-apps/departments.json')
+let socialRelationships      = require('./dps/social_relationships.json')
+let legalRelationships       = require('./dps/legal_relationships.json')
 
 
 let bhPendingApps            = require('./dps/bh_pending_apps.json')
@@ -54,6 +56,8 @@ module.exports = {
   prisoners,
   unstructured,
   departments,
+  socialRelationships,
+  legalRelationships,
   bhPendingApps,
   bhClosedApps,
   omuPendingApps,

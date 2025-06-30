@@ -49,7 +49,20 @@
                 </label>
                 <input class="govuk-input" id="companyName" name="pin_02_companyName" type="text" value="{{ data['pin_02_companyName'] }}">
               </div>
-  
+
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label govuk-label--s" for="contactRelationship">
+                Relationship
+              </label>
+              <select class="govuk-select" id="contactRelationship" name="pin_02_contactRelationship">
+                <option value="" selected disabled hidden>Select relationship</option>
+                {% for relationship in data['legalRelationships'] %}
+                <option value="{{ relationship.legal_rel }}">{{ relationship.legal_rel }}</option>
+                {% endfor %}
+              </select>
+            </div>
+              
+
               <div class="govuk-form-group  govuk-!-margin-bottom-5">
                 <label class="govuk-label govuk-label--s" for="legalContactTel1" aria-describedby="legalContactTel1-hint">
                   Telephone number 1

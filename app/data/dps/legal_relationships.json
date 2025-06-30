@@ -1,0 +1,92 @@
+[
+  {
+    "legal_rel": "Case administrator"
+  },
+  {
+    "legal_rel": "Community offender manager"
+  },
+  {
+    "legal_rel": "CuSP officer"
+  },
+  {
+    "legal_rel": "CuSP officer (backup)"
+  },
+  {
+    "legal_rel": "Drug and alcohol recovery team member (DART)"
+  },
+  {
+    "legal_rel": "Doctor"
+  },
+  {
+    "legal_rel": "Family liaison officer"
+  },
+  {
+    "legal_rel": "Family worker"
+  },
+  {
+    "legal_rel": "Imam"
+  },
+  {
+    "legal_rel": "Local authority contact"
+  },
+  {
+    "legal_rel": "Landlord"
+  },
+  {
+    "legal_rel": "Lifer back up officer"
+  },
+  {
+    "legal_rel": "Offender supervisor"
+  },
+  {
+    "legal_rel": "Police officer"
+  },
+  {
+    "legal_rel": "Prison offender manager"
+  },
+  {
+    "legal_rel": "Public protection admin"
+  },
+  {
+    "legal_rel": "Priest or other clergy"
+  },
+  {
+    "legal_rel": "Probation officer"
+  },
+  {
+    "legal_rel": "Prison visitor"
+  },
+  {
+    "legal_rel": "Rabbi"
+  },
+  {
+    "legal_rel": "Resettlement practitioner"
+  },
+  {
+    "legal_rel": "Responsible officer"
+  },
+  {
+    "legal_rel": "Resettlement worker"
+  },
+  {
+    "legal_rel": "Solicitor"
+  },
+  {
+    "legal_rel": "Social worker"
+  },
+  {
+    "legal_rel": "Teacher"
+  },
+  {
+    "legal_rel": "Youth justice service case manager"
+  },
+  {
+    "legal_rel": "Youth justice service"
+  },
+  {
+    "legal_rel": "Youth justice worker"
+  },
+  {
+    "legal_rel": "YOT offender supervisor or manager"
+  }
+]
