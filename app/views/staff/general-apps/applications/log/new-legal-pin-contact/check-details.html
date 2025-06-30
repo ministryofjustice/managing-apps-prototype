@@ -2,6 +2,7 @@
 
 {% set pageName="Check details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps/" %}
 
@@ -30,21 +31,10 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              PIN phones
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/staff/general-apps/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Application name
-            </dt>
-            <dd class="govuk-summary-list__value">
               Add new legal PIN phone contact
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/staff/general-apps/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+              <a href="/staff/general-apps/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
         </dl>
@@ -62,24 +52,26 @@
               Prisoner name
             </dt>
             <dd class="govuk-summary-list__value">
-              Patel, Taj ({{ data['prisonNumber'] }})
+              {% if (data['pin_02_prisonerName']) and (data['pin_02_prisonNumber']) %}
+                {{ data['pin_02_prisonerName'] }} ({{ data['pin_02_prisonNumber'] }})
+              {% else %}
+                Patel, Taj (AB1234C)
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Submitted on
             </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['submittedDate'] }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              First night centre
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['prisonerFNC'] }}
-            </dd>
+              {% if data['pin_02_submittedDate'] %}
+              <dd class="govuk-summary-list__value convertDate">
+                {{ data['pin_02_submittedDate'] }}
+              </dd>
+              {% else %}
+              <dd class="govuk-summary-list__value">
+                {{ 0 | getDate }}
+              </dd>
+              {% endif %}
           </div>
         </dl>
 
@@ -94,7 +86,7 @@
               First name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['legalFirstName'] }}
+              {{ data['pin_02_legalFirstName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -102,7 +94,7 @@
               Last name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['legalLastName'] }}
+              {{ data['pin_02_legalLastName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -110,32 +102,69 @@
               Company
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['companyName'] }}
+              {{ data['pin_02_companyName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-               Telephone numbers
+              Relationship
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['legalContactTel1'] %}
-              <p>{{ data['legalContactTel1'] }}</p>
+              {{ data['pin_02_contactRelationship'] }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+               Telephone number 1
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['pin_02_legalContactTel1'] %}
+              <p>{{ data['pin_02_legalContactTel1'] }}</p>
               {% endif %}
-              {% if data['legalContactTel2'] %}
-              <p>{{ data['legalContactTel2'] }}</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+               Telephone number 2
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['pin_02_legalContactTel2'] %}
+              <p>{{ data['pin_02_legalContactTel2'] }}</p>
               {% endif %}
             </dd>
           </div>
 
         </dl>
 
-        <div class="moj-button-action">
-          {% from "govuk/components/button/macro.njk" import govukButton %}
-          {{ govukButton({
-            text: "Continue",
-            href: "/staff/general-apps/applications/log/new-legal-pin-contact/confirmation.html"
-          }) }}
-        </div>
+        <form class="form" action="/staff/general-apps/applications/log/new-legal-pin-contact/confirmation">
+        
+          <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
+  
+          <div class="govuk-form-group govuk-visually-hidden">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend">
+                  PIN 02 submitted
+              </legend>
+              <div class="govuk-radios--small" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="pin_02_submitted" name="pin_02_submitted" type="radio" value="submitted" checked="checked" />
+                  <label class="govuk-label govuk-radios__label" for="pin_02_submitted">
+                    submitted
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+  
+          <!-- /end note -->
+  
+          <div class="moj-button-action">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+          </div>
+  
+        </form>
 
       </div>
     </div>
@@ -144,7 +173,5 @@
   </div>
 
   </div> <!-- end main content  -->
-
-
-
 {% endblock %}
+

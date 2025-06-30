@@ -2,6 +2,7 @@
 
 {% set pageName="Check details" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps/" %}
 
@@ -30,22 +31,10 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              PIN phones
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/staff/general-apps/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Application name
-            </dt>
-            <dd class="govuk-summary-list__value">
               Swap VOs for PIN credit
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/staff/general-apps/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+              <a href="/staff/general-apps/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
         </dl>
@@ -63,12 +52,12 @@
               Prisoner
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_05_prisonNumber'] %}
-                Patel, Taj ({{ data['pin_05_prisonNumber'] }})
+              {% if (data['pin_05_prisonerName']) and (data['pin_05_prisonNumber']) %}
+                {{ data['pin_05_prisonerName'] }} ({{ data['pin_05_prisonNumber'] }})
               {% else %}
-                Patel, Taj (A1234BC)
+                Patel, Taj (AB1234C)
               {% endif %}
-            </dd>
+              </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -97,8 +86,8 @@
               Details
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_06_detail'] %}
-                {{ data['pin_06_detail'] }}
+              {% if data['pin_05_detail'] %}
+                {{ data['pin_05_detail'] }}
               {% else %}
                 Request to swap all VOs from last month
               {% endif %}
@@ -113,7 +102,7 @@
         <div class="govuk-form-group govuk-visually-hidden">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend">
-                PIN 06 submitted
+                PIN 05 submitted
             </legend>
             <div class="govuk-radios--small" data-module="govuk-radios">
               <div class="govuk-radios__item">
