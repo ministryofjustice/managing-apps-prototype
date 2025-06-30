@@ -26,7 +26,7 @@
           <div class="govuk-grid-column-one-half">
 
 
-            <form class="form" method="post" action="/staff/mvp/applications/log/remove-pin-contact/application-details">
+            <form class="form" method="post" action="/staff/general-apps/applications/log/remove-pin-contact/application-details">
 
               <div class="govuk-form-group govuk-!-margin-bottom-0">
                 <label class="govuk-label govuk-label--s" for="prisonNumber">
@@ -57,38 +57,6 @@
                 value:  data['submittedDate'] ,
                 classes: "govuk-!-margin-bottom-5"
               }) }}
-
-
-
-
-              {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-              {{ govukRadios({
-                classes: "govuk-radios--inline",
-                name: "prisonerFNC",
-                fieldset: {
-                  legend: {
-                    text: "Is this person in the first night or early days centre?",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                hint: {
-                },
-                items: [
-                  {
-                    value: "Yes",
-                    text: "Yes",
-                    checked: checked("prisonerFNC", "Yes")
-                  },
-                  {
-                    value: "No",
-                    text: "No",
-                    checked: checked("prisonerFNC", "No")
-                  }
-                ]
-              }) }}
-
 
             <div class="moj-button-action">
               {% from "govuk/components/button/macro.njk" import govukButton %}
