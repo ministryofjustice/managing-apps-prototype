@@ -242,14 +242,5 @@
         "app_name": "Add a social PIN contact"
       }
     ]
-  },
-  "Something else": {
-    "type_id": "dept_00",
-    "apps": [
-      {
-        "app_id": "app_51",
-        "app_name": "Something else"
-      }
-    ]
   }
 }
