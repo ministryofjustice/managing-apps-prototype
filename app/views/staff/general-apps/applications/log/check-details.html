@@ -121,7 +121,43 @@
         </dl>
 
         <form class="form" action="{{homeurl}}applications/log/confirmation?url_cat={{appName}}">
-        
+
+        <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
+
+        <div class="govuk-form-group govuk-visually-hidden">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend">
+                General app submitted
+            </legend>
+            <div class="govuk-form-group">
+            <div class="govuk-radios--small" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="general_app" name="general_app" type="radio" value="submitted" checked="checked" />
+                <label class="govuk-label govuk-radios__label" for="general_app">
+                  submitted
+                </label>
+              </div>
+            </div>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="app-group">
+                Application group
+              </label>
+              <input class="govuk-input" id="app-group" name="checkAppType" type="text" value="{{ type }}">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="app-type">
+                Application type
+              </label>
+              <input class="govuk-input" id="app-type" name="checkAppName" type="text" value="{{ app.app_name }}">
+            </div>
+            </fieldset>
+        </div>
+
+        <!-- /end note -->
+
+          
+
         <div class="moj-button-action">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
