@@ -15,6 +15,7 @@ require('./routes/managing-apps-1-7.js')(router);
 require('./routes/managing-apps-mvp.js')(router);
 require('./routes/managing-apps-mvp-phase-2.js')(router);
 require('./routes/general-apps.js')(router);
+require('./routes/single-general-app.js')(router);
 require('./routes/admin-latest.js')(router);
 require('./routes/sandbox.js')(router);
 
