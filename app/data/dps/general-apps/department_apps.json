@@ -1,0 +1,255 @@
+{
+  "Activities Hub": {
+    "type_id": "dept_01",
+    "apps": [
+      {
+        "app_id": "app_01",
+        "app_name": "Activities (non-education)"
+      },
+      {
+        "app_id": "app_02",
+        "app_name": "Request a prison job"
+      },
+      {
+        "app_id": "app_03",
+        "app_name": "Pay enquiry"
+      },
+      {
+        "app_id": "app_04",
+        "app_name": "Cancel an appointment"
+      },
+      {
+        "app_id": "app_05",
+        "app_name": "Apply for education"
+      },
+      {
+        "app_id": "app_06",
+        "app_name": "Request gym activity"
+      },
+      {
+        "app_id": "app_07",
+        "app_name": "Request appointment"
+      },
+      {
+        "app_id": "app_08",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Business Hub": {
+    "type_id": "dept_02",
+    "apps": [
+      {
+        "app_id": "app_13",
+        "app_name": "Canteen query"
+      },
+      {
+        "app_id": "app_14",
+        "app_name": "Canteen suggestion"
+      },
+      {
+        "app_id": "app_15",
+        "app_name": "Canteen refund request"
+      },
+      {
+        "app_id": "app_16",
+        "app_name": "Emergency canteen request"
+      },
+      {
+        "app_id": "app_17",
+        "app_name": "Catalogue order"
+      },
+      {
+        "app_id": "app_18",
+        "app_name": "Catalogue order return"
+      },
+      {
+        "app_id": "app_19",
+        "app_name": "Catalogue query"
+      },
+      {
+        "app_id": "app_27",
+        "app_name": "Add a social PIN contact"
+      },
+      {
+        "app_id": "app_28",
+        "app_name": "Add a legal PIN contact"
+      },
+      {
+        "app_id": "app_29",
+        "app_name": "Add emergency phone credit"
+      },
+      {
+        "app_id": "app_30",
+        "app_name": "Swap VOs for phone credit"
+      },
+      {
+        "app_id": "app_31",
+        "app_name": "Supply list of PIN phone contacts"
+      },
+      {
+        "app_id": "app_32",
+        "app_name": "Remove a PIN contact"
+      },
+      {
+        "app_id": "app_33",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Chaplaincy": {
+    "type_id": "dept_03",
+    "apps": [
+      {
+        "app_id": "app_09",
+        "app_name": "Governor request"
+      },
+      {
+        "app_id": "app_10",
+        "app_name": "Application to attend worship"
+      },
+      {
+        "app_id": "app_11",
+        "app_name": "Chaplaincy general app form"
+      },
+      {
+        "app_id": "app_12",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Healthcare": {
+    "type_id": "dept_04",
+    "apps": [
+      {
+        "app_id": "app_20",
+        "app_name": "Healthcare application form"
+      },
+      {
+        "app_id": "app_21",
+        "app_name": "Repeat prescription"
+      }
+    ]
+  },
+  "Library": {
+    "type_id": "dept_05",
+    "apps": [
+      {
+        "app_id": "app_22",
+        "app_name": "Move money"
+      },
+      {
+        "app_id": "app_23",
+        "app_name": "Open bank account"
+      },
+      {
+        "app_id": "app_24",
+        "app_name": "Request bank balance"
+      },
+      {
+        "app_id": "app_25",
+        "app_name": "Make a donation to charity"
+      },
+      {
+        "app_id": "app_26",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Reception": {
+    "type_id": "dept_06",
+    "apps": [
+      {
+        "app_id": "app_34",
+        "app_name": "Gifting items to another prisoner"
+      },
+      {
+        "app_id": "app_35",
+        "app_name": "Access to stored valuables"
+      },
+      {
+        "app_id": "app_36",
+        "app_name": "Access to stored property"
+      },
+      {
+        "app_id": "app_37",
+        "app_name": "Have I had property sent in?"
+      },
+      {
+        "app_id": "app_38",
+        "app_name": "Hand out property application"
+      },
+      {
+        "app_id": "app_39",
+        "app_name": "Something else"
+      },
+      {
+        "app_id": "app_40",
+        "app_name": "Incoming mail query"
+      },
+      {
+        "app_id": "app_41",
+        "app_name": "Facilities list query"
+      },
+      {
+        "app_id": "app_42",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Visits": {
+    "type_id": "dept_07",
+    "apps": [
+      {
+        "app_id": "app_43",
+        "app_name": "Book a visit"
+      },
+      {
+        "app_id": "app_44",
+        "app_name": "Add / remove visitor form"
+      },
+      {
+        "app_id": "app_45",
+        "app_name": "App for video visit"
+      },
+      {
+        "app_id": "app_46",
+        "app_name": "Something else"
+      }
+    ]
+  },
+  "Offender Management Unit (OMU)": {
+    "type_id": "dept_08",
+    "apps": [
+      {
+        "app_id": "app_47",
+        "app_name": "Query form"
+      },
+      {
+        "app_id": "app_48",
+        "app_name": "Inter-prison transfer"
+      },
+      {
+        "app_id": "app_49",
+        "app_name": "Behavioural programmes"
+      },
+      {
+        "app_id": "app_50",
+        "app_name": "Something else"
+      },
+      {
+        "app_id": "app_52",
+        "app_name": "Add a social PIN contact"
+      }
+    ]
+  },
+  "Something else": {
+    "type_id": "dept_00",
+    "apps": [
+      {
+        "app_id": "app_51",
+        "app_name": "Something else"
+      }
+    ]
+  }
+}

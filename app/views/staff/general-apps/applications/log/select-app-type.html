@@ -29,8 +29,8 @@
           </legend>
           <div id="chooseApp-hint" class="govuk-hint">
           </div>
-          <div class="govuk-radios" data-module="govuk-radios">
-
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            
           {% for category, details in data['unstructured'] %}
           <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="{{ details.type_id }}" name="appType" type="radio" value="{{ details.type_id }}">

@@ -16,22 +16,22 @@ module.exports = function (router, content) {
     // Make a variable and give it the value from 'how-many-balls'
     var appName = req.session.data['appName']
 
-    if (appName == "app_27") {
+    if (appName == "app_28") {
       res.redirect('/staff/general-apps/applications/log/new-social-pin-contact/prisoner-details')
     }
-    else if (appName == "app_28") {
+    else if (appName == "app_29") {
       res.redirect('/staff/general-apps/applications/log/new-legal-pin-contact/prisoner-details')
     }
-    else if (appName == "app_29") {
+    else if (appName == "app_30") {
       res.redirect('/staff/general-apps/applications/log/emergency-pin-credit/prisoner-details')
     }
-    else if (appName == "app_32") {
+    else if (appName == "app_33") {
       res.redirect('/staff/general-apps/applications/log/remove-pin-contact/prisoner-details')
     }
-    else if (appName == "app_30") {
+    else if (appName == "app_31") {
       res.redirect('/staff/general-apps/applications/log/swap-vos-pin-credit/prisoner-details')
     }
-   else if (appName == "app_31") {
+   else if (appName == "app_32") {
       res.redirect('/staff/general-apps/applications/log/supply-pin-contacts/prisoner-details')
     }
     else {

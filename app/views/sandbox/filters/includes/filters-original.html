@@ -1,0 +1,124 @@
+<div class="moj-filter govuk-!-margin-bottom-9">
+
+  <div class="moj-filter__header">
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
+    </div>
+    <div class="moj-filter__header-action">
+    </div>
+  </div>
+
+  <div class="moj-filter__content">
+    <div class="moj-filter__selected">
+      <div class="moj-filter__selected-heading">
+        <div class="moj-filter__heading-title">
+          <h2 class="govuk-heading-m">Selected filters</h2>
+        </div>
+        <div class="moj-filter__heading-action">
+          <p><a id="clearFiltersButton" class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+        </div>
+      </div>
+      
+      <div id="moj-filter-tags--prisoner" class="moj-filter-tags--group">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prisoner</h3>
+        <ul class="moj-filter-tags" id="prisoner-tags">
+        </ul>
+    </div>
+
+    <div id="moj-filter-tags--dept" class="moj-filter-tags--group">
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Department</h3>
+
+      <ul class="moj-filter-tags" id="dept-tags">
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Business Hub</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> OMU</a></li>
+      </ul>
+    </div>
+
+    <div id="moj-filter-tags--type" class="moj-filter-tags--group">
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Application type</h3>
+
+      <ul class="moj-filter-tags" id="type-tags">
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Add emergency PIN phone credit</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Supply list of PIN phone contacts</a></li>
+        <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this filter</span> Swap VOs for PIN credit</a></li>
+      </ul>
+    </div>
+
+    </div>
+
+    <div class="moj-filter__options">
+
+      <button type="submit" id="applyFiltersButton" class="govuk-button" data-module="govuk-button" data-test-id="submit-button">
+        Apply filters
+      </button>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="prisoner-autocomplete">
+          Prisoner
+        </label>
+        <div id="my-autocomplete-wrapper">
+          <select id="prisoner-autocomplete">
+            <option value="" selected disabled hidden></option>
+            {% for prisoner in data['prisoners'] %}
+              <option value="{{ prisoner.prison_number }}">{{ prisoner.prisoners_name }} ({{ prisoner.prison_number }})</option>
+            {% endfor %}
+          </select>
+      </div>
+      
+      </div>
+
+      <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Type
+          </legend>
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+          {% for category, details in data['unstructured'] %}
+          <div class="govuk-checkboxes__nested">
+            <div class="govuk-checkboxes__item govuk-checkboxes__parent">
+              <input class="govuk-checkboxes__input" id="{{ details.type_id }}" name="typeFilter" type="checkbox" value="{{ details.type_id }}">
+              <label class="govuk-label govuk-checkboxes__label" for="{{ details.type_id }}">
+                {{ category }}
+              </label>
+            </div>
+          <div class="govuk-checkboxes__children">
+            {% for app in details.apps %}
+           <div class="govuk-checkboxes__item">
+             <input class="govuk-checkboxes__input" id="{{ app.app_id }}" name="typeFilter" type="checkbox" value="{{ app.app_id }}">
+             <label class="govuk-label govuk-checkboxes__label" for="{{ app.app_id }}">
+               {{ app.app_name }}
+             </label>
+           </div>
+           {% endfor %}
+         </div>
+
+        </div>
+           {% endfor %}
+        </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Department
+          </legend>
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            {% for departments in data['departments'] %}
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="{{ departments.department_id }}" name="departmentFilter" type="checkbox" value="{{ departments.department_name }}">
+              <label class="govuk-label govuk-checkboxes__label" for="{{ departments.department_id }}">
+                {{ departments.department_name }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+  </div>
+</div>

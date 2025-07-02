@@ -9,6 +9,15 @@
   .govuk-checkboxes--small .govuk-checkboxes__label {
     max-width: none !important; //this could be removed once you remove the content hub styles
   }
+  .govuk-radios__item {
+  .govuk-label {
+    max-width: 100% !important;
+  }
+  .govuk-checkboxes {
+    margin-left: -24px;
+    padding-left: 22px;;
+  }
+}
 }
 
 table {
