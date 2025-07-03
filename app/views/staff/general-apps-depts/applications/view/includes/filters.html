@@ -97,7 +97,7 @@
 
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Application group / type
+            Application department / type
           </legend>
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             {% for category, details in data['unstructured'] %}
@@ -126,26 +126,6 @@
           </div>
         </fieldset>
       </div>
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Department
-          </legend>
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            {% for departments in data['departments'] %}
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="{{ departments.department_id }}" name="departmentFilter"
-                type="checkbox" value="{{ departments.department_name }}">
-              <label class="govuk-label govuk-checkboxes__label" for="{{ departments.department_id }}">
-                {{ departments.department_name }}
-              </label>
-            </div>
-            {% endfor %}
-          </div>
-        </fieldset>
-      </div>
-
     </div>
   </div>
 </div>

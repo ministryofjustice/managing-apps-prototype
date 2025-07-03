@@ -22,7 +22,7 @@
 				<!-- If you have justed added an unstructured application-->
 				{% if data['general_app'] === 'submitted' %}
 				<tr class="govuk-table__row "
-					data-tags="Patel, Taj {{ data['pin_01_prisonNumber'] }} Add emergency PIN phone credit"">
+					data-tags="Patel, Taj {{ data['pin_07_prisonNumber'] }} Add emergency PIN phone credit"">
 					<td class=" govuk-table__cell nowrap convertDate">
 					{% if data['app_submittedDate'] %}
 					{{ data['app_submittedDate'] }}
@@ -31,7 +31,7 @@
 					{% endif %}
 					</td>
 					<td class="govuk-table__cell">
-							{{ data['checkAppName'] }}
+					  {{ data['checkAppName'] }}
 					</td>
 					<td class="govuk-table__cell">
 						Patel, Taj

@@ -98,21 +98,13 @@
                 Department
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['app_dept'] }}
+                {{ type }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
                 {% else %}
                   <a class="govuk-link" href="forward?url_id={{appID}}">Forward<span class="govuk-visually-hidden"> department</span></a>
                 {% endif %}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Application group
-              </dt>
-              <dd class="govuk-summary-list__value">
-              {{ type }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -205,18 +197,6 @@
               {{ data['app_detail'] }}
             {% else %}
               Request to swap all VOs from last month
-            {% endif %}
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Department
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['app_dept'] %}
-              {{ data['app_dept'] }}
-            {% else %}
-              Business Hub
             {% endif %}
           </dd>
         </div>
