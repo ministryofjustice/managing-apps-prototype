@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 
 {% block content %}
@@ -18,16 +18,16 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-        <form class="form" action="{{homeurl}}applications/view/app/application?url_id={{appID}}">
+        <form class="form" action="{{homeurl}}applications/view/new/application">
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="changedDept-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <span class="govuk-caption-xl">
-              {% for type, details in data['unstructured'] %}
+              {% for type, details in data['deptsAndGeneralApps'] %}
               {% for app in details.apps %}
               {% if app.app_id == selectedAppId %}
-              {{ app.app_name }}
+              {{ app.app_type }}
               {% endif %}
               {% endfor %}
               {% endfor %}

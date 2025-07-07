@@ -5,7 +5,7 @@
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-categories/" %}
 {% set appType = data['appType'] %}
-{% set appName = data['appName'] %}
+{% set appGroup = data['appGroup'] %}
 
 
 {% block content %}
@@ -16,11 +16,11 @@
     <div class="govuk-width-container">
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
-      {% for type, details in data['unstructured'] %}
-        {% for app in details.apps %}
-          {% if app.app_id == data['appName'] %}
+      {% for group, details in data['groupsAndGeneralApps'] %}
+        {% for app in details.apps %}
+          {% if app.app_id == data['appType'] %}
 
-      <span class="govuk-caption-xl">{{ app.app_name }}</span>
+      <span class="govuk-caption-xl">{{ app.app_type }}</span>
       <h1 class="govuk-heading-xl">Log prisoner details</h1>
 
 
@@ -36,36 +36,38 @@
                 <label class="govuk-label govuk-label--s" for="prisonNumber">
                   Prison number
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="app_prisonNumber" type="text" value="{{ data['app_prisonNumber'] }}">
-                <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                <input class="govuk-input govuk-input--width-10" id="prisonNumber" name="app_prisonNumber" type="text"
+                  value="{{ data['app_prisonNumber'] }}">
+                <a href="#" id="prisonNumber-lookup" class="govuk-button govuk-button--secondary"
+                  data-module="govuk-button">
                   Find prisoner
                 </a>
               </div>
 
-              <div id="prisoner-name-row"  class="govuk-inset-text govuk-!-margin-top-0">
+              <div id="prisoner-name-row" class="govuk-inset-text govuk-!-margin-top-0">
                 Prisoner name: Patel, Taj
               </div>
 
               {%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
 
-                {{ mojDatePicker({
-                id: "submittedDate",
-                name: "app_submittedDate",
-                label: {
-                    text: "Date",
-                    classes: "govuk-label--s"
-                },
-                value:  data['app_submittedDate'] ,
-                classes: "govuk-!-margin-bottom-5"
+              {{ mojDatePicker({
+              id: "submittedDate",
+              name: "app_submittedDate",
+              label: {
+              text: "Date",
+              classes: "govuk-label--s"
+              },
+              value: data['app_submittedDate'] ,
+              classes: "govuk-!-margin-bottom-5"
               }) }}
 
 
-            <div class="moj-button-action">
-              {% from "govuk/components/button/macro.njk" import govukButton %}
-              {{ govukButton({
+              <div class="moj-button-action">
+                {% from "govuk/components/button/macro.njk" import govukButton %}
+                {{ govukButton({
                 text: "Continue"
-              }) }}
-            </div>
+                }) }}
+              </div>
 
             </form>
 

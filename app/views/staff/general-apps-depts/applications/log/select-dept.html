@@ -17,7 +17,7 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-half">
 
-          <form class="form" action="/staff/general-apps-depts/applications/log/select-app-name?url_cat={{appName}}">
+          <form class="form" action="/staff/general-apps-depts/applications/log/select-app-type?url_cat={{appName}}">
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="chooseApp-hint">
@@ -31,11 +31,11 @@
           </div>
         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             
-          {% for category, details in data['deptApps'] %}
+          {% for dept, details in data['deptsAndGeneralApps'] %}
           <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="{{ details.type_id }}" name="appType" type="radio" value="{{ details.type_id }}">
-              <label class="govuk-label govuk-radios__label" for="{{ details.type_id }}">
-                {{ category }}
+              <input class="govuk-radios__input" id="{{ dept }}" name="appDept" type="radio" value="{{ dept }}">
+              <label class="govuk-label govuk-radios__label" for="{{ dept }}">
+                {{ details.name }}
               </label>
             </div>
           {% endfor %}

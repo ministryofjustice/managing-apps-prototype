@@ -86,7 +86,7 @@
           </div>
 
           <div class="govuk-radios--small" data-module="govuk-radios">
-            {% for category, details in data['unstructured'] %}
+            {% for category, details in data['deptsAndGeneralApps'] %}
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="category" name="category" type="radio" value="email"
                 data-aria-controls="conditional-{{ details.type_id }}">

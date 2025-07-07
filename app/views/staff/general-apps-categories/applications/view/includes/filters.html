@@ -100,13 +100,13 @@
             Application group / type
           </legend>
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            {% for category, details in data['unstructured'] %}
+            {% for category, details in data['groupsAndGeneralApps'] %}
             <div class="govuk-checkboxes__nested">
               <div class="govuk-checkboxes__item govuk-checkboxes__parent">
                 <input class="govuk-checkboxes__input" id="{{ details.type_id }}" name="typeFilter" type="checkbox"
                   value="{{ details.type_id }}">
                 <label class="govuk-label govuk-checkboxes__label" for="{{ details.type_id }}">
-                  {{ category }}
+                  {{ details.name }}
                 </label>
               </div>
               <div class="govuk-checkboxes__children">
@@ -115,7 +115,7 @@
                   <input class="govuk-checkboxes__input" id="{{ app.app_id }}" name="typeFilter" type="checkbox"
                     value="{{ app.app_id }}">
                   <label class="govuk-label govuk-checkboxes__label" for="{{ app.app_id }}">
-                    {{ app.app_name }}
+                    {{ app.app_type }}
                   </label>
                 </div>
                 {% endfor %}

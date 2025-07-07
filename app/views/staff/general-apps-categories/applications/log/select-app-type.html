@@ -31,11 +31,11 @@
           </div>
         <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             
-          {% for category, details in data['unstructured'] %}
+          {% for group, details in data['groupsAndGeneralApps'] %}
           <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="{{ details.type_id }}" name="appType" type="radio" value="{{ details.type_id }}">
-              <label class="govuk-label govuk-radios__label" for="{{ details.type_id }}">
-                {{ category }}
+              <input class="govuk-radios__input" id="{{ group }}" name="appGroup" type="radio" value="{{ group }}">
+              <label class="govuk-label govuk-radios__label" for="{{ group }}">
+                {{ details.name }}
               </label>
             </div>
           {% endfor %}

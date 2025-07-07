@@ -4,8 +4,8 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
+{% set appDept = data['appDept'] %}
 {% set appType = data['appType'] %}
-{% set appName = data['appName'] %}
 
 
 {% block content %}
@@ -16,11 +16,11 @@
     <div class="govuk-width-container">
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
-      {% for type, details in data['deptApps'] %}
+      {% for dept, details in data['deptsAndGeneralApps'] %}
         {% for app in details.apps %}
-          {% if app.app_id == data['appName'] %}
+          {% if app.app_id == data['appType'] %}
 
-      <span class="govuk-caption-xl">{{ app.app_name }}</span>
+      <span class="govuk-caption-xl">{{ app.app_type }}</span>
       <h1 class="govuk-heading-xl">Log prisoner details</h1>
 
 

@@ -1,0 +1,215 @@
+{
+  "group_01": {
+    "name": "Exercise",
+    "apps": [
+      {
+        "app_id": "app_0101",
+        "app_type": "Gym activity"
+      }
+    ]
+  },
+  "group_02": {
+    "name": "Jobs and courses",
+    "apps": [
+      {
+        "app_id": "app_0201",
+        "app_type": "Apply for education"
+      },
+      {
+        "app_id": "app_0202",
+        "app_type": "Request a prison job"
+      }
+    ]
+  },
+  "group_03": {
+    "name": "Library",
+    "apps": [
+      {
+        "app_id": "app_0301",
+        "app_type": "Join library"
+      }
+    ]
+  },
+  "group_04": {
+    "name": "Finance",
+    "apps": [
+      {
+        "app_id": "app_0401",
+        "app_type": "Canteen refund"
+      },
+      {
+        "app_id": "app_0402",
+        "app_type": "Donate to charity"
+      },
+      {
+        "app_id": "app_0403",
+        "app_type": "Move money"
+      },
+      {
+        "app_id": "app_0404",
+        "app_type": "Open bank account"
+      },
+      {
+        "app_id": "app_0405",
+        "app_type": "Pay enquiry"
+      },
+      {
+        "app_id": "app_0406",
+        "app_type": "Request bank balance"
+      },
+      {
+        "app_id": "app_0407",
+        "app_type": "Spends query"
+      }
+    ]
+  },
+  "group_05": {
+    "name": "Governor",
+    "apps": [
+      {
+        "app_id": "app_0501",
+        "app_type": "Governor request"
+      }
+    ]
+  },
+  "group_06": {
+    "name": "Health",
+    "apps": [
+      {
+        "app_id": "app_0601",
+        "app_type": "Healthcare application form"
+      },
+      {
+        "app_id": "app_0602",
+        "app_type": "Repeat prescription"
+      }
+    ]
+  },
+  "group_07": {
+    "name": "IEPs",
+    "apps": [
+      {
+        "app_id": "app_0701",
+        "app_type": "IEP appeal"
+      }
+    ]
+  },
+  "group_08": {
+    "name": "Probation",
+    "apps": [
+      {
+        "app_id": "app_0801",
+        "app_type": "Probation officer details request"
+      }
+    ]
+  },
+  "group_09": {
+    "name": "Property",
+    "apps": [
+      {
+        "app_id": "app_0901",
+        "app_type": "Access to stored property"
+      },
+      {
+        "app_id": "app_0902",
+        "app_type": "Facilities list"
+      },
+      {
+        "app_id": "app_0903",
+        "app_type": "Gift items to another prisoner"
+      },
+      {
+        "app_id": "app_0904",
+        "app_type": "Property handed out"
+      },
+      {
+        "app_id": "app_0905",
+        "app_type": "Property sent in"
+      },
+      {
+        "app_id": "app_0906",
+        "app_type": "New mattress"
+      }
+    ]
+  },
+  "group_10": {
+    "name": "PIN phones",
+    "apps": [
+      {
+        "app_id": "app_1001",
+        "app_type": "Add emergency phone credit"
+      },
+      {
+        "app_id": "app_1002",
+        "app_type": "Add a legal PIN phone contact"
+      },
+      {
+        "app_id": "app_1003",
+        "app_type": "Add a social PIN phone contact"
+      },
+      {
+        "app_id": "app_1004",
+        "app_type": "Add or remove a PIN phone contact"
+      },
+      {
+        "app_id": "app_1005",
+        "app_type": "Supply list of PIN contacts"
+      }
+    ]
+  },
+  "group_11": {
+    "name": "Shopping",
+    "apps": [
+      {
+        "app_id": "app_1101",
+        "app_type": "Emergency canteen"
+      },
+      {
+        "app_id": "app_1102",
+        "app_type": "Canteen query"
+      },
+      {
+        "app_id": "app_1103",
+        "app_type": "Catalogue order"
+      },
+      {
+        "app_id": "app_1104",
+        "app_type": "Catalogue order return"
+      },
+      {
+        "app_id": "app_1105",
+        "app_type": "Catalogue query"
+      }
+    ]
+  },
+  "group_12": {
+    "name": "Transfers",
+    "apps": [
+      {
+        "app_id": "app_1201",
+        "app_type": "Inter-prison transfer"
+      }
+    ]
+  },
+  "group_13": {
+    "name": "Visits",
+    "apps": [
+      {
+        "app_id": "app_1301",
+        "app_type": "Form to add or remove a visitor"
+      },
+      {
+        "app_id": "app_1302",
+        "app_type": "Apply for a video visit"
+      },
+      {
+        "app_id": "app_1303",
+        "app_type": "Book a visit"
+      },
+      {
+        "app_id": "app_1304",
+        "app_type": "Swap VOs for phone credit"
+      }
+    ]
+  }
+}

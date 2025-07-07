@@ -2,10 +2,9 @@
 
 {% set pageName="Comments" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
-
 
 {% block content %}
 
@@ -31,13 +30,12 @@
   		</nav>
 
       <span class="govuk-caption-xl">
-        {% for type, details in data['unstructured'] %}
-        {% for app in details.apps %}
-        {% if app.app_id == selectedAppId %}
-        {{ app.app_name }}
-        {% endif %}
-        {% endfor %}
-        {% endfor %}
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVP2Apps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
       </span>
       <h1 class="govuk-heading-xl">
         Comments
@@ -112,7 +110,13 @@
                 </div>
               </div>
           {% endif %}
+
+          {% for app in data['allMVP2Apps'] %}
+          {% if app.app_id == appID  %}
   
+        {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
+        {% else %}
+
       <form class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
         <div class="govuk-form-group">
           <label class="govuk-label govuk-label--s" for="newComment">
@@ -128,6 +132,12 @@
         </div>
 
       </form>
+
+      
+      {% endif %}
+      {% endif  %}
+      {% endfor  %}
+
 
     </div>
       </div>

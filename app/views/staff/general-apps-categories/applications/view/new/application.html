@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-categories/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 {% block content %}
 
@@ -29,12 +29,12 @@
   				</ol>
   			</div>
   		</nav>
-        {% for type, details in data['unstructured'] %}
+        {% for type, details in data['groupsAndGeneralApps'] %}
         {% for app in details.apps %}
         {% if app.app_id == selectedAppId %}
-      <span class="govuk-caption-xl">{{ type }}</span>
+      <span class="govuk-caption-xl">{{ details.name }}</span>
       <h1 class="govuk-heading-xl">
-        {{ app.app_name }}
+        {{ app.app_type }}
       </h1>
         {% endif %}
         {% endfor %}
@@ -50,29 +50,29 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="./details?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" aria-current="page" href="./details">
               Application 
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./comments">
               Comments
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./action">
               Action and reply
               </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./history">
               History
             </a>
           </li>
         </ul>
       </nav>
 
-      {% for type, details in data['unstructured'] %}
+      {% for type, details in data['groupsAndGeneralApps'] %}
       {% for app in details.apps %}
       {% if app.app_id == selectedAppId %}
 
@@ -103,7 +103,7 @@
               <dd class="govuk-summary-list__actions">
                 {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
                 {% else %}
-                  <a class="govuk-link" href="forward?url_id={{appID}}">Forward<span class="govuk-visually-hidden"> department</span></a>
+                  <a class="govuk-link" href="forward">Forward<span class="govuk-visually-hidden"> department</span></a>
                 {% endif %}
               </dd>
             </div>
@@ -112,7 +112,7 @@
                 Application group
               </dt>
               <dd class="govuk-summary-list__value">
-              {{ type }}
+              {{ details.name }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -120,7 +120,7 @@
                 Application name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ app.app_name }}
+                {{ app.app_type }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">

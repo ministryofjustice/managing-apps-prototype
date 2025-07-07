@@ -1,0 +1,222 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Add emergency PIN phone credit" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/single-general-app-v1-2/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <nav aria-label="breadcrumb">
+        <div class="govuk-breadcrumbs">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/admin/">Admin</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/admin/applications/">Manage applications</a>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Manage applications</span>
+      <h1 class="govuk-heading-xl">
+        Add emergency PIN phone credit
+      </h1>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Do you use this application type in your establishment?
+              </legend>
+              <div class="govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="app02_useApplication" name="app02_useApplication" type="radio" checked value="Yes">
+                  <label class="govuk-label govuk-radios__label" for="app02_useApplication">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="app02_useApplication-2" name="app02_useApplication-2" type="radio" value="No">
+                  <label class="govuk-label govuk-radios__label" for="app02_useApplication-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Where does it need to go first?
+              </legend>
+              <!-- DEPARTMENTS-->
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="app02_firstRecipient_dept" name="app02_firstRecipient" type="radio" value="email" checked data-aria-controls="conditional-app02_firstRecipient_dept">
+                  <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept">
+                    Department
+                  </label>
+                </div>
+                <!-- DEPARTMENTS REVEAL-->
+                <div class="govuk-radios__conditional" id="conditional-app02_firstRecipient_dept">
+
+                  <fieldset class="govuk-fieldset">
+                    <div class="govuk-radios" data-module="govuk-radios">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_1" name="app02_firstRecipient_dept" type="radio" value="Reception">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_1">
+                          Reception
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_2" name="app02_firstRecipient_dept" type="radio" checked value="Business Hub">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_2">
+                          Business Hub
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_3" name="app02_firstRecipient_dept" type="radio" value="OMU">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_3">
+                          OMU
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_4" name="app02_firstRecipient_dept" type="radio" value="Security">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_4">
+                          Security
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_5" name="app02_firstRecipient_dept" type="radio" value="Kitchen">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_5">
+                          Kitchen
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_dept_6" name="app02_firstRecipient_dept" type="radio" value="Stores">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_dept_6">
+                          Stores
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                </div>
+
+                <!-- GOVERNORS-->
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="app02_firstRecipient_governor" name="app02_firstRecipient" type="radio" value="phone" data-aria-controls="conditional-app02_firstRecipient_governor">
+                  <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_governor">
+                    Governor
+                  </label>
+                </div>
+                <!-- GOVERNORS REVEAL-->
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-app02_firstRecipient_governor">
+
+                  <fieldset class="govuk-fieldset">
+                    <div class="govuk-radios" data-module="govuk-radios">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_governor_1" name="app02_firstRecipient_governor" type="radio" value="Paul White">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_governor_1">
+                          Paul White
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_governor_2" name="app02_firstRecipient_governor" type="radio" value="James Smart">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_governor_2">
+                          James Smart
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="app02_firstRecipient_governor_3" name="app02_firstRecipient_governor" type="radio" value="Syed Hasan">
+                        <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_governor_3">
+                          Syed Hasan
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  </div>
+
+                <!-- WINGS-->
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="app02_firstRecipient_wing" name="app02_firstRecipient" type="radio" value="text" data-aria-controls="conditional-app02_firstRecipient_wing">
+                  <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing">
+                    Wing
+                  </label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-app02_firstRecipient_wing">
+
+                    <fieldset class="govuk-fieldset">
+                      <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="app02_firstRecipient_wing_1" name="app02_firstRecipient_wing" type="radio" value="First Nght Centre">
+                          <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing_1">
+                            First Nght Centre
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="app02_firstRecipient_wing_2" name="app02_firstRecipient_wing" type="radio" value="A Wing">
+                          <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing_2">
+                            A Wing
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="app02_firstRecipient_wing_3" name="app02_firstRecipient_wing" type="radio" value="B Wing">
+                          <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing_3">
+                            B Wing
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="app02_firstRecipient_wing_4" name="app02_firstRecipient_wing" type="radio" value="C Wing">
+                          <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing_4">
+                            C Wing
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="app02_firstRecipient_wing_4" name="app02_firstRecipient_wing" type="radio" value="D Wing">
+                          <label class="govuk-label govuk-radios__label" for="app02_firstRecipient_wing_4">
+                            D Wing
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                </div>
+
+              </div>
+            </fieldset>
+          </div>
+
+          <a href="../" class="govuk-button" data-module="govuk-button">
+            Save
+          </a>
+        </div>
+      </div>
+    </div> <!-- end main content  -->
+  </div>
+</div>
+
+
+{% endblock %}

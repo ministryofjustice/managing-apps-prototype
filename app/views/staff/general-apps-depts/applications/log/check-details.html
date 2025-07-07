@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set appName = data['appName'] %}
+{% set appType = data['appType'] %}
 
 {% block content %}
 
@@ -14,14 +14,14 @@
     <div class="govuk-width-container">
 
     <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
-    {% for type, details in data['unstructured'] %}
+    {% for type, details in data['deptsAndGeneralApps'] %}
       {% for app in details.apps %}
-        {% if app.app_id == appName %}
+        {% if app.app_id == appType %}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <span class="govuk-caption-xl">
-          {{ app.app_name }}
+          {{ app.app_type }}
         </span>
 
         <h1 class="govuk-heading-xl">Check details</h1>
@@ -33,7 +33,7 @@
               Department
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ type }}
+              {{ details.name }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/staff/mvp/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
@@ -44,7 +44,7 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ app.app_name }}
+              {{ app.app_type }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a href="/staff/mvp/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
@@ -108,7 +108,7 @@
           </div>
         </dl>
 
-        <form class="form" action="{{homeurl}}applications/log/confirmation?url_cat={{appName}}">
+        <form class="form" action="{{homeurl}}applications/log/confirmation?url_cat={{appType}}">
 
         <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
 
@@ -137,7 +137,7 @@
               <label class="govuk-label" for="app-type">
                 Application type
               </label>
-              <input class="govuk-input" id="app-type" name="checkAppName" type="text" value="{{ app.app_name }}">
+              <input class="govuk-input" id="app-type" name="checkappType" type="text" value="{{ app.app_type }}">
             </div>
             </fieldset>
         </div>

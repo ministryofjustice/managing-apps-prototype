@@ -26,8 +26,10 @@ let allMVPApps               = require('./dps/mvp/all-apps-data.json')
 let allMVP2Apps              = require('./dps/mvp/all-mvp2-apps-data.json')
 let pin05data                = require('./dps/mvp/pin_05_data.json')
 let prisoners                = require('./dps/mvp/prisoners.json')
-let unstructured             = require('./dps/general-apps/general_apps.json')
-let deptApps                 = require('./dps/general-apps/department_apps.json')
+let groupsAndGeneralApps     = require('./dps/general-apps/groups_apps.json')
+let listGeneralApps          = require('./dps/general-apps/general_apps_types.json')
+let allGeneralApps           = require('./dps/general-apps/all-general-apps-data.json')
+let deptsAndGeneralApps      = require('./dps/general-apps/department_apps.json')
 let departments              = require('./dps/general-apps/departments.json')
 let socialRelationships      = require('./dps/social_relationships.json')
 let legalRelationships       = require('./dps/legal_relationships.json')
@@ -55,8 +57,10 @@ module.exports = {
   allMVPApps,
   allMVP2Apps,
   prisoners,
-  unstructured,
-  deptApps,
+  groupsAndGeneralApps,
+  deptsAndGeneralApps,
+  listGeneralApps,
+  allGeneralApps,
   departments,
   socialRelationships,
   legalRelationships,

@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 {% block content %}
 
@@ -31,7 +31,7 @@
 
       
       <span class="govuk-caption-xl">
-        {% for type, details in data['unstructured'] %}
+        {% for type, details in data['deptsAndGeneralApps'] %}
         {% for app in details.apps %}
         {% if app.app_id == selectedAppId %}
         {{ app.app_name }}
@@ -95,6 +95,9 @@
               Forwarded to OMU.
             </div>
           </div>
+          {% endif %}
+          
+          {% if (data['actionRespond'] == "Approved") or (app.decision == "Approved") %}
 
           <div class="app-message govuk-body">
             <div class="app-messages-metadata">

@@ -4,12 +4,12 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 
 {% block content %}
 
-{% for type, details in data['unstructured'] %}
+{% for type, details in data['deptsAndGeneralApps'] %}
   {% for app in details.apps %}
     {% if app.app_id == selectedAppId %}
 
@@ -22,7 +22,7 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-panel govuk-panel--confirmation">
               <div class="govuk-panel__body govuk-!-padding-bottom-3">
-                {{ app.app_name }}
+                {{ app.app_type }}
               </div>
               <h1 class="govuk-panel__title">
                 Application submitted

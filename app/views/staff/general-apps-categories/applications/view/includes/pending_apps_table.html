@@ -19,7 +19,7 @@
 				</tr>
 			</thead>
 			<tbody class="govuk-table__body">
-				<!-- If you have justed added an unstructured application-->
+				<!-- If you have justed added an groupsAndGeneralApps application-->
 				{% if data['general_app'] === 'submitted' %}
 				<tr class="govuk-table__row "
 					data-tags="Patel, Taj {{ data['pin_01_prisonNumber'] }} Add emergency PIN phone credit"">
@@ -31,7 +31,10 @@
 					{% endif %}
 					</td>
 					<td class="govuk-table__cell">
-							{{ data['checkAppName'] }}
+						{{ data['checkApp'] }}
+						<span class="govuk-table__subtext govuk-body-s">
+						{{ data['checkAppGroup'] }}
+						</span>
 					</td>
 					<td class="govuk-table__cell">
 						Patel, Taj
@@ -65,7 +68,12 @@
 					{{ 0 | getDate }}
 					{% endif %}
 					</td>
-					<td class="govuk-table__cell">Add new social PIN phone contact</td>
+					<td class="govuk-table__cell">
+						Add new social PIN phone contact
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_01_prisonerName'] %}
 						{{ data['pin_01_prisonerName'] }}
@@ -96,7 +104,12 @@
 					{{ 0 | getDate }}
 					{% endif %}
 					</td>
-					<td class="govuk-table__cell">Add new legal PIN phone contact</td>
+					<td class="govuk-table__cell">
+						Add new legal PIN phone contact
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_02_prisonerName'] %}
 						{{ data['pin_02_prisonerName'] }}
@@ -128,7 +141,12 @@
 					{{ 0 | getDate }}
 					{% endif %}
 					</td>
-					<td class="govuk-table__cell">Add emergency PIN phone credit</td>
+					<td class="govuk-table__cell">
+						Add emergency PIN phone credit
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_03_prisonerName'] %}
 						{{ data['pin_03_prisonerName'] }}
@@ -159,7 +177,12 @@
 					{{ 0 | getDate }}
 					{% endif %}
 					</td>
-					<td class="govuk-table__cell">Remove PIN phone contact</td>
+					<td class="govuk-table__cell">
+						Remove PIN phone contact
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_04_prisonerName'] %}
 						{{ data['pin_04_prisonerName'] }}
@@ -185,7 +208,12 @@
 				<tr class="govuk-table__row"
 					data-tags="Patel, Taj {{ data['pin_05_prisonNumber'] }} Business Hub Swap VOs for PIN credit"">
 					<td class=" govuk-table__cell nowrap">{{ 0 | getDate }}</td>
-					<td class="govuk-table__cell">Swap VOs for PIN credit</td>
+					<td class="govuk-table__cell">
+						Swap VOs for PIN credit
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_05_prisonerName'] %}
 						{{ data['pin_05_prisonerName'] }}
@@ -210,7 +238,12 @@
 				<tr class="govuk-table__row"
 					data-tags="Patel, Taj {{ data['pin_06_prisonNumber'] }} Business Hub Supply list of PIN phone contacts"">
 					<td class=" govuk-table__cell nowrap">{{ 0 | getDate }}</td>
-					<td class="govuk-table__cell">Supply list of PIN phone contacts</td>
+					<td class="govuk-table__cell">
+						Supply list of PIN phone contacts
+						<span class="govuk-table__subtext govuk-body-s">
+						PIN phones
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{% if data['pin_06_prisonerName'] %}
 						{{ data['pin_06_prisonerName'] }}
@@ -236,7 +269,12 @@
 				<tr class="govuk-table__row"
 					data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
 					<td class=" govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
-					<td class="govuk-table__cell">{{ app.app_type }}</td>
+					<td class="govuk-table__cell">
+						{{ app.app_type }}
+						<span class="govuk-table__subtext govuk-body-s">
+						{{ app.app_group }}
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 						{{ app.prisoner_name }}
 						<span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>

@@ -6,6 +6,12 @@
 window.GOVUKPrototypeKit.documentReady(() => {
 
 
+  // Duplicate the content of the General App Type to another input so we can pass a non-result self typed entry to the next page.
+
+
+     
+
+
   function convertDate(dateStr) {
     const months = [
         "January", "February", "March", "April", "May", "June",
@@ -148,5 +154,5 @@ window.GOVUKPrototypeKit.documentReady(() => {
   });
 
   $('span#age').append(contactDOByear);
-     
+
 });

@@ -1,26 +1,26 @@
 module.exports = function (router, content) {
 
 
-  router.post('/staff/general-apps-depts/applications/log/select-app-name', function (req, res) {
+  router.post('/staff/general-apps-depts/applications/log/select-app-type', function (req, res) {
     // Make a variable and give it the value from 'how-many-balls'
-    var appName = req.session.data['appName']
+    var appType = req.session.data['appType']
 
-    if (appName == "app_27"  ||  appName == "app_52")  {
+    if (appType == "app_0208"  ||  appType == "app_52")  {
       res.redirect('/staff/general-apps-depts/applications/log/new-social-pin-contact/prisoner-details')
     }
-    else if (appName == "app_28") {
+    else if (appType == "app_0209") {
       res.redirect('/staff/general-apps-depts/applications/log/new-legal-pin-contact/prisoner-details')
     }
-    else if (appName == "app_29") {
+    else if (appType == "app_0210") {
       res.redirect('/staff/general-apps-depts/applications/log/emergency-pin-credit/prisoner-details')
     }
-    else if (appName == "app_30") {
+    else if (appType == "app_0211") {
       res.redirect('/staff/general-apps-depts/applications/log/swap-vos-pin-credit/prisoner-details')
     }
-   else if (appName == "app_31") {
+   else if (appType == "app_0212") {
       res.redirect('/staff/general-apps-depts/applications/log/supply-pin-contacts/prisoner-details')
     }
-    else if (appName == "app_32") {
+    else if (appType == "app_0213") {
       res.redirect('/staff/general-apps-depts/applications/log/remove-pin-contact/prisoner-details')
     } else {
       res.redirect('/staff/general-apps-depts/applications/log/prisoner-details')

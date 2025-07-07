@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-categories/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 {% block content %}
 
@@ -31,10 +31,10 @@
 
       
       <span class="govuk-caption-xl">
-        {% for type, details in data['unstructured'] %}
+        {% for type, details in data['groupsAndGeneralApps'] %}
         {% for app in details.apps %}
         {% if app.app_id == selectedAppId %}
-        {{ app.app_name }}
+        {{ app.app_type }}
         {% endif %}
         {% endfor %}
         {% endfor %}
@@ -52,21 +52,21 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./application">
               Application 
             </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./comments">
               Comments
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link"  aria-current="page" href="./action?url_id={{appID}}">
+            <a class="moj-sub-navigation__link"  aria-current="page" href="./action">
               Action and reply
               </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./history">
               History
             </a>
           </li>
@@ -143,7 +143,7 @@
 
             <p class="govuk-body">This action and its reason will be seen by the prisoner.</p>
 
-            <form class="form" action="{{homeurl}}applications/view/app/action?url_id=ewqewqeq">
+            <form class="form" action="{{homeurl}}applications/view/new/action?url_id=ewqewqeq">
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
               {{ govukRadios({

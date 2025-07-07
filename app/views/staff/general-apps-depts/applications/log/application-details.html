@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set appName = data['appName'] %}
+{% set appType = data['appType'] %}
 
 {% block content %}
 
@@ -14,11 +14,11 @@
     <div class="govuk-width-container">
 
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
-      {% for type, details in data['unstructured'] %}
+      {% for type, details in data['deptsAndGeneralApps'] %}
         {% for app in details.apps %}
-          {% if app.app_id == appName %}
+          {% if app.app_id == appType %}
 
-      <span class="govuk-caption-xl">{{ app.app_name }}</span>
+      <span class="govuk-caption-xl">{{ app.app_type }}</span>
       <h1 class="govuk-heading-xl">Log details</h1>
 
       <div class="govuk-width-container">
@@ -26,7 +26,7 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
 
-          <form class="form" action="{{homeurl}}applications/log/check-details?url_cat={{appName}}">
+          <form class="form" action="{{homeurl}}applications/log/check-details?url_cat={{appType}}">
 
               <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
                 <h1 class="govuk-label-wrapper">
@@ -47,7 +47,7 @@
                 <label class="govuk-label" for="width-10">
                   Application name
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="appName" name="appName" type="text" value="{{ data['appName'] }}">
+                <input class="govuk-input govuk-input--width-10" id="appType" name="appType" type="text" value="{{ data['appType'] }}">
               </div>
     
             <div class="moj-button-action">

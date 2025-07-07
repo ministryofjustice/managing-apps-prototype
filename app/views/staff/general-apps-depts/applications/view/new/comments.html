@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
+{% set selectedAppId = data['appType'] %}
 
 
 {% block content %}
@@ -31,10 +31,10 @@
   		</nav>
 
       <span class="govuk-caption-xl">
-        {% for type, details in data['unstructured'] %}
+        {% for dept, details in data['deptsAndGeneralApps'] %}
         {% for app in details.apps %}
         {% if app.app_id == selectedAppId %}
-        {{ app.app_name }}
+        {{ app.app_type }}
         {% endif %}
         {% endfor %}
         {% endfor %}
@@ -53,21 +53,21 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./application">
               Application 
             </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="./comments?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" aria-current="page" href="./comments">
               Comments
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./action?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./action">
               Action and reply
               </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./history">
               History
             </a>
           </li>

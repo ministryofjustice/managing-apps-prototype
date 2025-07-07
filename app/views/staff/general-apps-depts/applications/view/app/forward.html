@@ -2,9 +2,10 @@
 
 {% set pageName="Forward this application" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/staff/general-apps-depts/" %}
-{% set selectedAppId = data['appName'] %}
+{% set appID = data['url_id'] %}
 
 
 {% block content %}
@@ -24,14 +25,13 @@
         <fieldset class="govuk-fieldset" aria-describedby="changedDept-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <span class="govuk-caption-xl">
-              {% for type, details in data['unstructured'] %}
-              {% for app in details.apps %}
-              {% if app.app_id == selectedAppId %}
-              {{ app.app_name }}
-              {% endif %}
-              {% endfor %}
-              {% endfor %}
-                        </span>
+              {% set appID = data['url_id'] %}
+              {% for app in data['allMVP2Apps'] %}
+              {% if app.app_id == appID  %}
+              {{ app.app_type }}
+              {% endif  %}
+              {% endfor  %}
+                  </span>
             <h1 class="govuk-fieldset__heading">
               {{pageName}}
             </h1>
@@ -46,17 +46,49 @@
           <div id="changedDept-hint" class="govuk-hint">
             Send to:
           </div>
-
           <div class="govuk-radios" data-module="govuk-radios">
-            {% for departments in data['departments'] %}
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="{{ departments.department_id }}" name="departmentFilter" type="radio" value="{{ departments.department_id }}">
-              <label class="govuk-label govuk-radios__label" for="{{ departments.department_id }}">
-                {{ departments.department_name }}
+              <input class="govuk-radios__input" id="appDept" name="appDept" type="radio" value="Activities">
+              <label class="govuk-label govuk-radios__label" for="appDept">
+                Activities
               </label>
             </div>
-            {% endfor %}
-
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-2" name="appDept" type="radio" value="Chaplaincy">
+              <label class="govuk-label govuk-radios__label" for="appDept-2">
+                Chaplaincy
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-3" name="appDept" type="radio" value="Education">
+              <label class="govuk-label govuk-radios__label" for="appDept-3">
+                Education
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Healthcare">
+              <label class="govuk-label govuk-radios__label" for="appDept-4">
+                Healthcare
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="OMU">
+              <label class="govuk-label govuk-radios__label" for="appDept-6">
+                OMU
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Safer Custody">
+              <label class="govuk-label govuk-radios__label" for="appDept-7">
+                Safer custody
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="appDept-4" name="appDept" type="radio" value="Security">
+              <label class="govuk-label govuk-radios__label" for="appDept-7">
+                Security
+              </label>
+            </div>
           </div>
         </fieldset>
       </div>
