@@ -21,6 +21,10 @@
       {
         "app_id": "app_0202",
         "app_type": "Request a prison job"
+      },
+      {
+        "app_id": "app_0203",
+        "app_type": "Request a wing job"
       }
     ]
   },
