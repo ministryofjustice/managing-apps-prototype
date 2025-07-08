@@ -178,9 +178,19 @@
             </div>
           </dl>
 
-          {% if app.app_type_id == "pin_05"  %}
-          {% include "./includes/pin_05_details.html" %}
-          {% endif  %}
+          {% if app.app_type_id == "pin_01"  %}
+            {% include "./includes/pin_01_details.html" %}
+          {% elseif app.app_type_id == "pin_02"   %}
+            {% include "./includes/pin_02_details.html" %}
+          {% elseif app.app_type_id == "pin_03"   %}
+            {% include "./includes/pin_03_details.html" %}
+          {% elseif app.app_type_id == "pin_04"   %}
+            {% include "./includes/pin_04_details.html" %}
+          {% elseif app.app_type_id == "pin_05"   %}
+            {% include "./includes/pin_04_details.html" %}
+          {% elseif app.app_type_id == "pin_06"   %}
+            {% include "./includes/pin_06_details.html" %}
+          {% endif %}
 
 
          </div>
