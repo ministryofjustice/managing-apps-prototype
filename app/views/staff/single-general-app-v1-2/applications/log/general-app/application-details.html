@@ -36,20 +36,13 @@
                 </div>
 
                 <div class="autocomplete-wrapper">
-                  <select name="pin_07_title" id="pin_07_title">
+                  <select name="pin_07_type" id="pin_07_title">
                     <option value="">Select an application type</option>
                     {% for app in data['listGeneralApps'] %}
                     <option value="{{ app.app_type }}">{{ app.app_type }}</option>
                     {% endfor %}
                   </select>
                 </div>
-              </div>
-
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="getAppName">
-                  What is the name of the app?
-                </label>
-                <input class="govuk-input" id="getAppName" name="getAppName" type="text">
               </div>
 
               {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
