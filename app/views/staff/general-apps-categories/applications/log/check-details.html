@@ -15,8 +15,8 @@
 
     <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
       {% for group, details in data['groupsAndGeneralApps'] %}
-      {% for app in details.apps %}
-        {% if app.app_id == appType %}
+        {% for app in details.apps %}
+          {% if app.app_id == appType %}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -124,7 +124,7 @@
 
         <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
 
-        <div class="govuk-form-group ">
+        <div class="govuk-form-group govuk-visually-hidden">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend">
                 General app submitted

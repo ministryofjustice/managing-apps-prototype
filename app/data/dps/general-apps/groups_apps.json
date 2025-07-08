@@ -4,7 +4,10 @@
     "apps": [
       {
         "app_id": "app_0101",
-        "app_type": "Gym activity"
+        "app_type": "Book a gym session"
+      },{
+        "app_id": "app_0102",
+        "app_type": "Join the gym"
       }
     ]
   },
@@ -77,7 +80,7 @@
     "apps": [
       {
         "app_id": "app_0601",
-        "app_type": "Healthcare application form"
+        "app_type": "Healthcare application"
       },
       {
         "app_id": "app_0602",
@@ -120,15 +123,15 @@
       },
       {
         "app_id": "app_0904",
-        "app_type": "Property handed out"
+        "app_type": "New mattress"
       },
       {
         "app_id": "app_0905",
-        "app_type": "Property sent in"
+        "app_type": "Property handed out"
       },
       {
         "app_id": "app_0906",
-        "app_type": "New mattress"
+        "app_type": "Property sent in"
       }
     ]
   },
@@ -150,10 +153,6 @@
       {
         "app_id": "app_1004",
         "app_type": "Add or remove a PIN phone contact"
-      },
-      {
-        "app_id": "app_1005",
-        "app_type": "Supply list of PIN contacts"
       }
     ]
   },
@@ -196,7 +195,7 @@
     "apps": [
       {
         "app_id": "app_1301",
-        "app_type": "Form to add or remove a visitor"
+        "app_type": "Add or remove a visitor"
       },
       {
         "app_id": "app_1302",

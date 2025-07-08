@@ -26,7 +26,7 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
 
-          <form class="form" action="{{homeurl}}applications/log/check-details?url_cat={{appName}}">
+          <form class="form" action="{{homeurl}}applications/log/check-details?url_cat={{appType}}">
 
               <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
                 <h1 class="govuk-label-wrapper">
@@ -65,7 +65,7 @@
                 <label class="govuk-label" for="width-10">
                   Application name
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="appName" name="appName" type="text" value="{{ data['appName'] }}">
+                <input class="govuk-input govuk-input--width-10" id="appType" name="appType" type="text" value="{{ data['appType'] }}">
               </div>
     
             <div class="moj-button-action">
