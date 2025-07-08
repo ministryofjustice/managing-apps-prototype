@@ -8,7 +8,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
   // Duplicate the content of the General App Type to another input so we can pass a non-result self typed entry to the next page.
 
-
+$('#appGroups .govuk-radios__item:last-child').before( $( '<div class="govuk-radios__divider">or</div>' ) );
      
 
 
