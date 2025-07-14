@@ -125,7 +125,7 @@
                     Relationship
                   </label>
                   <select class="govuk-select" id="contactRelationship" name="pin_01_contactRelationship">
-                    <option value="" selected disabled hidden>Select relationship</option>
+                    <option value="" selected disabled hidden>Select a relationship</option>
                     {% for relationship in data['socialRelationships'] %}
                     <option value="{{ relationship.social_rel }}">{{ relationship.social_rel }}</option>
                     {% endfor %}
