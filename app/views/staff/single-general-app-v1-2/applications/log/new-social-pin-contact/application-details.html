@@ -132,53 +132,45 @@
                   </select>
                 </div>
     
-                <h2 class="govuk-heading-m">Address</h2>
-  
-                <div class="govuk-form-group address-lookup">
-                  <label for="address-picker" class="govuk-label  govuk-label--s">Find address</label>
-                  <div id="address-picker-hint" class="govuk-hint">
-                    Type part of address or postcode to begin
-                  </div>
-                  <div id="my-autocomplete-wrapper">
-                    <select id="address-picker" class="govuk-select">
-                      <option value="" selected disabled hidden></option>
-                      {% for address in data['addresses'] %}
-                      <option value="{{ address.id }}">{{ address.line_1 }}, {% if data['address.line_2'] %}{{ address.line_2 }}, {% endif %}{{ address.town }}, {{ address.postcode }}, {{ address.country }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--">
+                  <h2 class="govuk-fieldset__heading-m govuk-!-margin-bottom-0">Address</h2>
+                </legend>
+
+                <div id="passport-issued-hint" class="govuk-hint govuk-!-margin-bottom-5">
+                  Fill this in if your establishment requires it
                 </div>
   
-  
-                <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+                <div class="govuk-form-group govuk-!-margin-bottom-5">
                   <label class="govuk-label govuk-label--s" for="contactAddress1">
                     Address line 1
                   </label>
                   <input class="govuk-input" id="contactAddress1" name="pin_01_contactAddress1" type="text" value="{{ data['pin_01_contactAddress1'] }}">
                 </div>
   
-                <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+                <div class="govuk-form-group govuk-!-margin-bottom-5">
                   <label class="govuk-label govuk-label--s" for="contactAddress2">
                     Address line 2 (optional)
                   </label>
                   <input class="govuk-input" id="contactAddress2" name="pin_01_contactAddress2" type="text" value="{{ data['pin_01_contactAddress2'] }}">
                 </div>
   
-                <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+                <div class="govuk-form-group govuk-!-margin-bottom-5">
                   <label class="govuk-label govuk-label--s" for="contactTowncity">
                     Town or city
                   </label>
                   <input class="govuk-input" id="contactTowncity" name="pin_01_contactTowncity" type="text" value="{{ data['pin_01_contactTowncity'] }}">
                 </div>
   
-                <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+                <div class="govuk-form-group govuk-!-margin-bottom-5">
                   <label class="govuk-label govuk-label--s" for="contactPostcode">
                     Postcode
                   </label>
                   <input class="govuk-input govuk-input--width-10" id="contactPostcode" name="pin_01_contactPostcode" type="text" value="{{ data['pin_01_contactPostcode'] }}">
                 </div>
   
-                <div class="govuk-form-group govuk-!-margin-bottom-5 full-address">
+                <div class="govuk-form-group govuk-!-margin-bottom-5">
                   <label class="govuk-label govuk-label--s" for="contactCountry">
                     Country
                   </label>
@@ -192,10 +184,7 @@
                     {% endfor %}
                   </select>
                 </div>
-  
-                <a href="#" id="lookup-address" class="govuk-body govuk-link">Lookup address</a>
-                <a href="#" id="enter-manually" class="govuk-body govuk-link">Enter address manually</a>
-  
+    
                 <div class="govuk-form-group govuk-form-group govuk-!-margin-top-8  govuk-!-margin-bottom-5 ">
                   <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
                     Telephone number 1
@@ -214,6 +203,8 @@
                     Include area code or international code, if overseas
                   </div>
                   <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_01_contactTel2" type="text" value="{{ data['pin_01_contactTel2'] }}">
+                </div>
+                </fieldset>
                 </div>
 
                 <div class="moj-button-action">
