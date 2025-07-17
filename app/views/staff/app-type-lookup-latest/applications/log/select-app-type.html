@@ -1,0 +1,76 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Select application type" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/app-type-lookup-latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+    <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+          <form class="form" method="post">
+
+              <div class="govuk-form-group">
+                <h1 class="govuk-label-wrapper">
+                  <span class="govuk-caption-xl">Log an application</span>
+                  <label class="govuk-label govuk-label--xl" for="app_type">
+                  Application type
+                  </label>
+                </h1>
+                <div id="app_title-hint" class="govuk-hint">
+                  Sum up what this application is for
+                </div>
+                <div class="autocomplete-wrapper">
+                  <select name="appType" id="app_type">
+                    <option value="">Select an application type</option>
+                    {% for app in data['listGeneralApps'] %}
+                    <option value="{{ app.app_id }}">{{ app.app_type }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+      <div class="moj-button-action">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+  </div> <!-- end main content  -->
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  var selectEl = document.querySelector('#app_type')
+  accessibleAutocomplete.enhanceSelectElement({
+    autoselect: true,
+    confirmOnBlur: true,
+    defaultValue: "",
+    minLength: 1,
+    selectElement: selectEl,
+    displayMenu: 'overlay',
+    name: 'app_type'
+  })
+</script>
+
+{% endblock %}

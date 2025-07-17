@@ -38,7 +38,7 @@ $('#appGroups .govuk-radios__item:last-child').before( $( '<div class="govuk-rad
   var prisonNumber =  $('input#prisonNumber').val();
 
   if (prisonNumber === "") {
-    $('#prisoner-name-row').hide();
+    $('#prisoner-name-check').hide();
   }
 
   $('a#prisonNumber-lookup').click(function () {
@@ -47,7 +47,7 @@ $('#appGroups .govuk-radios__item:last-child').before( $( '<div class="govuk-rad
     console.log(prisonNumber);
     //alert(prisonNumber);
     if (prisonNumber.length > 2) {
-        $('#prisoner-name-row').show();
+        $('#prisoner-name-check').show();
         if (prisonNumber == 'G4567NO') {
             $('#prisoner-name-row').text('Prisoner name: Blake, Oliver');
             $('#prisonerName').val('Blake, Oliver'); // Use .val() instead of .value()

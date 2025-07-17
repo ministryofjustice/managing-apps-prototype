@@ -1,0 +1,102 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Add emergency PIN phone credit" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/dept-led-latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Check the amount",
+            href: "#vos-detail-error"
+          },
+          {
+            text: "Reason must be 1000 characters or less",
+            href: "#vos-detail-error"
+          }
+        ]
+      }) }}
+      <span class="govuk-caption-xl">Add emergency PIN phone credit</span>
+      <h1 class="govuk-heading-xl">Log details</h1>
+
+
+            <form class="form" action="/staff/dept-led-latest/applications/log/emergency-pin-credit/check-details">
+
+
+              {% from "govuk/components/input/macro.njk" import govukInput %}
+
+              {{ govukInput({
+                id: "amount",
+                name: "amount",
+                label: {
+                  text: "Amount",
+                  classes: "govuk-label--s",
+                  isPageHeading: false
+                },
+                value:  data['pin_03_amount'] ,
+                prefix: {
+                  text: "£"
+                },
+                classes: "govuk-input--width-5",
+                hint: {
+                  text: "Use only multiples of £1, with a limit of £5"
+                },
+                errorMessage: {
+                  text: "Check the amount"
+                }
+              }) }}
+
+              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+              {{ govukCharacterCount({
+                name: "pin_03_vosDetail",
+                id: "vos-detail",
+                maxlength: 1000,
+                threshold: 75,
+                value:  data['pin_03_vosDetail'] ,
+                label: {
+                  text: "Reason",
+                  classes: "govuk-label--s"
+                },
+                value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum vel elit vitae imperdiet. Pellentesque quis metus lectus. Ut ac neque nec urna cursus dictum sit amet consectetur mi. Duis fringilla commodo purus eu blandit. Vivamus fringilla magna ante, at cursus odio lobortis eu. Sed nisi nisi, mollis in fringilla sed, tincidunt at erat. Integer fermentum metus elementum mi lacinia sollicitudin. Cras odio dolor, fermentum in malesuada et, sodales id nulla. Morbi et feugiat felis. Vivamus vehicula purus aller artoacra nec viverra imperdiet. Nulla ut ex eu nisl maximus condimentum. Duis diam turpis, placerat nec tempor ac, placerat sit amet nisl. Viverra sapien libero non tortor. Sed dolor ligula, efficitur eget euismod vel, tincidunt et nibh. Nulla eros eros, ornare sed nisl eu, volutpat facilisis lacus. Nam euismod, ligula eget porta auctor, ex tortor lacinia ipsum, sed pretium enim nibh vel libero. Vivamus aliquet quis magna non rutrum. Etiam sit amet lacus condimentum arcu rutrum.",
+                hint: {
+                  text: "Add a brief summary"
+                },
+                errorMessage: {
+                  text: "Reason must be 1000 characters or less"
+                }
+              }) }}
+
+            <div class="moj-button-action">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}

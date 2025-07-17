@@ -1,0 +1,104 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Log details" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/app-type-lookup-latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">{{ data['app_type'] }}</span>
+      <h1 class="govuk-heading-xl">Log details</h1>
+
+      <div class="govuk-width-container">
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+
+
+            <form class="form" action="/staff/app-type-lookup-latest/applications/log/check-details">
+
+              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+              {{ govukCharacterCount({
+                name: "pin_07_detail",
+                id: "pin_07_detail",
+                maxlength: 1000,
+                threshold: 75,
+                value:  data['pin_07_detail'] ,
+                label: {
+                  text: "Details (optional)",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "Add a brief summary"
+                }
+              }) }}      
+
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="app_dept">
+                  Department
+                </label>
+                <div id="app_dept-hint" class="govuk-hint">
+                  Send this application to:
+                </div>
+                <select class="govuk-select" id="app_dept" name="pin_07_app_dept">
+                  <option value="" disabled selected>Select a department</option>
+                  <option value="Activities">Activities</option>
+                  <option value="Business Hub">Business Hub</option>
+                  <option value="Chaplaincy">Chaplaincy</option>
+                  <option value="Education">Education</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="OMU">OMU</option>
+                  <option value="Reception">Reception</option>
+                  <option value="Safer Custody">Safer Custody</option>
+                  <option value="Visits">Visits</option>
+                </select>
+              </div>
+
+
+            <div class="moj-button-action">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  var selectEl = document.querySelector('#pin_07_title')
+  accessibleAutocomplete.enhanceSelectElement({
+    autoselect: true,
+    confirmOnBlur: true,
+    defaultValue: "",
+    minLength: 1,
+    selectElement: selectEl,
+    displayMenu: 'overlay',
+    showNoOptionsFound: false,
+    name: 'pin_07_title'
+  })
+</script>
+
+{% endblock %}
