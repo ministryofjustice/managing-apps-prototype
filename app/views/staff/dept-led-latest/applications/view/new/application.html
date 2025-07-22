@@ -72,9 +72,9 @@
         </ul>
       </nav>
 
-      {% for type, details in data['deptsAndGeneralApps'] %}
-      {% for app in details.apps %}
-      {% if app.app_id == selectedAppId %}
+      {% for group, details in data['groupsAndGeneralApps'] %}
+        {% for app in details.apps %}
+          {% if app.app_id == data['appType'] %}
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
