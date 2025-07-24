@@ -1,6 +1,6 @@
 {
   "group_01": {
-    "name": "Exercise",
+    "name": "Gym",
     "apps": [
       {
         "app_id": "app_0101",
@@ -38,7 +38,7 @@
     ]
   },
   "group_04": {
-    "name": "Finance",
+    "name": "Prisoner's money",
     "apps": [
       {
         "app_id": "app_0401",
@@ -80,7 +80,7 @@
     ]
   },
   "group_06": {
-    "name": "Health",
+    "name": "Healthcare",
     "apps": [
       {
         "app_id": "app_0601",
@@ -161,7 +161,7 @@
     ]
   },
   "group_11": {
-    "name": "Shopping",
+    "name": "Ordering",
     "apps": [
       {
         "app_id": "app_1101",
