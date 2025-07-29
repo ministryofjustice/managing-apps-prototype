@@ -2,6 +2,65 @@ window.GOVUKPrototypeKit.documentReady(function() {
 
   // Show and hide the nested checkboxes
 
+      // Open / close the accordions.
+
+        $(".filters-accordion__button").click(function(){
+            if ($(this).attr('aria-expanded') === "false") {
+            $(this).attr('aria-expanded', 'true');
+            $(this).closest(".filters-accordion").toggleClass("js-closed");
+            } else {
+            // alert ("it's closed");
+            $(this).attr('aria-expanded', 'false');
+            $(this).closest(".filters-accordion").toggleClass("js-closed");
+            }
+        })
+
+
+          // filter the checkboxes by the input
+
+            // Filter function for each instance
+            $('.filter-search').on('keyup', function() {
+                var searchTerm = $(this).val().toLowerCase();
+                var $container = $(this).closest('.filter-container');
+                var $checkboxList = $container.find('.checkbox-list');
+                var $noResults = $container.find('.no-results');
+                var hasVisibleItems = false;
+                
+                // Loop through each checkbox item in this container
+                $checkboxList.find('.checkbox-item').each(function() {
+                    var labelText = $(this).find('label').text().toLowerCase();
+                    
+                    // Check if the label contains the search term
+                    if (labelText.includes(searchTerm)) {
+                        $(this).show();
+                        hasVisibleItems = true;
+                    } else {
+                        $(this).hide();
+                    }
+                });
+                
+                // Show/hide "no results" message for this container
+                if (hasVisibleItems || searchTerm === '') {
+                    $noResults.hide();
+                } else {
+                    $noResults.show();
+                }
+            });
+            
+            // Optional: Clear search functionality
+            $('.filter-search').on('focus', function() {
+                var $container = $(this).closest('.filter-container');
+                if ($(this).val() === '') {
+                    $container.find('.checkbox-item').show();
+                    $container.find('.no-results').hide();
+                }
+            });
+
+
+
+
+
+
   $('.govuk-checkboxes__children').hide();
 
     $('.govuk-checkboxes__parent .govuk-checkboxes__input').on('change', function() {

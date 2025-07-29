@@ -1,0 +1,152 @@
+<div class="moj-filter govuk-!-margin-bottom-9">
+
+  <div class="moj-filter__header">
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
+    </div>
+    <div class="moj-filter__header-action">
+    </div>
+  </div>
+
+  <div class="moj-filter__content">
+    <div class="moj-filter__selected">
+      <div class="moj-filter__selected-heading">
+        <div class="moj-filter__heading-title">
+          <h2 class="govuk-heading-m">Selected filters</h2>
+        </div>
+        <div class="moj-filter__heading-action">
+          <p><a id="clearFiltersButton" class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+        </div>
+      </div>
+
+      <div id="moj-filter-tags--prisoner" class="moj-filter-tags--group">
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prisoner</h3>
+        <ul class="moj-filter-tags" id="prisoner-tags">
+        </ul>
+      </div>
+
+      <div id="moj-filter-tags--dept" class="moj-filter-tags--group">
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Department</h3>
+
+        <ul class="moj-filter-tags" id="dept-tags">
+          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
+                filter</span> Business Hub</a></li>
+          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
+                filter</span> OMU</a></li>
+        </ul>
+      </div>
+
+      <div id="moj-filter-tags--type" class="moj-filter-tags--group">
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Application type</h3>
+
+        <ul class="moj-filter-tags" id="type-tags">
+          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
+                filter</span> Add emergency PIN phone credit</a></li>
+          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
+                filter</span> Supply list of PIN phone contacts</a></li>
+          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
+                filter</span> Swap VOs for PIN credit</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="moj-filter__options">
+
+      <button type="submit" id="applyFiltersButton" class="govuk-button" data-module="govuk-button"
+        data-test-id="submit-button">
+        Apply filters
+      </button>
+
+      <!-- FILTER ACCORDION CODE -->
+
+      <div class="filters-accordion js-closed">
+        <h2 class="filters-accordion__heading js-container-heading">
+          <button class="js-container-button filters-accordion__title filters-accordion__button" type="button"
+            aria-expanded="false" id="option-select-title-priorities" aria-controls="list_of_priorities_to_filter">Priority</button>
+          <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up"
+            aria-hidden="true" focusable="false">
+          <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down"
+            aria-hidden="true" focusable="false">
+        </h2>
+
+        <br>
+
+        <!-- This is the search bar within the filters -->
+        <div class="filters-accordion__filter"> <label for="input-3eca3372" class="govuk-label govuk-visually-hidden">
+            Enter a name
+          </label>
+          <input name="option-select-filter" id="taskSearch"
+            class="filter-search filters-accordion__filter-input govuk-input" type="text"
+            aria-describedby="checkboxes-19682d1b-count" aria-controls="checkboxes-19682d1b">
+        </div>
+
+        <div role="group" aria-labelledby="filter-group-select-priority"
+          class="filters-accordion__container js-options-container" id="filter-group-priority" tabindex="-1"
+          style="height: 254.333px;">
+          <div class="filters-accordion__container-inner js-auto-height-inner">
+            <fieldset class="govuk-fieldset">
+              <div class="govuk-checkboxes govuk-checkboxes--small">
+
+                <div class="govuk-checkboxes__item filter__checkbox">
+                  <input class="govuk-checkboxes__input" id="priority_FNC" name="priority" type="checkbox" value="First night or early days centre">
+                  <label class="govuk-label govuk-checkboxes__label" for="priority_FNC">
+                    First night or early days centre
+                  </label>
+                </div>
+
+              </div>
+            </fieldset>
+          </div>
+
+        </div>
+        </div>
+  
+        <!-- NEW FILTER ACCORDION  -->
+
+      <div class="filters-accordion js-closed">
+        <h2 class="filters-accordion__heading js-container-heading">
+          <button class="js-container-button filters-accordion__title filters-accordion__button" type="button"
+            aria-expanded="false" id="option-select-title-depts" aria-controls="list_of_depts_to_filter">Department</button>
+          <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up"
+            aria-hidden="true" focusable="false">
+          <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down"
+            aria-hidden="true" focusable="false">
+        </h2>
+
+        <!-- This is the search bar within the filters -->
+        <div class="filters-accordion__filter">
+          <label for="deptFilterSearch" class="govuk-label govuk-visually-hidden">
+            Enter a department name
+          </label>
+          <input name="option-select-filter" id="deptFilterSearch"
+            class="filter-search filters-accordion__filter-search govuk-input" type="text">
+        </div>
+
+        <div role="group" aria-labelledby="filter-group-select-priority"
+          class="filters-accordion__container js-options-container" id="filter-group-priority" tabindex="-1"
+          style="height: 254.333px;">
+          <div class="filters-accordion__container-inner js-auto-height-inner">
+            <fieldset class="govuk-fieldset">
+              <div class="govuk-checkboxes govuk-checkboxes--small">
+                  {% for departments in data['departments'] %}
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="{{ departments.department_id }}" name="departmentFilter" type="checkbox" value="{{ departments.department_name }}">
+                    <label class="govuk-label govuk-checkboxes__label" for="{{ departments.department_id }}">
+                      {{ departments.department_name }}
+                    </label>
+                  </div>
+                  {% endfor %}
+              </div>
+            </fieldset>
+          </div>
+
+        </div>
+        </div>
+
+
+    </div>
+  </div>
+</div>

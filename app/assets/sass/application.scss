@@ -24,6 +24,7 @@ $govuk-page-width: $moj-page-width;
 // Managing Apps
 @import "./dps/managing-apps.scss";
 @import "./dps/accessible-autocomplete.scss";
+@import "./dps/filters.scss";
 
 // Admin screens
 @import "./dps/admin.scss"; 
