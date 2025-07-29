@@ -54,15 +54,9 @@
                 </div>
                 <select class="govuk-select" id="app_dept" name="pin_07_app_dept">
                   <option value="" disabled selected>Select a department</option>
-                  <option value="Activities">Activities</option>
-                  <option value="Business Hub">Business Hub</option>
-                  <option value="Chaplaincy">Chaplaincy</option>
-                  <option value="Education">Education</option>
-                  <option value="Healthcare">Healthcare</option>
-                  <option value="OMU">OMU</option>
-                  <option value="Reception">Reception</option>
-                  <option value="Safer Custody">Safer Custody</option>
-                  <option value="Visits">Visits</option>
+                  {% for dept in data['departments'] %}
+                  <option value="{{ dept.department_name }}">{{ dept.department_name }}</option>
+                  {% endfor %}
                 </select>
               </div>
 
