@@ -80,6 +80,7 @@ router.get('/api/application-types', function (req, res) {
   }
 })
 
+
 // Add your routes here
 
 require('./routes/managing-apps-1.js')(router);
@@ -88,6 +89,7 @@ require('./routes/managing-apps-1-6.js')(router);
 require('./routes/managing-apps-1-7.js')(router);
 require('./routes/managing-apps-mvp.js')(router);
 require('./routes/managing-apps-mvp-phase-2.js')(router);
+require('./routes/managing-apps-mvp-phase-2-1.js')(router);
 require('./routes/general-apps-categories.js')(router);
 require('./routes/general-apps-depts.js')(router);
 require('./routes/single-general-app.js')(router);

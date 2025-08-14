@@ -1,0 +1,35 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <a href="./add/wing" class="govuk-button">Add wing</a>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Wings</caption>
+  <thead class="govuk-table__head govuk-visually-hidden">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Wings</th>
+      <th scope="col" class="govuk-table__header visually-hiddden">Action</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% if data['newWingName'] %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">{{ data['newWingName'] }}</th>
+      <td class="govuk-table__cell"><a href="./groups/manage/wing/">Manage</a></td>
+    </tr>
+    {% endif %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">First night or early days centre</th>
+      <td class="govuk-table__cell"><a href="">Manage</a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">A Wing</th>
+      <td class="govuk-table__cell"><a href="">Manage</a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">B Wing</th>
+      <td class="govuk-table__cell"><a href="">Manage</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
