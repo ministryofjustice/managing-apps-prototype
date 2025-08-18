@@ -1,0 +1,55 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Add wing" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/pin-phones/latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">Manage groups</span>
+      <h1 class="govuk-heading-xl">
+        Add wing
+      </h1>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+          <form class="form" method="post">
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="newWingName">
+                Wing name
+              </label>
+              <input class="govuk-input" id="newWingName" name="newWingName" type="text">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="newWingEmail">
+                Email
+              </label>
+              <input class="govuk-input" id="newWingEmail" name="newWingEmail" type="email">
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Save
+            </button>
+            </form>
+
+        </div>
+      </div>
+    </div> <!-- end main content  -->
+  </div>
+</div>
+
+
+{% endblock %}

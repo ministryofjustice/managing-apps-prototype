@@ -35,8 +35,20 @@
   label: 'Primary navigation',
   items: [
     {
-      text: 'Prototypes',
+      text: 'Home',
       href: '/'
+    },
+    {
+      text: 'Application tool',
+      href: '/application-tool'
+    },
+     {
+      text: 'PIN phones',
+      href: '/pin-phones'
+    },
+    {
+      text: 'Early work',
+      href: '/early-work'
     },
     {
       text: 'Sandbox',
@@ -45,6 +57,7 @@
     }
   ]
 }) }}
+
 {% endblock %}
 
 {% block content %}
@@ -64,6 +77,16 @@
           <!--  example -->
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
+              <a href="/sandbox/application-details-address-lookup" class="govuk-link govuk-link--no-visited-state" target="_blank">Address lookup</a>
+            </td>
+            <td class="govuk-table__cell">
+              <p class="govuk-body">Saving this as it has been deprioritised</p>
+            </td>
+          </tr>
+          <!--  end example -->
+          <!--  example -->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
               <a href="/sandbox/first-night-centre/v1/select-app-type" class="govuk-link govuk-link--no-visited-state" target="_blank">PIN apps / First night centre</a>
             </td>
             <td class="govuk-table__cell">
@@ -78,6 +101,7 @@
               <ul class="govuk-list">
                <li><a href="/sandbox/filters/radios" class="govuk-link govuk-link--no-visited-state" target="_blank">Radios</a></li>
                <li><a href="/sandbox/filters/departments" class="govuk-link govuk-link--no-visited-state" target="_blank">Departments</a></li>
+               <li><a href="/sandbox/filters/accordion" class="govuk-link govuk-link--no-visited-state" target="_blank">Full filters experiment</a></li>
               </ul>
             </td>
             <td class="govuk-table__cell">

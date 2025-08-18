@@ -1,0 +1,82 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Select application type" %}
+{% set version="latest" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/application-tool/dept-led-latest/" %}
+{% set appGroup = data['appGroup'] %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+      {% for group, details in data['groupsAndGeneralApps'] %}
+      {% if group == appGroup %}
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+
+          <form class="form" method="post">
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="chooseApp-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <span class="govuk-caption-xl">{{ details.name }}</span>
+                  <h1 class="govuk-fieldset__heading">
+                    {{pageName}}
+                  </h1>
+                </legend>
+                <div id="chooseApp-hint" class="govuk-hint">
+                </div>
+                <div class="govuk-radios" data-module="govuk-radios">
+
+                  {% for app in details.apps %}
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="{{ app.app_id }}" name="appType" type="radio" value="{{ app.app_id }}">
+                    <label class="govuk-label govuk-radios__label" for="{{ app.app_id }}">
+                      {{ app.app_type }}
+                    </label>
+                  </div>
+                  {% endfor %}
+
+                  <div class="govuk-form-group" style="display: none;">
+                    <label class="govuk-label" for="width-10">
+                      Application type
+                    </label>
+                    <input class="govuk-input govuk-input--width-10" id="appGroup" name="appGroup" type="text" value="{{ data['appGroup'] }}">
+                  </div>
+    
+
+                </div>
+              </fieldset>
+            </div>
+            <div class="moj-button-action">
+              <button name="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+          {% include "./data-playback.html" %}
+
+      </div>
+      {% endif %}
+      {% endfor %}
+
+
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}

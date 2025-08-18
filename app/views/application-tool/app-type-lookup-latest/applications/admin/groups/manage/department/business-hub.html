@@ -1,0 +1,106 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Manage department" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/application-tool/app-type-lookup-latest/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <nav aria-label="breadcrumb">
+        <div class="govuk-breadcrumbs">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/admin/">Admin</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/admin/groups/">Manage groups</a>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Manage groups</span>
+      <h1 class="govuk-heading-xl">
+        Business Hub
+      </h1>
+
+          <h2 class="govuk-heading-m">
+            Group details
+          </h2>
+
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Department name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Business Hub
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email
+            </dt>
+            <dd class="govuk-summary-list__value">
+              businesshub@hmpkirkham.justice.gov.uk
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+            </dd>
+          </div>
+        </dl>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Applications submitted</caption>
+        <thead class="govuk-table__head govuk-visually-hidden">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header visually-hiddden">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Add new PIN phone contact</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../../../applications/manage/new-pin-contact.html">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Remove PIN phone contact</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../../../applications/manage/remove-pin-contact.html">Manage</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Supply list of PIN phone contacts</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../../../applications/manage/supply-pin-contacts.html">Manage</a></td>
+          </tr>
+        </tbody>
+
+      </table>
+
+
+        </div>
+      </div>
+    </div> <!-- end main content  -->
+  </div>
+</div>
+
+
+{% endblock %}

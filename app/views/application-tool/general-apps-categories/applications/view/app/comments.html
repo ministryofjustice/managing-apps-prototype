@@ -1,0 +1,163 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Comments" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/application-tool/general-apps-categories/" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <nav aria-label="breadcrumb">
+  			<div class="govuk-breadcrumbs">
+  				<ol class="govuk-breadcrumbs__list">
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+  					</li>
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+  					</li>
+            <li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/">View all applications</a>
+  					</li>
+  				</ol>
+  			</div>
+  		</nav>
+
+      <span class="govuk-caption-xl">
+        {% set appID = data['url_id'] %}
+        {% for app in data['allMVP2Apps'] %}
+        {% if app.app_id == appID  %}
+        {{ app.app_type }}
+        {% endif  %}
+        {% endfor  %}
+      </span>
+      <h1 class="govuk-heading-xl">
+        Comments
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row govuk-width-container govuk-!-margin-bottom-9">
+    <div class="govuk-grid-column-full govuk-!-padding-right-9 govuk-!-padding-left-0">
+
+
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+        <ul class="moj-sub-navigation__list">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+              Application 
+            </a>
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page" href="./comments?url_id={{appID}}">
+              Comments
+            </a>
+          </li>
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./action?url_id={{appID}}">
+              Action and reply
+              </a>
+          </li>
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+              History
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      
+      <h2 class="govuk-heading-m">Comments about this application</h2>
+      <p class="govuk-body">Only staff will see these comments</p>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          {% if data['newComment'] or data['forwardReasons'] %}
+
+            {% if data['newComment'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  Comment by J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  {{ data['newComment'] }}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if data['forwardReasons'] %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-metadata">
+                  Forwarded to {{ data['appDept'] }} by J. Smith | {{ 0 | getDate }} at 16:52
+                </div>
+                <div class="app-messages-content">
+                  {{ data['forwardReasons'] }}
+                </div>
+              </div>
+            {% endif %}
+
+            {% else %}
+              <div class="app-message govuk-body">
+                <div class="app-messages-content">
+                  <p class="none">No comments yet</p>
+                </div>
+              </div>
+          {% endif %}
+
+          {% for app in data['allMVP2Apps'] %}
+          {% if app.app_id == appID  %}
+  
+        {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
+        {% else %}
+
+      <form class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="newComment">
+            Add a comment
+          </label>
+          <textarea class="govuk-textarea" id="newComment" name="newComment" rows="5"></textarea>
+        </div>
+
+        <div class="moj-button-action">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save comment
+          </button>
+        </div>
+
+      </form>
+
+      
+      {% endif %}
+      {% endif  %}
+      {% endfor  %}
+
+
+    </div>
+      </div>
+
+      </div>
+
+    </div>
+
+
+  </div> <!-- end main content  -->
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#my-autocomplete')
+  })
+</script>
+
+{% endblock %}

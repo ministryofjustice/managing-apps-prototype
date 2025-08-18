@@ -1,0 +1,107 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="Log details" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/pin-phones/mvp-phase-2/" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+    <div class="govuk-width-container">
+
+      <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-xl">
+        Add new legal PIN phone contact
+      </span>
+      <h1 class="govuk-heading-xl">Log details</h1>
+
+      <div class="govuk-width-container">
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+
+
+            <form class="form" action="/pin-phones/mvp-phase-2/applications/log/new-legal-pin-contact/check-details">
+
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalFirstName">
+                  First name
+                </label>
+                <input class="govuk-input" id="legalFirstName" name="pin_02_legalFirstName" type="text" value="{{ data['pin_02_legalFirstName'] }}">
+              </div>
+  
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalLastName">
+                  Last name
+                </label>
+                <input class="govuk-input" id="legalLastName" name="pin_02_legalLastName" type="text" value="{{ data['pin_02_legalLastName'] }}">
+              </div>
+  
+              <div class="govuk-form-group  govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="companyName">
+                  Company
+                </label>
+                <input class="govuk-input" id="companyName" name="pin_02_companyName" type="text" value="{{ data['pin_02_companyName'] }}">
+              </div>
+
+              <div class="govuk-form-group govuk-!-margin-bottom-5">
+              <label class="govuk-label govuk-label--s" for="contactRelationship">
+                Relationship
+              </label>
+              <select class="govuk-select" id="contactRelationship" name="pin_02_contactRelationship">
+                <option value="" selected disabled hidden>Select a relationship</option>
+                {% for relationship in data['legalRelationships'] %}
+                <option value="{{ relationship.legal_rel }}">{{ relationship.legal_rel }}</option>
+                {% endfor %}
+              </select>
+            </div>
+              
+
+              <div class="govuk-form-group  govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalContactTel1" aria-describedby="legalContactTel1-hint">
+                  Telephone number 1
+                </label>
+                <div id="legalContactTel1-hint" class="govuk-hint">
+                  Include area code or international code, if overseas
+                </div>
+                <input class="govuk-input govuk-!-margin-bottom-2" id="legalContactTel1" name="pin_02_legalContactTel1" type="tel" value="{{ data['pin_02_legalContactTel1'] }}">
+                </div>
+
+              <div class="govuk-form-group  govuk-!-margin-bottom-5">
+                <label class="govuk-label govuk-label--s" for="legalContactTel2" aria-describedby="legalContactTel2-hint">
+                  Telephone number 2
+                </label>
+                <div id="legalContactTel2-hint" class="govuk-hint">
+                  Include area code or international code, if overseas
+                </div>
+                <input class="govuk-input govuk-!-margin-bottom-2" id="legalContactTel2" name="pin_02_legalContactTel2" type="tel" value="{{ data['pin_02_legalContactTel2'] }}">
+  
+              </div>
+              
+
+              <div class="moj-button-action">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Continue
+                </button>
+              </div>
+  
+              </form>
+    
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- end main content  -->
+
+
+
+{% endblock %}

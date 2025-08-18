@@ -83,19 +83,26 @@ router.get('/api/application-types', function (req, res) {
 
 // Add your routes here
 
-require('./routes/managing-apps-1.js')(router);
-require('./routes/managing-apps-1-5.js')(router);
-require('./routes/managing-apps-1-6.js')(router);
-require('./routes/managing-apps-1-7.js')(router);
-require('./routes/managing-apps-mvp.js')(router);
-require('./routes/managing-apps-mvp-phase-2.js')(router);
-require('./routes/managing-apps-mvp-phase-2-1.js')(router);
-require('./routes/general-apps-categories.js')(router);
-require('./routes/general-apps-depts.js')(router);
-require('./routes/single-general-app.js')(router);
-require('./routes/single-general-app-v1-2.js')(router);
-require('./routes/app-type-lookup-latest.js')(router);
-require('./routes/dept-led-latest.js')(router);
+// Early work
+require('./routes/early-work/managing-apps-1.js')(router);
+
+// PIN Phones
+require('./routes/pin-phones/managing-apps-1-5.js')(router);
+require('./routes/pin-phones/managing-apps-1-6.js')(router);
+require('./routes/pin-phones/managing-apps-1-7.js')(router);
+require('./routes/pin-phones/managing-apps-mvp.js')(router);
+require('./routes/pin-phones/managing-apps-mvp-phase-2.js')(router);
+require('./routes/pin-phones/pin-phones-latest.js')(router);
+
+// Application tool
+require('./routes/application-tool/general-apps-categories.js')(router);
+require('./routes/application-tool/general-apps-depts.js')(router);
+require('./routes/application-tool/single-general-app.js')(router);
+require('./routes/application-tool/single-general-app-v1-2.js')(router);
+require('./routes/application-tool/app-type-lookup-latest.js')(router);
+require('./routes/application-tool/dept-led-latest.js')(router);
+
+// Sandbox
 require('./routes/admin-latest.js')(router);
 require('./routes/sandbox.js')(router);
 
