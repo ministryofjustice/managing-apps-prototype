@@ -18,9 +18,8 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-panel govuk-panel--confirmation">
               <div class="govuk-panel__body govuk-!-padding-bottom-3">
-                
               {% for app in data['mvp2apptypes'] %}
-                {% if app.appid == data['appType'] %}
+                {% if data['appType'] == app.appid %}
                   {{ app.type }}
                 {% endif %}
               {% endfor %}

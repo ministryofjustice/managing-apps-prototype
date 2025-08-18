@@ -26,9 +26,7 @@ module.exports = function (router, content) {
 
 
 router.get('/staff/mvp-phase-2-1/applications/log/clear-and-go-to-prisoner-details', function(req, res) {
-    delete req.session.data['prisonNumber']
-    delete req.session.data['prisonerName']
-    delete req.session.data['submittedDate']
+    req.session.destroy();
     res.redirect('/staff/mvp-phase-2-1/applications/log/prisoner-details')
 })
 
