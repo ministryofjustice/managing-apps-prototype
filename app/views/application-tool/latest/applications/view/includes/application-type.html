@@ -1,0 +1,13 @@
+{% if data['appType'] == "bh_02" %}
+  Add new legal PIN phone contact
+{% elseif data['appType'] == "bh_03" %}
+  Add emergency PIN phone credit
+{% elseif data['appType'] == "bh_04" %}
+  Remove PIN phone contact
+{% elseif data['appType'] == "bh_05" %}
+  Swap visiting orders (VOs) for PIN credit
+{% elseif data['appType'] == "bh_06" %}
+  Supply list of PIN phone contacts
+{% else %}
+  Add new social PIN phone contact
+{% endif %}
