@@ -28,13 +28,28 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Prisoner name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if (data['prisonerName']) and (data['prisonNumber']) %}
+                {{ data['prisonerName'] }} ({{ data['prisonNumber'] }})
+              {% else %}
+                Patel, Taj (AB1234C)
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/application-tool/latest/applications/log/prisoner-detauls" class="govuk-body">Change <span class="govuk-visually-hidden"> prisner name</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Application group
             </dt>
             <dd class="govuk-summary-list__value">
               PIN phones
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/application-tool/latest/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application group</span></a>
+              <a href="/application-tool/latest/applications/log/select-app-group" class="govuk-body">Change <span class="govuk-visually-hidden"> application group</span></a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -42,50 +57,26 @@
               Application type
             </dt>
             <dd class="govuk-summary-list__value">
-              Remove PIN phone contact
+              Add new social PIN phone contact
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/application-tool/latest/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+              <a href="/application-tool/latest/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
-        </dl>
-
-
-
-        <div class="govuk-summary-list--header">
-          <h2 class="govuk-heading-m">Application details</h2>
-          <a href="javascript:window.history.go(-2)" class="govuk-body">Change <span class="govuk-visually-hidden"> application details</span></a>
-        </div>
-
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Prisoner name
+              Department
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if (data['pin_04_prisonerName']) and (data['pin_04_prisonNumber']) %}
-                {{ data['pin_04_prisonerName'] }} ({{ data['pin_04_prisonNumber'] }})
-              {% else %}
-                Patel, Taj (AB1234C)
-              {% endif %}
+              {{data['appDept']}}
             </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date sent
-            </dt>
-              {% if data['pin_04_submittedDate'] %}
-              <dd class="govuk-summary-list__value convertDate">
-                {{ data['pin_04_submittedDate'] }}
-              </dd>
-              {% else %}
-              <dd class="govuk-summary-list__value">
-                {{ 0 | getDate }}
-              </dd>
-              {% endif %}
+            <dd class="govuk-summary-list__actions">
+              <a href="/application-tool/latest/applications/log/select-dept" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
+            </dd>
           </div>
         </dl>
 
+        
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">PIN phone contact to remove</h2>
           <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden">PIN phone contact to remove</span></a>
@@ -153,7 +144,7 @@
 
         </dl>
 
-        <form class="form" action="/application-tool/latest/applications/log/remove-pin-phone-contact/confirmation">
+        <form class="form" action="/application-tool/latest/applications/log/confirmation">
         
           <!-- Note: This element is to be used in prototype only. It is there to confirm the submission of the form and allow multiple apps to be submitted in one session-->
   

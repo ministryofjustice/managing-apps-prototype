@@ -72,7 +72,7 @@
 
           <h2 class="govuk-heading-m">Action this application</h2>
 
-          {% if data['pin_06_actionRespond'] %}
+          {% if data['pin_04_actionRespond'] %}
 
           <div id="response-approved" class="">
             <dl class="govuk-summary-list">
@@ -81,7 +81,7 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{ data['pin_06_actionRespond'] }}
+                  {{ data['pin_04_actionRespond'] }}
                 </dd>
                 <!---
                 <dd class="govuk-summary-list__actions">
@@ -93,17 +93,9 @@
                   Reason
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['pin_06_decisionReason'] %}
-                    {{ data['pin_06_decisionReason'] }}
+                  {% if data['pin_04_decisionReason'] %}
+                    {{ data['pin_04_decisionReason'] }}
                   {% endif %}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Actioned by
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  J Smith
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -114,18 +106,27 @@
                   <p class="govuk-body">{{ 0 | getDate }}</p>
                 </dd>
               </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Prisoner
+                </dt>
+                <dd class="govuk-summary-list__value">
+                {% if (data['pin_04_prisonerName']) and (data['pin_04_prisonNumber']) %}
+                  {{ data['pin_04_prisonerName'] }} ({{ data['pin_04_prisonNumber'] }})
+                {% else %}
+                  Patel, Taj (AB1234C)
+                {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Location
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  C-2-013
+                </dd>
+              </div>
             </dl>
-            <div class="moj-button-action">
-              {% if data['pin_06_actionRespond'] === 'Approved' %}
-              <a href="/public/pdfs/approved.pdf" target="_blank" class="govuk-button">
-                Print reply
-              </a>
-              {% elseif data['pin_06_actionRespond'] === 'Declined' %}
-              <a href="/public/pdfs/declined.pdf" target="_blank" class="govuk-button">
-                Print reply
-              </a>
-              {% endif %}
-            </div>
           </div>
 
           {% else %}
@@ -138,8 +139,8 @@
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
               {{ govukRadios({
-                idPrefix: "pin_06_actionRespond",
-                name: "pin_06_actionRespond",
+                idPrefix: "pin_04_actionRespond",
+                name: "pin_04_actionRespond",
                 fieldset: {
                   legend: {
                     text: "Select an action",
@@ -165,8 +166,8 @@
               {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
               {{ govukCharacterCount({
-                name: "pin_06_decisionReason",
-                id: "pin_06_decisionReason",
+                name: "pin_04_decisionReason",
+                id: "pin_04_decisionReason",
                 maxlength: 1000,
                 threshold: 75,
                 label: {

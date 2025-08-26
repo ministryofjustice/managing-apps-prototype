@@ -2,16 +2,13 @@
 
 {% set pageName="Confirmation" %}
 {% set version="latest" %}
+{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/application-tool/latest/" %}
-{% set selectedAppId = data['appType'] %}
 
 
 {% block content %}
 
-      {% for group, details in data['groupsAndGeneralApps'] %}
-        {% for app in details.apps %}
-          {% if app.app_id == data['appType'] %}
 <div class="govuk-grid-row">
 
   <div class="govuk-grid-column-full">
@@ -21,32 +18,54 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-panel govuk-panel--confirmation">
               <div class="govuk-panel__body govuk-!-padding-bottom-3">
+                {% for group, details in data['groupsAndGeneralApps'] %}
+                {% for app in details.apps %}
+                {% if app.app_id == data['appType'] %}
                 {{ app.app_type }}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
               </div>
               <h1 class="govuk-panel__title">
                 Application submitted
               </h1>
             </div>
-            <p class="govuk-body-l">{{ data['appDept'] }} now has this application.</p>
-            <p class="govuk-body">You can now:</p>
+            <p class="govuk-body-l">{{data['appDept']}} now has this application.</p>
+            <p class="govuk-body">You can now log:</p>
 
             <ul class="govuk-list govuk-list--bullet">
-                <li><a href="{{homeurl}}applications/view/new/application.html">View this application</a></li>
-                <li><a href="{{homeurl}}applications/log/select-dept.html">Add another application</a></li>
-                <li><a href="{{homeurl}}applications/view/">Return to applications dashboard</a></li>
+              <li><a href="{{homeurl}}applications/log/select-app-group.html">another application for
+                  {{data['prisonerName']}}</a></li>
+              <li><a href="{{homeurl}}applications/log/clear-and-go-to-prisoner-details">a new application</a></li>
+            </ul>
+
+            <p class="govuk-body">Or you can view:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              {% if data['appType'] == 'app_1003' %}
+              <li><a href="{{homeurl}}applications/view/new-social-pin-contact/application.html">this application</a></li>
+              {% elseif data['appType'] == 'app_1002' %}
+              <li><a href="{{homeurl}}applications/view/new-legal-pin-contact/application.html">this application</a></li>
+              {% elseif data['appType'] == 'app_1001' %}
+              <li><a href="{{homeurl}}applications/view/emergency-pin-credit/application.html">this application</a></li>
+              {% elseif data['appType'] == 'app_1004' %}
+              <li><a href="{{homeurl}}applications/view/remove-pin-phone-contact/application.html">this application</a></li>
+              <!--
+              {% elseif data['appType'] == 'bh_06' %}
+              <li><a href="{{homeurl}}applications/view/supply-pin-contacts/application.html">this application</a></li>-->
+              {% else %} 
+              <li><a href="{{homeurl}}applications/view/new/application.html">this application</a></li>
+              {% endif %}
+              <li><a href="{{homeurl}}applications/view/">all applications</a></li>
             </ul>
 
 
-            </div>
+          </div>
         </div>
       </main>
-    </div></div>
+    </div>
+  </div>
 
-  </div> <!-- end main content  -->
-
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-
+</div> <!-- end main content  -->
 
 {% endblock %}

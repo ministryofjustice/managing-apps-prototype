@@ -87,24 +87,25 @@
         </div>
       </div>
       {% endif %}
-      {% if data['actionRespond'] == "Approved" %}
+      {% if data['pin_03_actionRespond'] == "Approved" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
           Marked as approved by S. Henderson | {{ 0 | getDate }} at 16:52
         </div>
         <div class="app-messages-content">
-          {% if data['decisionReason'] %}
-          {{ data['decisionReason'] }}
-        {% endif %}        </div>
+          {% if data['pin_03_decisionReason'] %}
+          {{ data['pin_03_decisionReason'] }}
+        {% endif %}
+        </div>
       </div>
-      {% elseif data['actionRespond'] == "Declined" %}
+      {% elseif data['pin_03_actionRespond'] == "Declined" %}
       <div class="app-message govuk-body">
         <div class="app-messages-metadata">
           Marked as declined by S. Henderson | {{ 0 | getDate }} at 16:52
         </div>
         <div class="app-messages-content">
-          {% if data['decisionReason'] %}
-          {{ data['decisionReason'] }}
+          {% if data['pin_03_decisionReason'] %}
+          {{ data['pin_03_decisionReason'] }}
         {% endif %}        </div>
       </div>
       {% endif %}

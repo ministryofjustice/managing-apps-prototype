@@ -109,32 +109,34 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Actioned by
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  J Smith
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
                   Date
                 </dt>
                 <dd class="govuk-summary-list__value">
                   <p class="govuk-body">{{ 0 | getDate }}</p>
                 </dd>
               </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Prisoner
+                </dt>
+                <dd class="govuk-summary-list__value">
+                {% if data['app_prisonNumber'] %}
+                  Patel, Taj ({{ data['app_prisonNumber'] }})
+                {% else %}
+                  Patel, Taj (A1234BC)
+                {% endif %}
+
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Location
+                </dt>
+                <dd class="govuk-summary-list__value">
+                A-1234
+                </dd>
+              </div>
             </dl>
-            <div class="moj-button-action">
-              {% if (data['actionRespond'] === 'Approved') or (app.decision == "Approved") %}
-              <a href="/public/pdfs/approved.pdf" target="_blank" class="govuk-button">
-                Print reply
-              </a>
-              {% elseif (data['actionRespond'] === 'Declined') or (app.decision == "Declined") %}
-              <a href="/public/pdfs/declined.pdf" target="_blank" class="govuk-button">
-                Print reply
-              </a>
-              {% endif %}
-            </div>
           </div>
 
           {% elseif app.decision == null %}

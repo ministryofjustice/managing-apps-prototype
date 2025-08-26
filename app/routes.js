@@ -101,6 +101,7 @@ require('./routes/application-tool/single-general-app.js')(router);
 require('./routes/application-tool/single-general-app-v1-2.js')(router);
 require('./routes/application-tool/app-type-lookup-latest.js')(router);
 require('./routes/application-tool/dept-led-latest.js')(router);
+require('./routes/application-tool/latest.js')(router);
 
 // Sandbox
 require('./routes/admin-latest.js')(router);

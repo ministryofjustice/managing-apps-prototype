@@ -2,13 +2,16 @@
 
 {% set pageName="Confirmation" %}
 {% set version="latest" %}
-{% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/application-tool/latest/" %}
+{% set selectedAppId = data['appType'] %}
 
 
 {% block content %}
 
+      {% for group, details in data['groupsAndGeneralApps'] %}
+        {% for app in details.apps %}
+          {% if app.app_id == data['appType'] %}
 <div class="govuk-grid-row">
 
   <div class="govuk-grid-column-full">
@@ -18,18 +21,18 @@
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-panel govuk-panel--confirmation">
               <div class="govuk-panel__body govuk-!-padding-bottom-3">
-                Swap VOs for PIN credit
+                {{ app.app_type }}
               </div>
               <h1 class="govuk-panel__title">
                 Application submitted
               </h1>
             </div>
-            <p class="govuk-body-l">Business Hub now has this application.</p>
+            <p class="govuk-body-l">{{ data['appDept'] }} now has this application.</p>
             <p class="govuk-body">You can now:</p>
 
             <ul class="govuk-list govuk-list--bullet">
-                <li><a href="{{homeurl}}applications/view/swap-vos-pin-credit/application.html">View this application</a></li>
-                <li><a href="{{homeurl}}applications/log/select-app-type.html">Add another application</a></li>
+                <li><a href="{{homeurl}}applications/view/new/application.html">View this application</a></li>
+                <li><a href="{{homeurl}}applications/log/select-dept.html">Add another application</a></li>
                 <li><a href="{{homeurl}}applications/view/">Return to applications dashboard</a></li>
             </ul>
 
@@ -41,6 +44,9 @@
 
   </div> <!-- end main content  -->
 
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 
 
 {% endblock %}

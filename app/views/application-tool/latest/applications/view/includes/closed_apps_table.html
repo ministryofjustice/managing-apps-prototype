@@ -24,7 +24,12 @@
 				{% if app.decision == "Approved" or app.decision == "Declined" %}
 		        <tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
 					<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
-					<td class="govuk-table__cell">{{ app.app_type }}</td>
+					<td class="govuk-table__cell">
+						{{ app.app_type }}
+						<span class="govuk-table__subtext govuk-body-s">
+					  {{ app.app_group }}
+						</span>
+					</td>
 					<td class="govuk-table__cell">
 					  {{ app.prisoner_name }}
 					  <span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>

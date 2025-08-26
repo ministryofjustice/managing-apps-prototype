@@ -30,13 +30,17 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Department
+              Prisoner name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['appDept'] }}
+              {% if (data['prisonerName']) and (data['prisonNumber']) %}
+                {{ data['prisonerName'] }} ({{ data['prisonNumber'] }})
+              {% else %}
+                Patel, Taj (AB1234C)
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/application-tool/latest/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
+              <a href="/application-tool/latest/applications/log/prisoner-details" class="govuk-body">Change <span class="govuk-visually-hidden"> prisner name</span></a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -47,7 +51,7 @@
               {{ details.name }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/application-tool/latest/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
+              <a href="/application-tool/latest/applications/log/select-app-group" class="govuk-body">Change <span class="govuk-visually-hidden"> application group</span></a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -58,47 +62,22 @@
               {{ app.app_type }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a href="/application-tool/latest/applications/log/select-app-name" class="govuk-body">Change <span class="govuk-visually-hidden"> application name</span></a>
+              <a href="/application-tool/latest/applications/log/select-app-type" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
-        </dl>
-
-
-
-        <div class="govuk-summary-list--header">
-          <h2 class="govuk-heading-m">Application details</h2>
-          <a href="javascript:window.history.go(-2)" class="govuk-body">Change <span class="govuk-visually-hidden"> application details</span></a>
-        </div>
-
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Prisoner
+              Department
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['app_prisonNumber'] %}
-                Patel, Taj ({{ data['app_prisonNumber'] }})
-              {% else %}
-                Patel, Taj (A1234BC)
-              {% endif %}
+              {{data['appDept']}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/application-tool/latest/applications/log/select-dept" class="govuk-body">Change <span class="govuk-visually-hidden"> application type</span></a>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date sent
-            </dt>
-              {% if data['pin_05_submittedDate'] %}
-              <dd class="govuk-summary-list__value convertDate">
-                {{ data['app_submittedDate'] }}
-              </dd>
-              {% else %}
-              <dd class="govuk-summary-list__value">
-                {{ 0 | getDate }}
-              </dd>
-              {% endif %}
-          </div>
         </dl>
-
+        
         <div class="govuk-summary-list--header">
           <h2 class="govuk-heading-m">Action and department</h2>
           <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden"> Visiting orders</span></a>
