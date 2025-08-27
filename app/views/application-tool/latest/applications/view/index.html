@@ -38,29 +38,98 @@
 				{% include "./includes/filters.html" %}
 			</div>
 
-			<div class="govuk-grid-column-two-thirds">
+			<div class="govuk-tabs govuk-grid-column-two-thirds" data-module="govuk-tabs">
+  				<h2 class="govuk-tabs__title">Applications</h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#pending">Pending applications</a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#closed">Closed applications</a>
+    </li>
+  </ul>
+  
+  <!-- Pending tab -->
+  <div class="govuk-tabs__panel" id="pending">
+    <div class="moj-filter-layout">
+      <!-- Your filter sidebar here -->
+      <div class="moj-filter-layout__content">
+        <div class="applications-table">
+          <table class="govuk-table" id="applications-table-pending">
+            <caption class="govuk-table__caption govuk-table__caption--m">
+              Pending applications 
+              <span class="results-count">(<span class="count">0</span> results)</span>
+            </caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Date</th>
+                <th scope="col" class="govuk-table__header">Application type</th>
+                <th scope="col" class="govuk-table__header">From</th>
+                <th scope="col" class="govuk-table__header">Department</th>
+                <th scope="col" class="govuk-table__header"></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body" id="results-tbody-pending">
+            </tbody>
+          </table>
+          <div class="no-results" style="display: none;">
+            No pending applications found matching your criteria.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Closed tab -->
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="closed">
+    <div class="moj-filter-layout">
+      <!-- Same filter sidebar structure -->
+      <div class="moj-filter-layout__content">
+        <div class="applications-table">
+          <table class="govuk-table" id="applications-table-closed">
+            <caption class="govuk-table__caption govuk-table__caption--m">
+              Closed applications 
+              <span class="results-count">(<span class="count">0</span> results)</span>
+            </caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Date</th>
+                <th scope="col" class="govuk-table__header">Application type</th>
+                <th scope="col" class="govuk-table__header">From</th>
+                <th scope="col" class="govuk-table__header">Department</th>
+                <th scope="col" class="govuk-table__header">Status</th>
+                <th scope="col" class="govuk-table__header"></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body" id="results-tbody-closed">
+            </tbody>
+          </table>
+          <div class="no-results" style="display: none;">
+            No closed applications found matching your criteria.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-				<div class="govuk-tabs" data-module="govuk-tabs">
-					<ul class="govuk-tabs__list">
-					  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-						<a class="govuk-tabs__tab" href="#pending">
-						  Pending
-						</a>
-					  </li>
-					  <li class="govuk-tabs__list-item">
-						<a class="govuk-tabs__tab" href="#closed">
-						  Closed
-						</a>
-					  </li>
-					</ul>
-					<div class="govuk-tabs__panel" id="pending">
-						{% include "./includes/pending_apps_table.html" %}
-					</div>
-					<div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="closed">
-						{% include "./includes/closed_apps_table.html" %}
-					</div>
-				</div>
-			</div>
+<script>
+  {% if sessionApplications %}
+    window.sessionApplications = {{ sessionApplications | safe }};
+  {% else %}
+    window.sessionApplications = [];
+  {% endif %}
+  
+  console.log('Session data loaded:', window.sessionApplications);
+  console.log('Filter container exists:', $('.filter-container').length);
+  console.log('Applications table exists:', $('.applications-table').length);
+  console.log('Applications table pending exists:', $('#applications-table-pending').length);
+  console.log('Filter container:', $('.filter-container').length);
+console.log('Applications table:', $('.applications-table').length);
+console.log('Table pending:', $('#applications-table-pending').length);
+
+</script>
+
 		</div>
 	</div>
 </div>

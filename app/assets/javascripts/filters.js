@@ -5,21 +5,27 @@ $(document).ready(function() {
             $(this).attr('aria-expanded', 'true');
             $(this).closest(".filters-accordion").toggleClass("js-closed");
         } else {
-            // alert ("it's closed");
             $(this).attr('aria-expanded', 'false');
             $(this).closest(".filters-accordion").toggleClass("js-closed");
         }
     });
     
     // Only run if filterable elements exist on the page
-    if ($('.filter-container').length === 0 || $('#applications-table').length === 0) {
+    if ($('.filter-container').length === 0 || $('.applications-table').length === 0) {
         console.log('Filterable elements not found, skipping filter initialization');
         return;
     }
     
-    var applicationsData = [];
+    var allApplicationsData = [];
     var departmentsData = [];
     var applicationTypesData = [];
+    var sessionApplications = [];
+    var currentTab = 'pending'; // Track current active tab
+    
+    // Get session applications from template (if passed from server)
+    if (typeof window.sessionApplications !== 'undefined') {
+        sessionApplications = window.sessionApplications;
+    }
     
     // Load all data files from API routes
     Promise.all([
@@ -27,49 +33,77 @@ $(document).ready(function() {
         $.getJSON('/api/departments'),
         $.getJSON('/api/application-types')
     ]).then(function(results) {
-        console.log('Data loaded successfully:');
-        console.log('Applications:', results[0]);
-        console.log('Departments:', results[1]);
-        console.log('Application Types:', results[2]);
+        console.log('Data loaded successfully');
         
-        applicationsData = results[0];
+        // Handle both array and object structures for applications
+        if (Array.isArray(results[0])) {
+            allApplicationsData = results[0];
+        } else if (results[0] && results[0].applications) {
+            allApplicationsData = results[0].applications;
+        } else {
+            allApplicationsData = [];
+        }
+        
         departmentsData = results[1];
         applicationTypesData = results[2];
         
-        console.log('Applications data length:', applicationsData.length);
-        console.log('Departments data length:', departmentsData.length);
-        console.log('Application types data length:', applicationTypesData.length);
+        // Combine API data with session data
+        if (sessionApplications.length > 0) {
+            allApplicationsData = [...sessionApplications, ...allApplicationsData];
+        }
         
-        // Initialize the interface with loaded data
+        console.log('Total applications:', allApplicationsData.length);
+        
+        // Initialize the interface
         initializeInterface();
+        
+        // Initialize tabs
+        initializeTabs();
+        
     }).catch(function(error) {
-        console.error('Failed to load data from JSON files:', error);
-        console.error('Error details:', error.responseJSON);
+        console.error('Failed to load data:', error);
     });
     
     function convertDateReceived(dateReceived) {
-        // Convert relative dates like "-1", "-2" to actual dates
+        if (dateReceived === 0 || dateReceived === '0') {
+            return new Date().toLocaleDateString('en-GB', { 
+                day: 'numeric', month: 'long', year: 'numeric' 
+            });
+        }
+        
         var today = new Date();
         var daysAgo = Math.abs(parseInt(dateReceived));
         var targetDate = new Date(today);
         targetDate.setDate(today.getDate() - daysAgo);
         
-        // Format as "DD Month YYYY"
         var options = { day: 'numeric', month: 'long', year: 'numeric' };
         return targetDate.toLocaleDateString('en-GB', options);
     }
     
     function isFirstNightLocation(priority) {
-        // Check if priority indicates first night centre
         return priority === "fnc";
     }
     
-    function displayResults(results) {
-        // Target the specific table elements
-        var $resultsCount = $('#applications-table .count');
-        var $resultsTable = $('#applications-table #results-tbody');
-        var $noResults = $('#applications-table').closest('.applications-table').find('#no-results');
-        var $table = $('#applications-table');
+function getCurrentApplications() {
+    return allApplicationsData.filter(function(app) {
+        var status = app.status ? app.status.toLowerCase() : '';
+        
+        if (currentTab === 'pending') {
+            return status === 'pending' || !app.status;
+        } else if (currentTab === 'closed') {
+            return status === 'closed' || status === 'approved' || status === 'declined';
+        }
+        return false;
+    });
+}
+    
+    function displayResults(results, targetTableId) {
+        targetTableId = targetTableId || 'applications-table-' + currentTab;
+        
+        var $resultsCount = $('#' + targetTableId + ' .count');
+        var $resultsTable = $('#' + targetTableId + ' #results-tbody-' + currentTab);
+        var $noResults = $('#' + targetTableId).closest('.applications-table').find('.no-results');
+        var $table = $('#' + targetTableId);
         
         $resultsCount.text(results.length);
         
@@ -88,19 +122,24 @@ $(document).ready(function() {
             html += '<td class="govuk-table__cell nowrap">' + convertDateReceived(item.date_received) + '</td>';
             html += '<td class="govuk-table__cell">';
             html += '<div class="application-type">' + item.app_type + '</div>';
-            html += '<div class="application-category">' + item.app_group + '</div>';
+            html += '<div class="application-category">' + (item.app_group || '') + '</div>';
             html += '</td>';
             html += '<td class="govuk-table__cell">';
             html += '<div class="prisoner-info">';
             html += '<div class="prisoner-name">' + item.prisoner_name + '</div>';
             html += '<div class="prisoner-id">(' + item.prisoner_number + ')</div>';
-            // Removed the first night centre display - no longer shown in table
-            // if (isFirstNightLocation(item.prisoner_location)) {
-            //     html += '<div class="prisoner-location">First night centre</div>';
-            // }
             html += '</div>';
             html += '</td>';
             html += '<td class="govuk-table__cell">' + item.current_dept + '</td>';
+            
+            // Add status column for closed tab
+            if (currentTab === 'closed') {
+                var statusClass = item.status === 'approved' ? 'approved' : (item.status === 'declined' ? 'declined' : 'closed');
+                html += '<td class="govuk-table__cell status-' + statusClass + '">' + 
+                        (item.status || 'Closed').charAt(0).toUpperCase() + 
+                        (item.status || 'Closed').slice(1) + '</td>';
+            }
+            
             html += '<td class="govuk-table__cell"><a href="#" class="view-link">View</a></td>';
             html += '</tr>';
         });
@@ -109,59 +148,68 @@ $(document).ready(function() {
     }
     
     function initializeInterface() {
-        console.log('=== INSIDE initializeInterface ===');
-        console.log('Raw applications data:', applicationsData);
-        console.log('Applications data length:', applicationsData.length);
+        populateDepartments();
+        populateApplicationTypes();
+        initializeFilters();
         
-        if (applicationsData.length > 0) {
-            console.log('First application:', applicationsData[0]);
-            console.log('First application priority:', applicationsData[0].priority);
-        }
+        // Show initial results for current tab
+        var currentApplications = getCurrentApplications();
+        displayResults(currentApplications);
+    }
+    
+    function initializeTabs() {
+        // Tab switching functionality
+        $('.govuk-tabs__tab').on('click', function(e) {
+            e.preventDefault();
+            
+            var targetTab = $(this).attr('href').substring(1); // Remove #
+            
+            if (targetTab !== currentTab) {
+                // Update active tab
+                $('.govuk-tabs__list-item').removeClass('govuk-tabs__list-item--selected');
+                $(this).parent().addClass('govuk-tabs__list-item--selected');
+                
+                // Show/hide tab panels
+                $('.govuk-tabs__panel').addClass('govuk-tabs__panel--hidden');
+                $('#' + targetTab).removeClass('govuk-tabs__panel--hidden');
+                
+                // Update current tab
+                currentTab = targetTab;
+                
+                // Refresh data for new tab
+                var currentApplications = getCurrentApplications();
+                displayResults(currentApplications);
+                
+                // Reset filters when switching tabs
+                resetFilters();
+            }
+        });
+    }
+    
+    function resetFilters() {
+        var $container = $('.filter-container');
+        $container.find('input[type="checkbox"]').prop('checked', false);
+        $container.find('.prisoner-search').val('');
+        $container.find('.department-search').val('');
+        $container.find('.application-type-search').val('');
         
-        // Show all applications since there's no decision property anymore
-        console.log('Showing all applications (no filtering by decision)');
-        console.log('Total applications to display:', applicationsData.length);
+        // Reset checkbox visibility
+        $container.find('.department-item, .application-type-item').show();
+        $container.find('.no-department-results, .no-application-type-results').hide();
         
-        console.log('About to populate departments...');
-        try {
-            populateDepartments();
-            console.log('Departments populated successfully');
-        } catch (error) {
-            console.error('Error populating departments:', error);
-        }
-        
-        console.log('About to populate application types...');
-        try {
-            populateApplicationTypes();
-            console.log('Application types populated successfully');
-        } catch (error) {
-            console.error('Error populating application types:', error);
-        }
-        
-        console.log('About to initialize filters...');
-        try {
-            initializeFilters();
-            console.log('Filters initialized successfully');
-        } catch (error) {
-            console.error('Error initializing filters:', error);
-        }
-        
-        console.log('About to display results...');
-        try {
-            displayResults(applicationsData); // Show all applications
-            console.log('Results displayed successfully');
-        } catch (error) {
-            console.error('Error displaying results:', error);
-        }
+        // Clear selected filters display
+        $container.find('.selected-filters').hide();
     }
     
     function populateDepartments() {
         var $departmentList = $('.filter-container .department-list');
         $departmentList.empty();
         
-        // Count applications per department
+        var currentApplications = getCurrentApplications();
+        
+        // Count applications per department for current tab
         var departmentCounts = {};
-        applicationsData.forEach(function(app) {
+        currentApplications.forEach(function(app) {
             var dept = app.current_dept;
             departmentCounts[dept] = (departmentCounts[dept] || 0) + 1;
         });
@@ -186,21 +234,22 @@ $(document).ready(function() {
         var $applicationTypeList = $('.filter-container .application-type-list');
         $applicationTypeList.empty();
         
-        // Count applications per type (from actual data)
+        var currentApplications = getCurrentApplications();
+        
+        // Count applications per type for current tab
         var typeCounts = {};
-        applicationsData.forEach(function(app) {
+        currentApplications.forEach(function(app) {
             var appType = app.app_type;
             typeCounts[appType] = (typeCounts[appType] || 0) + 1;
         });
         
-        // Create a set of unique application types from the actual data
-        var uniqueTypes = [...new Set(applicationsData.map(app => app.app_type))];
+        // Create a set of unique application types from current applications
+        var uniqueTypes = [...new Set(currentApplications.map(app => app.app_type))];
         
         uniqueTypes.forEach(function(appType, index) {
             var appTypeCount = typeCounts[appType] || 0;
             var appTypeId = 'app-type-' + index;
             
-            // Show all types (even with 0 count for consistency)
             var html = '<div class="govuk-checkboxes__item application-type-item">';
             html += '<input class="govuk-checkboxes__input" id="' + appTypeId + '" name="application-type" type="checkbox" value="' + appType + '">';
             html += '<label class="govuk-label govuk-checkboxes__label" for="' + appTypeId + '">';
@@ -268,11 +317,6 @@ $(document).ready(function() {
             }
         });
         
-        // Checkbox change handling
-        $container.on('change', 'input[type="checkbox"]', function() {
-            // Only visual feedback, no filter display updates
-        });
-        
         // Apply filters button
         $applyButton.on('click', function() {
             updateSelectedFilters();
@@ -282,16 +326,7 @@ $(document).ready(function() {
         // Clear filters
         $clearButton.on('click', function(e) {
             e.preventDefault();
-            $container.find('input[type="checkbox"]').prop('checked', false);
-            $prisonerSearch.val('');
-            $departmentSearch.val('');
-            $applicationTypeSearch.val('');
-            
-            // Reset checkbox visibility
-            $container.find('.department-item, .application-type-item').show();
-            $container.find('.no-department-results, .no-application-type-results').hide();
-            
-            updateSelectedFilters();
+            resetFilters();
             applyFilters();
         });
         
@@ -325,7 +360,9 @@ $(document).ready(function() {
                 selectedApplicationTypes.push($(this).val());
             });
             
-            var filteredData = applicationsData.filter(function(item) {
+            var currentApplications = getCurrentApplications();
+            
+            var filteredData = currentApplications.filter(function(item) {
                 // Prisoner name/number search
                 if (prisonerSearchTerm) {
                     var nameMatch = item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
@@ -374,7 +411,6 @@ $(document).ready(function() {
                 var label = $(this).next('label').text().trim();
                 var value = $(this).val();
                 
-                // Get the fieldset name from the accordion button text
                 var $accordion = $(this).closest('.filters-accordion');
                 var fieldsetName = $accordion.find('.filters-accordion__button').text().trim();
                 
@@ -390,7 +426,6 @@ $(document).ready(function() {
                 var tagsHtml = '';
                 var groupedFilters = {};
                 
-                // Group filters by fieldset
                 selectedFilters.forEach(function(filter) {
                     if (filter.type === 'prisoner') {
                         if (!groupedFilters['Search']) {
@@ -406,7 +441,6 @@ $(document).ready(function() {
                     }
                 });
                 
-                // Build HTML for each group
                 Object.keys(groupedFilters).forEach(function(fieldset) {
                     tagsHtml += '<h3 class="govuk-heading-s govuk-!-margin-bottom-0">' + fieldset + '</h3>';
                     tagsHtml += '<ul class="moj-filter-tags">';
@@ -432,4 +466,15 @@ $(document).ready(function() {
             }
         }
     }
+  
+  // Now that jQuery is loaded, check selectors
+  console.log('Filter container:', $('.filter-container').length);
+  console.log('Applications table:', $('.applications-table').length);
+  console.log('Table pending:', $('#applications-table-pending').length);
+console.log('Current tab:', window.currentTab || 'pending');
+console.log('Sample application:', allApplicationsData[0]);
+console.log('allApplicationsData length:', allApplicationsData.length);
+console.log('allApplicationsData:', allApplicationsData);
+
+
 });

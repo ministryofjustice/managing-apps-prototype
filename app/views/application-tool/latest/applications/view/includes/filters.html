@@ -1,131 +1,197 @@
-<div class="moj-filter govuk-!-margin-bottom-9">
-
-  <div class="moj-filter__header">
-    <div class="moj-filter__header-title">
-      <h2 class="govuk-heading-m">Filter</h2>
-    </div>
-    <div class="moj-filter__header-action">
-    </div>
-  </div>
-
-  <div class="moj-filter__content">
-    <div class="moj-filter__selected">
-      <div class="moj-filter__selected-heading">
-        <div class="moj-filter__heading-title">
-          <h2 class="govuk-heading-m">Selected filters</h2>
-        </div>
-        <div class="moj-filter__heading-action">
-          <p><a id="clearFiltersButton" class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
-        </div>
-      </div>
-
-      <div id="moj-filter-tags--prisoner" class="moj-filter-tags--group">
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Prisoner</h3>
-        <ul class="moj-filter-tags" id="prisoner-tags">
-        </ul>
-      </div>
-
-      <div id="moj-filter-tags--dept" class="moj-filter-tags--group">
-
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Department</h3>
-
-        <ul class="moj-filter-tags" id="dept-tags">
-          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
-                filter</span> Business Hub</a></li>
-          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
-                filter</span> OMU</a></li>
-        </ul>
-      </div>
-
-      <div id="moj-filter-tags--type" class="moj-filter-tags--group">
-
-        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Application type</h3>
-
-        <ul class="moj-filter-tags" id="type-tags">
-          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
-                filter</span> Add emergency PIN phone credit</a></li>
-          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
-                filter</span> Supply list of PIN phone contacts</a></li>
-          <li><a class="moj-filter__tag" href="/path/to/remove/this"><span class="govuk-visually-hidden">Remove this
-                filter</span> Swap VOs for PIN credit</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="moj-filter__options">
-
-      <button type="submit" id="applyFiltersButton" class="govuk-button" data-module="govuk-button"
-        data-test-id="submit-button">
-        Apply filters
-      </button>
-
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-label--s" for="prisoner-autocomplete">
-          Prisoner
-        </label>
-        <div id="my-autocomplete-wrapper">
-          <select id="prisoner-autocomplete">
-            <option value="" selected disabled hidden></option>
-            {% for prisoner in data['prisoners'] %}
-            <option value="{{ prisoner.prison_number }}">{{ prisoner.prisoners_name }} ({{ prisoner.prison_number }})
-            </option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Priority
-          </legend>
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="filterFNC" name="filterFNC" type="checkbox"
-                value="First night or early days centre">
-              <label class="govuk-label govuk-checkboxes__label" for="filterFNC">
-                First night or early days centre
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-
-      <div class="govuk-form-group">
-
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Application department / type
-          </legend>
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            {% for dept, details in data['deptsAndGeneralApps'] %}
-            <div class="govuk-checkboxes__nested">
-              <div class="govuk-checkboxes__item govuk-checkboxes__parent">
-                <input class="govuk-checkboxes__input" id="{{ details.type_id }}" name="typeFilter" type="checkbox"
-                  value="{{ details.type_id }}">
-                <label class="govuk-label govuk-checkboxes__label" for="{{ details.type_id }}">
-                  {{ details.name }}
-                </label>
-              </div>
-              <div class="govuk-checkboxes__children">
-                {% for app in details.apps %}
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="{{ app.app_id }}" name="typeFilter" type="checkbox"
-                    value="{{ app.app_id }}">
-                  <label class="govuk-label govuk-checkboxes__label" for="{{ app.app_id }}">
-                    {{ app.app_type }}
-                  </label>
+       <!-- Filter sidebar -->
+        <div class="moj-filter-layout__filter">
+            <div class="moj-filter filter-container" data-module="moj-filter">
+                <div class="moj-filter__header">
+                    <div class="moj-filter__header-title">
+                        <h2 class="govuk-heading-m">Filters</h2>
+                    </div>
                 </div>
-                {% endfor %}
-              </div>
+                
+                <div class="moj-filter__content">
+                    <!-- Selected filters section at top -->
+                    <div class="moj-filter__selected selected-filters" style="display: none;">
+                        <div class="moj-filter__selected-heading">
+                            <div class="moj-filter__heading-title">
+                                <h2 class="govuk-heading-m">Selected filters</h2>
+                            </div>
+                            <div class="moj-filter__heading-action">
+                                <p><a class="govuk-link govuk-link--no-visited-state clear-filters" href="#">Clear filters</a></p>
+                            </div>
+                        </div>
+                        <div class="selected-tags"></div>
+                    </div>
+                    
+                    <!-- Filter options -->
+                    <div class="moj-filter__options">
+                        <button type="button" class="govuk-button apply-filters">
+                            Apply filters
+                        </button>
+                        
+                        <!-- Prisoner name or number search -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+                            <label class="govuk-label govuk-label--m" for="prisoner-search">
+                                Prisoner name or number
+                            </label>
+                            <input class="govuk-input prisoner-search" id="prisoner-search" name="prisoner-search" type="text" placeholder="Search by name or prison number">
+                        </div>
+                        
+                        <!-- Priority checkbox -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+                        <h2 class="filters-accordion__heading js-container-heading">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Priority</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
 
+                        <div class="govuk-form-group filters-accordion__filter">
+
+                                <div class="govuk-checkboxes--small govuk-checkboxes--small">
+                                    <div class="govuk-checkboxes__item priority-item">
+                                        <input class="govuk-checkboxes__input" id="first-night" name="priority" type="checkbox" value="first-night">
+                                        <label class="govuk-label govuk-checkboxes__label" for="first-night">
+                                            First night or early days centre
+                                        </label>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                        
+                        <!-- Department checkboxes -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+
+                        <h2 class="filters-accordion__heading js-container-heading">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Department</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
+
+                        <div class="govuk-form-group filters-accordion__filter">
+                                <input class="govuk-input department-search" type="text" placeholder="Search departments..." style="font-size: 16px; padding: 4px;">
+                                <div class="govuk-checkboxes govuk-checkboxes--small department-list">
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="activities" name="department" type="checkbox" value="activities">
+                                        <label class="govuk-label govuk-checkboxes__label" for="activities">
+                                            Activities (2)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="business-hub" name="department" type="checkbox" value="business-hub">
+                                        <label class="govuk-label govuk-checkboxes__label" for="business-hub">
+                                            Business Hub (5)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="governor" name="department" type="checkbox" value="governor">
+                                        <label class="govuk-label govuk-checkboxes__label" for="governor">
+                                            Governor (3)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="chaplaincy" name="department" type="checkbox" value="chaplaincy">
+                                        <label class="govuk-label govuk-checkboxes__label" for="chaplaincy">
+                                            Chaplaincy (5)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="education" name="department" type="checkbox" value="education">
+                                        <label class="govuk-label govuk-checkboxes__label" for="education">
+                                            Education (5)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item department-item">
+                                        <input class="govuk-checkboxes__input" id="healthcare" name="department" type="checkbox" value="healthcare">
+                                        <label class="govuk-label govuk-checkboxes__label" for="healthcare">
+                                            Healthcare (5)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="no-department-results" style="display: none; color: #505a5f; font-style: italic; text-align: center; padding: 10px;">
+                                    No departments found matching your search.
+                                </div>
+                                
+                        </div>
+                        </div>
+                        
+                        <!-- Application type checkboxes -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+                        <h2 class="filters-accordion__heading js-container-heading">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Application type</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
+
+                        <div class="govuk-form-group filters-accordion__filter">
+
+                            <input class="govuk-input application-type-search govuk-!-margin-bottom-4" type="text" placeholder="Search application types...">
+                                <div class="govuk-checkboxes govuk-checkboxes--small application-type-list">
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="access-property" name="application-type" type="checkbox" value="Access to stored property">
+                                        <label class="govuk-label govuk-checkboxes__label" for="access-property">
+                                            Access to stored property (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="facilities-list" name="application-type" type="checkbox" value="Facilities list">
+                                        <label class="govuk-label govuk-checkboxes__label" for="facilities-list">
+                                            Facilities list (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="gift-items" name="application-type" type="checkbox" value="Gift items to another prisoner">
+                                        <label class="govuk-label govuk-checkboxes__label" for="gift-items">
+                                            Gift items to another prisoner (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="property-handed-out" name="application-type" type="checkbox" value="Property handed out">
+                                        <label class="govuk-label govuk-checkboxes__label" for="property-handed-out">
+                                            Property handed out (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="new-mattress" name="application-type" type="checkbox" value="New mattress">
+                                        <label class="govuk-label govuk-checkboxes__label" for="new-mattress">
+                                            New mattress (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="pin-credit" name="application-type" type="checkbox" value="Add emergency PIN phone credit">
+                                        <label class="govuk-label govuk-checkboxes__label" for="pin-credit">
+                                            Add emergency PIN phone credit (1)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="govuk-checkboxes__item application-type-item">
+                                        <input class="govuk-checkboxes__input" id="book-visit" name="application-type" type="checkbox" value="Book a visit">
+                                        <label class="govuk-label govuk-checkboxes__label" for="book-visit">
+                                            Book a visit (1)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="no-application-type-results" style="display: none; color: #505a5f; font-style: italic; text-align: center; padding: 10px;">
+                                    No application types found matching your search.
+                                </div>
+                            </fieldset>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-          </div>
-        </fieldset>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
+
+{% block pageScripts %}
+<script>
+  // Set session data before other scripts load
+  window.sessionApplications = {% if sessionApplications %}{{ sessionApplications | safe }}{% else %}[]{% endif %};
+</script>
+{% endblock %}
