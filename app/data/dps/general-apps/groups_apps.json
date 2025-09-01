@@ -216,10 +216,19 @@
     ]
   },
   "group_14": {
-    "name": "General",
+    "name": "Safety",
     "apps": [
       {
         "app_id": "app_1401",
+        "app_type": "Safety concern"
+      }
+    ]
+  },
+  "group_15": {
+    "name": "General",
+    "apps": [
+      {
+        "app_id": "app_1501",
         "app_type": "General"
       }
     ]

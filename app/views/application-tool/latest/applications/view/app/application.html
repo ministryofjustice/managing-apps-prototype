@@ -31,7 +31,7 @@
 
       <h1 class="govuk-heading-xl">
         {% set appID = data['url_id'] %}
-        {% for app in data['allMVP2Apps'] %}
+        {% for app in data['allGeneralApps'] %}
         {% if app.app_id == appID  %}
         {{ app.app_type }}
         {% endif  %}
@@ -71,7 +71,7 @@
       </nav>
 
       {% set appID = data['url_id'] %}
-      {% for app in data['allMVP2Apps'] %}
+      {% for app in data['allGeneralApps'] %}
       {% if app.app_id == appID  %}
 
       <div class="govuk-grid-row">
@@ -155,7 +155,7 @@
                 Location
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ app.prisoner_location }}
+                C-1-42
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -179,24 +179,18 @@
             </div>
           </dl>
 
-          {% if app.app_type_id == "pin_01"  %}
+
+          {% if app.app_type == "Add a social PIN phone contact"  %}
+
             {% include "./includes/pin_01_details.html" %}
-          {% elseif app.app_type_id == "pin_02"   %}
-            {% include "./includes/pin_02_details.html" %}
-          {% elseif app.app_type_id == "pin_03"   %}
-            {% include "./includes/pin_03_details.html" %}
-          {% elseif app.app_type_id == "pin_04"   %}
-            {% include "./includes/pin_04_details.html" %}
-          {% elseif app.app_type_id == "pin_05"   %}
-            {% include "./includes/pin_04_details.html" %}
-          {% elseif app.app_type_id == "pin_06"   %}
-            {% include "./includes/pin_06_details.html" %}
+
+          {% else %}
+
+            {% include "./includes/general.html" %}
+
           {% endif %}
 
-
-
-         </div>
-      </div>
+        </div>
 
       {% endif  %}
       {% endfor  %}

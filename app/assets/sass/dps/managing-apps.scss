@@ -90,3 +90,9 @@ p.none {margin-bottom: 0;}
   padding-left: 2.25em;
   display: none;;
 }
+
+.govuk-breadcrumbs, .moj-sub-navigation, .govuk-footer__inline-list, .govuk-phase-banner {
+  @media print {
+    display: none;
+  }
+}

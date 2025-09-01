@@ -42,10 +42,10 @@
   				<h2 class="govuk-tabs__title">Applications</h2>
   <ul class="govuk-tabs__list">
     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-      <a class="govuk-tabs__tab" href="#pending">Pending applications</a>
+      <a class="govuk-tabs__tab" href="#pending">Pending</a>
     </li>
     <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#closed">Closed applications</a>
+      <a class="govuk-tabs__tab" href="#closed">Closed</a>
     </li>
   </ul>
   
@@ -58,7 +58,6 @@
           <table class="govuk-table" id="applications-table-pending">
             <caption class="govuk-table__caption govuk-table__caption--m">
               Pending applications 
-              <span class="results-count">(<span class="count">0</span> results)</span>
             </caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -89,7 +88,6 @@
           <table class="govuk-table" id="applications-table-closed">
             <caption class="govuk-table__caption govuk-table__caption--m">
               Closed applications 
-              <span class="results-count">(<span class="count">0</span> results)</span>
             </caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -114,7 +112,15 @@
 </div>
 
 <script>
-  {% if sessionApplications %}
+
+  // Session applications (empty array when none exist)
+  window.sessionApplications = {% if sessionApplications %}{{ sessionApplications | safe }}{% else %}[]{% endif %};
+  
+  // Add homeurl to JavaScript
+  window.homeurl = "{{ homeurl }}";
+
+
+{% if sessionApplications %}
     window.sessionApplications = {{ sessionApplications | safe }};
   {% else %}
     window.sessionApplications = [];

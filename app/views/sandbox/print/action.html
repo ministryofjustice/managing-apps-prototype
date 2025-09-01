@@ -31,12 +31,7 @@
 
       
       <span class="govuk-caption-xl">
-        {% set appID = data['url_id'] %}
-        {% for app in data['allGeneralApps'] %}
-        {% if app.app_id == appID  %}
-        {{ app.app_type }}
-        {% endif  %}
-        {% endfor  %}
+        Add a social PIN phone contact 
       </span>
       <h1 class="govuk-heading-xl">
         Action and reply
@@ -51,21 +46,21 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="#">
               Application 
             </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="#">
               Comments
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link"  aria-current="page" href="./action?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" aria-current="page" href="#">
               Action and reply
               </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="#">
               History
             </a>
           </li>
@@ -78,12 +73,6 @@
 
           <h2 class="govuk-heading-m">Action this application</h2>
 
-          {% set appID = data['url_id'] %}
-          {% for app in data['allGeneralApps'] %}
-          {% if app.app_id == appID  %}
-
-          {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
-
           <div id="response-approved" class="response-toggle form">
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
@@ -91,11 +80,7 @@
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['actionRespond'] %}
-                    {{ data['actionRespond'] }}
-                  {% else %}
-                    {{ app.decision }}
-                  {% endif %}
+                  Declined
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -103,11 +88,7 @@
                   Reason
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['decisionReason'] %}
-                    {{ data['decisionReason'] }}
-                  {% else %}
-                    {{ app.decision_reason }}
-                  {% endif %}
+                  We have been unable to make contact with Mrs Patel after 3 attempts. If you wish us to try again, please submit anotehr app.
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -123,7 +104,7 @@
                   Prisoner
                 </dt>
                 <dd class="govuk-summary-list__value">
-                {{ app.prisoner_name }} ({{ app.prisoner_number }})
+                	Wright, Ethan (T6789NO)
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -137,74 +118,9 @@
             </dl>
           </div>
 
-          {% elseif app.decision == null %}
-
-          <div id="response-form" class="response-toggle form">
-
-            <p class="govuk-body">This action and its reason will be seen by the prisoner.</p>
-
-            <form class="form" action="{{homeurl}}applications/view/app/action?url_id=ewqewqeq">
-              {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-              {{ govukRadios({
-                idPrefix: "actionRespond",
-                name: "actionRespond",
-                fieldset: {
-                  legend: {
-                    text: "Select an action",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                items: [
-                  {
-                    value: "Approved",
-                    text: "Approved",
-                    checked: checked("actionRespond", "Approved")
-                  },
-                  {
-                    value: "Declined",
-                    text: "Declined",
-                    checked: checked("actionRespond", "Declined")
-                  }
-                ]
-              }) }}
-
-
-              {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
-
-              {{ govukCharacterCount({
-                name: "decisionReason",
-                id: "decisionReason",
-                maxlength: 1000,
-                threshold: 75,
-                label: {
-                  text: "Reason",
-                  classes: "govuk-label--s",
-                  isPageHeading: false
-                }
-              }) }}
-              
-              <div class="govuk-form-group govuk-visually-hidden">
-                <label class="govuk-label" for="url_id">
-                  App ID
-                </label>
-                <input class="govuk-input" id="url_id" name="url_id" type="text" value="{{data['url_id']}}">
-              </div>
-
-              <div class="moj-button-action">
-                <button type="submit" class="govuk-button" data-module="govuk-button">
-                  Reply
-                </button>
-              </div>
-            </form>
-          </div>
-          {% endif  %}
-
-
-          {% endif  %}
-          {% endfor  %}
-  
+          <a href="./reply" class="govuk-button">
+            Print reply
+          </a>
 
     </div>
   </div>

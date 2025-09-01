@@ -5,10 +5,41 @@
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+
+router.get('/api/applications', function (req, res) {
+  const fs = require('fs')
+  const path = require('path')
+  
+  try {
+    const dataPath = path.join(__dirname, 'data', 'dps', 'general-apps', 'all-general-apps-data.json')
+    console.log('Loading applications from:', dataPath)
+    console.log('File exists:', fs.existsSync(dataPath))
+    
+    // Read the raw file content first
+    const rawData = fs.readFileSync(dataPath, 'utf8')
+    console.log('Raw file size:', rawData.length)
+    console.log('First 100 characters:', rawData.substring(0, 100))
+    
+    // Try to parse the JSON
+    const data = JSON.parse(rawData)
+    console.log('Parsed successfully, array length:', data.length)
+    
+    res.json(data)
+  } catch (error) {
+    console.error('Detailed error loading applications:', error)
+    res.status(500).json({ 
+      error: 'Failed to load applications data', 
+      details: error.message,
+      stack: error.stack 
+    })
+  }
+})
+
+// In app/routes.js
 const fs = require('fs')
 const path = require('path')
 
-// API routes
+// API routes with correct file paths
 router.get('/api/applications', function (req, res) {
   try {
     const dataPath = path.join(__dirname, 'data', 'dps', 'general-apps', 'all-general-apps-data.json')
@@ -23,6 +54,7 @@ router.get('/api/applications', function (req, res) {
     })
   }
 })
+
 
 router.get('/api/departments', function (req, res) {
   try {
@@ -48,30 +80,13 @@ router.get('/api/application-types', function (req, res) {
   }
 })
 
-// Page route for applications (adjust path to match your actual page)
-router.get('/application-tool/latest/applications/view', function (req, res) {
-  const sessionData = req.session.data || {}
-  const sessionApplications = []
+router.get('/application-tool/latest/applications/log/confirmation', function (req, res) {
+  // Session data should already be set from form submission
+  req.session.data.pageName = 'submitted' // Ensure it's marked as submitted
   
-  // Check if application has been submitted
-  if (sessionData.appType && sessionData.pageName === 'submitted') {
-    sessionApplications.push({
-      app_type: sessionData.appType,
-      app_group: sessionData.appGroup,
-      status: 'pending',
-      date_received: 0,
-      prisoner_name: sessionData.prisonerName || 'Current User',
-      prisoner_number: sessionData.prisonNumber || 'A1234BC',
-      current_dept: 'User Submitted',
-      priority: 'standard'
-    })
-  }
+  console.log('Confirmation page accessed, session data:', req.session.data)
   
-  console.log('Session applications:', sessionApplications) // Debug log
-  
-  res.render('application-tool/latest/applications/view/index', {
-    sessionApplications: JSON.stringify(sessionApplications)
-  })
+  res.render('application-tool/latest/applications/log/confirmation')
 })
 
 // Add your routes here
@@ -100,4 +115,6 @@ require('./routes/application-tool/latest.js')(router);
 require('./routes/admin-latest.js')(router);
 require('./routes/sandbox.js')(router);
 
+
+//require('./views/'+version+'/routes/mainrouter.js')(router);
 module.exports = router;

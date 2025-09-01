@@ -1,6 +1,6 @@
 {% extends "layouts/dps.html" %}
 
-{% set pageName="Action and reply" %}
+{% set pageName="Add new social PIN phone contact" %}
 {% set version="latest" %}
 {% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
@@ -22,27 +22,21 @@
   					<li class="govuk-breadcrumbs__list-item">
   						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
   					</li>
-            <li class="govuk-breadcrumbs__list-item">
-  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/">View all applications</a>
+  					<li class="govuk-breadcrumbs__list-item">
+  						<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/view/">View applications</a>
   					</li>
   				</ol>
   			</div>
   		</nav>
 
       
-      <span class="govuk-caption-xl">
-        {% set appID = data['url_id'] %}
-        {% for app in data['allGeneralApps'] %}
-        {% if app.app_id == appID  %}
-        {{ app.app_type }}
-        {% endif  %}
-        {% endfor  %}
-      </span>
+      <span class="govuk-caption-xl">Add new social PIN phone contact</span>
       <h1 class="govuk-heading-xl">
-        Action and reply
+      	Action and reply
       </h1>
     </div>
   </div>
+
 
   <div class="govuk-grid-row govuk-width-container govuk-!-margin-bottom-9">
     <div class="govuk-grid-column-full govuk-!-padding-right-9 govuk-!-padding-left-0">
@@ -51,21 +45,21 @@
       <nav class="moj-sub-navigation" aria-label="Sub navigation">
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./application?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./application.html">
               Application 
             </a>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./comments?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./comments">
               Comments
             </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link"  aria-current="page" href="./action?url_id={{appID}}">
+            <a class="moj-sub-navigation__link"  aria-current="page" href="./action">
               Action and reply
               </a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="./history?url_id={{appID}}">
+            <a class="moj-sub-navigation__link" href="./history">
               History
             </a>
           </li>
@@ -78,35 +72,29 @@
 
           <h2 class="govuk-heading-m">Action this application</h2>
 
-          {% set appID = data['url_id'] %}
-          {% for app in data['allGeneralApps'] %}
-          {% if app.app_id == appID  %}
+          {% if data['pin_06_actionRespond'] %}
 
-          {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
-
-          <div id="response-approved" class="response-toggle form">
+          <div id="response-approved" class="">
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Action
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['actionRespond'] %}
-                    {{ data['actionRespond'] }}
-                  {% else %}
-                    {{ app.decision }}
-                  {% endif %}
+                  {{ data['pin_06_actionRespond'] }}
                 </dd>
+                <!---
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link toggle-response" href="./action">Change<span class="govuk-visually-hidden"> decision</span></a>
+                </dd> -->
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Reason
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['decisionReason'] %}
-                    {{ data['decisionReason'] }}
-                  {% else %}
-                    {{ app.decision_reason }}
+                  {% if data['pin_06_decisionReason'] %}
+                    {{ data['pin_06_decisionReason'] }}
                   {% endif %}
                 </dd>
               </div>
@@ -123,7 +111,11 @@
                   Prisoner
                 </dt>
                 <dd class="govuk-summary-list__value">
-                {{ app.prisoner_name }} ({{ app.prisoner_number }})
+                {% if (data['pin_01_prisonerName']) and (data['pin_01_prisonNumber']) %}
+                  {{ data['pin_01_prisonerName'] }} ({{ data['pin_01_prisonNumber'] }})
+                {% else %}
+                  Patel, Taj (AB1234C)
+                {% endif %}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -131,24 +123,24 @@
                   Location
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  C-1-42
+                  C-2-013
                 </dd>
               </div>
             </dl>
           </div>
 
-          {% elseif app.decision == null %}
+          {% else %}
 
-          <div id="response-form" class="response-toggle form">
+          <div id="response-form" class="">
 
             <p class="govuk-body">This action and its reason will be seen by the prisoner.</p>
 
-            <form class="form" action="{{homeurl}}applications/view/app/action?url_id=ewqewqeq">
+            <form class="form" action="{{homeurl}}applications/view/new-social-pin-contact/action">
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
               {{ govukRadios({
-                idPrefix: "actionRespond",
-                name: "actionRespond",
+                idPrefix: "pin_06_actionRespond",
+                name: "pin_06_actionRespond",
                 fieldset: {
                   legend: {
                     text: "Select an action",
@@ -174,8 +166,8 @@
               {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
               {{ govukCharacterCount({
-                name: "decisionReason",
-                id: "decisionReason",
+                name: "pin_06_decisionReason",
+                id: "pin_06_decisionReason",
                 maxlength: 1000,
                 threshold: 75,
                 label: {
@@ -185,12 +177,6 @@
                 }
               }) }}
               
-              <div class="govuk-form-group govuk-visually-hidden">
-                <label class="govuk-label" for="url_id">
-                  App ID
-                </label>
-                <input class="govuk-input" id="url_id" name="url_id" type="text" value="{{data['url_id']}}">
-              </div>
 
               <div class="moj-button-action">
                 <button type="submit" class="govuk-button" data-module="govuk-button">
@@ -199,12 +185,9 @@
               </div>
             </form>
           </div>
-          {% endif  %}
-
 
           {% endif  %}
-          {% endfor  %}
-  
+
 
     </div>
   </div>
