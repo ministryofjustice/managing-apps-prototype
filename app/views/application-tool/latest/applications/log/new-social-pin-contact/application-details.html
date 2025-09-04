@@ -214,27 +214,35 @@
                   </select>
                 </div>
     
-                <div class="govuk-form-group govuk-form-group govuk-!-margin-top-8  govuk-!-margin-bottom-5 ">
-                  <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
-                    Telephone number 1
-                  </label>
-                  <div id="contactTel1-hint" class="govuk-hint">
-                    Include area code or international code, if overseas
-                  </div>
-                  <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel1" name="pin_01_contactTel1" type="text" value="{{ data['pin_01_contactTel1'] }}">
-                </div>
-
-                <div class="govuk-form-group govuk-form-group govuk-!-margin-bottom-5">
-                  <label class="govuk-label govuk-label--s" for="contactTel2" aria-describedby="contactTel1-hint">
-                    Telephone number 2 (optional)
-                  </label>
-                  <div id="contactTel1-hint" class="govuk-hint">
-                    Include area code or international code, if overseas
-                  </div>
-                  <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_01_contactTel2" type="text" value="{{ data['pin_01_contactTel2'] }}">
-                </div>
                 </fieldset>
-                </div>
+
+                <fieldset class="govuk-fieldset govuk-!-margin-top-5">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading">
+                      Telephone numbers
+                    </h2>
+                  </legend>
+                  <div id="telephoneNumbers-hint" class="govuk-hint">
+                    Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192. Include area code or international code, if overseas.
+                  </div>
+
+                  <div class="govuk-form-group govuk-form-group govuk-!-margin-top-5  govuk-!-margin-bottom-5 ">
+                    <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
+                      Telephone number 1
+                    </label>
+                    <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel1" name="pin_01_contactTel1" type="text" value="{{ data['pin_01_contactTel1'] }}">
+                   </div>
+
+                   <div class="govuk-form-group govuk-form-group govuk-!-margin-bottom-5">
+                    <label class="govuk-label govuk-label--s" for="contactTel2" aria-describedby="contactTel1-hint">
+                      Telephone number 2 (optional)
+                    </label>
+                    <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_01_contactTel2" type="text" value="{{ data['pin_01_contactTel2'] }}">
+                  </div>
+                </fieldset>
+
+
+              </div>
 
                 <div class="moj-button-action">
                   {% from "govuk/components/button/macro.njk" import govukButton %}

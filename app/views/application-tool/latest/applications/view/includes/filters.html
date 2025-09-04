@@ -28,33 +28,24 @@
                         </button>
                         
                         <!-- Prisoner name or number search -->
-                        <div class="govuk-form-group filters-accordion js-closed">
+                        <div class="govuk-form-group filters-accordion js-closed  govuk-!-margin-bottom-0">
                             <label class="govuk-label govuk-label--m" for="prisoner-search">
                                 Prisoner name or number
                             </label>
                             <input class="govuk-input prisoner-search" id="prisoner-search" name="prisoner-search" type="text" placeholder="Search by name or prison number">
+
+                            <div class="govuk-checkboxes--small govuk-checkboxes--small govuk-!-margin-bottom-5  govuk-!-margin-top-3">
+                                <div class="govuk-checkboxes__item priority-item">
+                                    <input class="govuk-checkboxes__input" id="first-night" name="priority" type="checkbox" value="first-night">
+                                    <label class="govuk-label govuk-checkboxes__label" for="first-night">
+                                        First night or early days centre
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                         
                         <!-- Priority checkbox -->
-                        <div class="govuk-form-group filters-accordion js-closed">
-                        <h2 class="filters-accordion__heading js-container-heading">
-                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Priority</button>
-                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
-                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
-                        </h2>
-
-                        <div class="govuk-form-group filters-accordion__filter">
-
-                                <div class="govuk-checkboxes--small govuk-checkboxes--small">
-                                    <div class="govuk-checkboxes__item priority-item">
-                                        <input class="govuk-checkboxes__input" id="first-night" name="priority" type="checkbox" value="first-night">
-                                        <label class="govuk-label govuk-checkboxes__label" for="first-night">
-                                            First night or early days centre
-                                        </label>
-                                    </div>
-                                </div>
-                                </div>
-                        </div>
                         
                         <!-- Application type checkboxes -->
                         <div class="govuk-form-group filters-accordion js-closed">
