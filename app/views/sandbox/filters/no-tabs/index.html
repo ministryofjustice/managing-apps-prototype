@@ -1,0 +1,171 @@
+{% extends "layouts/dps.html" %}
+
+{% set pageName="View all applications in your prison" %}
+{% set version="latest" %}
+{% set phasebanner="yes" %}
+{% set bodyClasses = 'dps staff-v1' %}
+{% set homeurl="/staff/general-apps/" %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+	<nav aria-label="breadcrumb">
+		<div class="govuk-breadcrumbs">
+			<ol class="govuk-breadcrumbs__list">
+				<li class="govuk-breadcrumbs__list-item">
+					<a class="govuk-breadcrumbs__link" href="{{homeurl}}">Digital Prisons Services</a>
+				</li>
+				<li class="govuk-breadcrumbs__list-item">
+					<a class="govuk-breadcrumbs__link" href="{{homeurl}}applications/">Applications</a>
+				</li>
+			</ol>
+		</div>
+	</nav>
+
+	<span class="govuk-caption-xl">Applications</span>
+	<h1 class="govuk-heading-xl">
+		{{pageName}}
+	</h1>
+</div>
+
+
+<div class="dps-content">
+	<div class="govuk-width-container">
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-third">
+				{% include "./filters.html" %}
+			</div>
+
+			<div class="govuk-grid-column-two-thirds">
+
+				<div class="govuk-tabs" data-module="govuk-tabs">
+					<ul class="govuk-tabs__list">
+					  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+						<a class="govuk-tabs__tab" href="#pending">
+						  Pending
+						</a>
+					  </li>
+					  <li class="govuk-tabs__list-item">
+						<a class="govuk-tabs__tab" href="#closed">
+						  Closed
+						</a>
+					  </li>
+					</ul>
+					<div class="govuk-tabs__panel" id="pending">
+
+
+            <!-- Results content area -->
+            <div class="moj-filter-layout__content">
+                <div class="">                
+                    <table class="govuk-table" id="applications-table">
+                        <caption class="govuk-table__caption govuk-table__caption--m">
+                            Pending applications 
+                            <span class="results-count">(<span class="count">33</span> results)</span>
+                        </caption>
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">Date</th>
+                                <th scope="col" class="govuk-table__header">Application type</th>
+                                <th scope="col" class="govuk-table__header">From</th>
+                                <th scope="col" class="govuk-table__header">Department</th>
+                                <th scope="col" class="govuk-table__header"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body" id="results-tbody">
+                            <!-- Results will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    
+                    <div class="no-results" id="no-results" style="display: none;">
+                        No applications found matching your criteria.
+                    </div>
+                </div>
+            </div>					</div>
+					<div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="closed">
+<div class="panel-header">
+	<h2 class="govuk-heading-m">Closed applications</h2>
+  </div>
+  <div class="panel-content">
+
+	<div id="noResults2" style="display:none;">
+		<p>No results found.</p>
+	  </div>
+	
+	<div id="results2">
+		<table id="dataTable2" class="govuk-table apps-list" data-module="moj-sortable-table">
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+				  <th scope="col" class="govuk-table__header nowrap" aria-sort="descending">Date</th>
+				  <th scope="col" class="govuk-table__header">Application type</th>
+				  <th scope="col" class="govuk-table__header">From</th>
+				  <th scope="col" class="govuk-table__header">Department</th>
+				  <th scope="col" class="govuk-table__header" >Decision</th>
+				  <th scope="col" class="govuk-table__header" ></th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				{% for app in data['allMVP2Apps'] %}
+				{% if app.decision == "Approved" or app.decision == "Declined" %}
+		        <tr class="govuk-table__row" data-tags="{{ app.prisoner_name }} ({{ app.prisoner_number }}) {{ app.current_dept }} {{ app.app_type }}"">
+					<td class="govuk-table__cell nowrap reldate">{{ app.date_received }}</td>
+					<td class="govuk-table__cell">{{ app.app_type }}</td>
+					<td class="govuk-table__cell">
+					  {{ app.prisoner_name }}
+					  <span class="govuk-table__subtext govuk-body-s">{{ app.prisoner_number }}</span>
+					</td>
+					<td class="govuk-table__cell">{{ app.current_dept }}</td>
+					<td class="govuk-table__cell">{{ app.decision }}</td>
+					<td class="govuk-table__cell"><a href="./app/application?url_id={{ app.app_id }}">View<span class="govuk-visually-hidden"> {{ app.app_type }} for {{ app.prisoner_name }} from {{ app.date_received }}</span></a></td>
+				  </tr>
+				{% endif %}
+				{% endfor %}
+		</tbody>
+		</table>
+		{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+	
+		{{ govukPagination({
+		  next: {
+			href: "#"
+		  },
+		  items: [
+			{
+			  number: 1,
+			  current: true,
+			  href: "#"
+			},
+			{
+			  number: 2,
+			  href: "#"
+			},
+			{
+			  number: 3,
+			  href: "#"
+			}
+		  ]
+		}) }}
+
+	</div>
+
+</div>
+						</div>
+				</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#prisoner-autocomplete')
+  })
+</script>
+
+{% endblock %}

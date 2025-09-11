@@ -33,7 +33,7 @@ let deptsAndGeneralApps      = require('./dps/general-apps/department_apps.json'
 let departments              = require('./dps/general-apps/departments.json')
 let socialRelationships      = require('./dps/social_relationships.json')
 let legalRelationships       = require('./dps/legal_relationships.json')
-
+let fullAppTypes             = require('./dps/general-apps/full_app-types.json')
 
 let bhPendingApps            = require('./dps/bh_pending_apps.json')
 let bhClosedApps             = require('./dps/bh_closed_apps.json')
@@ -71,5 +71,6 @@ module.exports = {
   addresses,
   prisonStaff,
   countries,
-  pin05data
+  pin05data,
+  fullAppTypes
 }

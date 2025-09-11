@@ -1,0 +1,182 @@
+       <!-- Filter sidebar -->
+        <div class="moj-filter-layout__filter govuk-!-margin-bottom-9">
+            <div class="moj-filter" data-module="moj-filter">
+                <div class="moj-filter__header">
+                    <div class="moj-filter__header-title">
+                        <h2 class="govuk-heading-m">Filters</h2>
+                    </div>
+                </div>
+                
+                <div class="moj-filter__content">
+                    <!-- Selected filters section at top -->
+                    <div class="moj-filter__selected selected-filters" style="display: none;">
+                        <div class="moj-filter__selected-heading">
+                            <div class="moj-filter__heading-title">
+                                <h2 class="govuk-heading-m">Selected filters</h2>
+                            </div>
+                            <div class="moj-filter__heading-action">
+                                <p><a class="govuk-link govuk-link--no-visited-state clear-filters" href="#">Clear filters</a></p>
+                            </div>
+                        </div>
+                        <div class="selected-tags"></div>
+                    </div>
+                    
+                    <!-- Filter options -->
+                    <div class="moj-filter__options">
+                        <button type="button" class="govuk-button apply-filters">
+                            Apply filters
+                        </button>
+                        
+                        <!-- Prisoner name or number search -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+                            <label class="govuk-label govuk-label--s" for="prisoner-search">
+                                Prisoner name or number
+                            </label>
+                            <input class="govuk-input prisoner-search govuk-!-margin-bottom-2" id="prisoner-search" name="prisoner-search" type="text" placeholder="Search by name or prison number">
+
+                        <div class="govuk-form-group">
+
+                            <div class="govuk-checkboxes--small govuk-checkboxes--small">
+                                <div class="govuk-checkboxes__item priority-item">
+                                    <input class="govuk-checkboxes__input" id="first-night" name="priority" type="checkbox" value="first-night">
+                                    <label class="govuk-label govuk-checkboxes__label" for="first-night">
+                                        First night or early days centre
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Status checkboxes -->
+
+                        <div class="govuk-form-group filters-accordion js-closed">
+
+                        <h2 class="filters-accordion__heading js-container-heading js-closed">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Status</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
+                        <div class="govuk-form-group filters-accordion__filter">
+                        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-visually-hidden">
+                                Status
+                            </legend>
+                            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email">
+                                <label class="govuk-label govuk-radios__label" for="contact">
+                                Pending
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+                                <label class="govuk-label govuk-radios__label" for="contact-2">
+                                Closed
+                                </label>
+                            </div>
+
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-visually-hidden">
+                                    Decision
+                                </legend>
+                                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+                                    <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                                    Approved
+                                    </label>
+                                </div>
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+                                    <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                                    Declined
+                                    </label>
+                                </div>
+                                </div>
+                            </fieldset>
+                            </div>
+
+                        </fieldset>
+                        </div>
+                        </div>
+
+                         <!-- Department checkboxes -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+
+                        <h2 class="filters-accordion__heading js-container-heading">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Department</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
+
+                        <div class="govuk-form-group filters-accordion__filter">
+                            <input class="govuk-input department-search govuk-!-margin-bottom-2" type="text" placeholder="">
+                            <div class="govuk-checkboxes govuk-checkboxes--fixed-height govuk-checkboxes--small department-list">
+
+                                {% for department in data['departments'] %}
+                                <div class="govuk-checkboxes__item department-item">
+                                    <input class="govuk-checkboxes__input" id="healthcare" name="department" type="checkbox" value="healthcare">
+                                    <label class="govuk-label govuk-checkboxes__label" for="healthcare">
+                                        {{ department.department_name}}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                                            
+                            </div>
+                            <div class="no-department-results" style="display: none; color: #505a5f; font-style: italic; text-align: center; padding: 10px;">
+                                No departments found matching your search.
+                            </div>
+                            
+                        </div>
+                        </div>
+                        
+                        <!-- Application type checkboxes -->
+                        <div class="govuk-form-group filters-accordion js-closed">
+                        <h2 class="filters-accordion__heading js-container-heading">
+                            <button class="js-container-button filters-accordion__title filters-accordion__button" type="button" aria-expanded="false" id="option-select-title-task-type" aria-controls="list_of_countries_to_filter">Application type</button>
+                            <img src="/public/images/accordion-closed.svg" class="filters-accordion__icon filters-accordion__icon--up" aria-hidden="true" focusable="false">
+                            <img src="/public/images/accordion-open.svg" class="filters-accordion__icon filters-accordion__icon--down" aria-hidden="true" focusable="false">
+                        </h2>
+
+                        <div class="govuk-form-group filters-accordion__filter">
+                            <input class="govuk-input application-type-search govuk-!-margin-bottom-4" type="text">
+                                <div class="govuk-checkboxes govuk-checkboxes--fixed-height govuk-checkboxes--small application-type-list">
+
+                                {% for app in data['fullAppTypes'] %}
+                                <div class="govuk-checkboxes__item department-item">
+                                    <input class="govuk-checkboxes__input" id="healthcare" name="department" type="checkbox" value="healthcare">
+                                    <label class="govuk-label govuk-checkboxes__label" for="healthcare">
+                                        {{ app }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<script type="text/javascript">
+  var testDepartments = [
+  'Activities',
+  'Business Hub',
+  'Careers Advice (CIAG)',
+  'Chaplaincy',
+  'Education, Work and Skills',
+  'Gym',
+  'Healthcare',
+  'OCA',
+  'OMU',
+  'PINs',
+  'Reception',
+  'Safer Custody',
+  'Security',
+  'Shannon Trust',
+  'Visits'
+]
+</script>

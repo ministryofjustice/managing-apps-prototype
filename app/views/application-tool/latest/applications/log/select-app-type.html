@@ -33,7 +33,7 @@
                 </legend>
                 <div id="chooseApp-hint" class="govuk-hint">
                 </div>
-                <div class="govuk-radios" data-module="govuk-radios">
+                <div id="appTypes" class="govuk-radios" data-module="govuk-radios">
 
                   {% for app in details.apps %}
                   <div class="govuk-radios__item">
@@ -42,15 +42,7 @@
                       {{ app.app_type }}
                     </label>
                   </div>
-                  {% endfor %}
-
-                  <div class="govuk-form-group" style="display: none;">
-                    <label class="govuk-label" for="width-10">
-                      Application type
-                    </label>
-                    <input class="govuk-input govuk-input--width-10" id="appGroup" name="appGroup" type="text" value="{{ data['appGroup'] }}">
-                  </div>
-    
+                  {% endfor %}    
 
                 </div>
               </fieldset>
