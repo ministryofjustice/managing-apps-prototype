@@ -226,23 +226,11 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-               Type of contact
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% if data['pin_04_contactType'] %}
-              <p>{{ data['pin_04_contactType'] }}</p>
-              {% endif %}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
                Relationship
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_04_contactType'] == "Social" %}
-              <p>{{ data['pin_04_socialRelationship'] }}</p>
-              {% elseif data['pin_04_contactType'] == "Legal" %}
-              <p>{{ data['pin_04_legalRelationship'] }}</p>
+              {% if data['pin_04_relationship'] %}
+              <p>{{ data['pin_04_relationship'] }}</p>
               {% endif %}
             </dd>
           </div>

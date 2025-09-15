@@ -101,18 +101,36 @@ $(document).ready(function() {
         
         return allApplicationsData.filter(function(app) {
             var status = app.status ? app.status.toLowerCase() : 'pending';
+            var decision = app.decision ? app.decision.toLowerCase() : '';
             
             if (selectedStatus === 'pending') {
                 return status === 'pending' || !app.status;
             } else if (selectedStatus === 'closed') {
+                // First check if the application is closed
+                var isClosed = status === 'closed';
+                
+                if (!isClosed) {
+                    return false;
+                }
+                
+                // If no specific decision filters are selected, show all closed applications
+                if (!includeApproved && !includeDeclined) {
+                    return true;
+                }
+                
+                // If both are selected, show all closed applications
                 if (includeApproved && includeDeclined) {
-                    return status === 'closed' || status === 'approved' || status === 'declined';
-                } else if (includeApproved) {
-                    return status === 'approved';
-                } else if (includeDeclined) {
-                    return status === 'declined';
-                } else {
-                    return status === 'closed';
+                    return true;
+                }
+                
+                // If only approved is selected, show only approved decisions
+                if (includeApproved && !includeDeclined) {
+                    return decision === 'approved';
+                }
+                
+                // If only declined is selected, show only declined decisions
+                if (includeDeclined && !includeApproved) {
+                    return decision === 'declined';
                 }
             }
             return false;
@@ -129,7 +147,7 @@ $(document).ready(function() {
         
         // Update count in caption
         if ($caption.length) {
-            $caption.text(results.length + ' applications');
+            $caption.text('Showing ' + results.length + ' applications');
         }
         if ($resultsCount.length) {
             $resultsCount.text(results.length);
@@ -156,11 +174,18 @@ $(document).ready(function() {
             html += '<td class="govuk-table__cell">';
             html += '<div class="prisoner-info">';
             html += '<div class="prisoner-name">' + item.prisoner_name + '</div>';
-            html += '<div class="prisoner-id govuk-table__subtext govuk-body-s">(' + item.prisoner_number + ')</div>';
+            html += '<div class="prisoner-id govuk-table__subtext govuk-body-s">' + item.prisoner_number + '</div>';
             html += '</div>';
             html += '</td>';
             html += '<td class="govuk-table__cell">' + (item.current_dept || 'Unassigned') + '</td>';
-            html += '<td class="govuk-table__cell">' + (item.status || 'Pending') + '</td>';
+            html += '<td class="govuk-table__cell">';
+            if (item.status && item.status.toLowerCase() === 'closed' && item.decision) {
+                html += '<div>' + (item.status || 'Pending') + '</div>';
+                html += '<div class="govuk-table__subtext govuk-body-s">' + item.decision + '</div>';
+            } else {
+                html += (item.status || 'Pending');
+            }
+            html += '</td>';
             html += '<td class="govuk-table__cell"><a href="' + viewUrl + '" class="govuk-link">View</a></td>';
             html += '</tr>';
         });
@@ -183,8 +208,8 @@ $(document).ready(function() {
         var currentApplications = getCurrentApplications();
         displayResults(currentApplications);
         
-        // Initialize selected filters display with default pending selection
-        updateSelectedFilters();
+        // Don't show selected filters until apply button is pressed
+        // updateSelectedFilters(); - removed this line
     }
     
     function populateDepartments() {
@@ -320,17 +345,14 @@ $(document).ready(function() {
                 $('#status-approved, #status-declined').prop('checked', false);
             }
             
-            // Refresh department and application type filters
-            populateDepartments();
-            populateApplicationTypes();
-            updateSelectedFilters();
+            // Don't refresh department and application type filters automatically
+            // They will be refreshed when apply button is clicked
         });
         
         // Closed sub-status checkboxes
         $container.on('change', '#status-approved, #status-declined', function() {
-            populateDepartments();
-            populateApplicationTypes();
-            updateSelectedFilters();
+            // Don't refresh department and application type filters automatically
+            // They will be refreshed when apply button is clicked
         });
         
         // Department search functionality
@@ -381,18 +403,19 @@ $(document).ready(function() {
             }
         });
         
-        // Filter checkboxes change handler
+        // Filter checkboxes change handler - removed updateSelectedFilters() call
         $container.on('change', 'input[name="department"], input[name="application-type"], #first-night', function() {
-            updateSelectedFilters();
+            // Only update filters when apply button is pressed
         });
         
-        // Prisoner search change handler
+        // Prisoner search change handler - removed updateSelectedFilters() call
         $prisonerSearch.on('input', function() {
-            updateSelectedFilters();
+            // Only update filters when apply button is pressed
         });
         
         // Apply filters buttons
         $applyButtons.on('click', function() {
+            updateSelectedFilters();
             applyFilters();
         });
         

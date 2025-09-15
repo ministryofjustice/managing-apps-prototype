@@ -85,3 +85,29 @@
 .filters-accordion.js-closed .filters-accordion__container {
   display: none;
 }
+
+.applications-table {
+  border: 1px solid;
+  padding: 20px;
+}
+
+.filter-container {
+.govuk-form-group {
+  border-bottom: 1px solid;
+  .filter-search, .prisoner-search {
+    background: url(/public/images/search-icon.svg) #fff no-repeat -5px -3px;
+    padding-left: 30px;
+  }
+  .filter-search {
+    margin-bottom: 10px;
+  }
+}
+
+#filters--app-tyoe {
+.govuk-checkboxes {
+  max-height: 300px;
+  overflow-y: scroll;
+  padding-bottom: 5px;
+}
+}
+}
