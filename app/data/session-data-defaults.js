@@ -32,7 +32,7 @@ let allGeneralApps           = require('./dps/general-apps/all-general-apps-data
 let deptsAndGeneralApps      = require('./dps/general-apps/department_apps.json')
 let departments              = require('./dps/general-apps/departments.json')
 let socialRelationships      = require('./dps/social_relationships.json')
-let legalRelationships       = require('./dps/legal_relationships.json')
+let officialRelationships    = require('./dps/legal_relationships.json')
 let fullAppTypes             = require('./dps/general-apps/full_app-types.json')
 
 let bhPendingApps            = require('./dps/bh_pending_apps.json')
@@ -63,7 +63,7 @@ module.exports = {
   allGeneralApps,
   departments,
   socialRelationships,
-  legalRelationships,
+  officialRelationships,
   bhPendingApps,
   bhClosedApps,
   omuPendingApps,

@@ -9,7 +9,7 @@ module.exports = function (router, content) {
       res.redirect('/application-tool/latest/applications/log/new-social-pin-contact/application-details')
     }
     else if (appType == "app_1002") {
-      res.redirect('/application-tool/latest/applications/log/new-legal-pin-contact/application-details')
+      res.redirect('/application-tool/latest/applications/log/new-official-pin-contact/application-details')
     }
     else if (appType == "app_1001") {
       res.redirect('/application-tool/latest/applications/log/emergency-pin-credit/application-details')

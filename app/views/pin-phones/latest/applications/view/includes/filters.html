@@ -65,7 +65,7 @@
       </button>
 
       <div class="govuk-form-group">
-        <label class="govuk-label govuk-label--m" for="nameOrNumberFilter">
+        <label class="govuk-label govuk-label--s" for="nameOrNumberFilter">
           Prisoner
         </label>
         <div id="my-autocomplete-wrapper">
@@ -76,14 +76,6 @@
             {% endfor %}
           </select>
       </div>
-      
-      </div>
-
-     <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Priority
-          </legend>
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="filterFNC" name="filterFNC" type="checkbox"
@@ -93,13 +85,42 @@
               </label>
             </div>
           </div>
-        </fieldset>
+      
       </div>
+
       <div class="govuk-form-group">
 
         <fieldset class="govuk-fieldset">
 
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Decision
+          </legend>
+
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="type-1" name="typeFilter" type="checkbox" value="Add new social PIN phone contact">
+              <label class="govuk-label govuk-checkboxes__label" for="type-1">
+                Approved
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="type-2" name="typeFilter" type="checkbox" value="Add new official PIN phone contact">
+              <label class="govuk-label govuk-checkboxes__label" for="type-2">
+                Declined
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+            <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
             Type
           </legend>
 
@@ -113,9 +134,9 @@
             </div>
 
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="type-2" name="typeFilter" type="checkbox" value="Add new legal PIN phone contact">
+              <input class="govuk-checkboxes__input" id="type-2" name="typeFilter" type="checkbox" value="Add new official PIN phone contact">
               <label class="govuk-label govuk-checkboxes__label" for="type-2">
-                Add new legal PIN phone contact (18)
+                Add new official PIN phone contact (18)
               </label>
             </div>
 
@@ -156,7 +177,7 @@
 
         <fieldset class="govuk-fieldset">
 
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
             Department
           </legend>
 

@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/pin-phones/latest/" %}
+{% set homeurl="/application-tool/latest/" %}
 
 {% block content %}
 
@@ -29,8 +29,9 @@
   			</div>
   		</nav>
 
+      <span class="govuk-caption-xl">PIN phones</span>
       <h1 class="govuk-heading-xl">
-        Add new legal PIN phone contact
+        Add new official PIN phone contact
       </h1>
     </div>
   </div>
@@ -74,7 +75,7 @@
                 Status
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['pin_02_actionRespond'] == "Approved" or data['pin_02_actionRespond'] == "Declined"  %}
+                {% if data['pin_06_actionRespond'] == "Approved" or data['pin_06_actionRespond'] == "Declined"  %}
                   Closed
                 {% else %}
                   Pending
@@ -86,13 +87,13 @@
                 Department
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['pin_02_appDept'] %}
-                  {{ data['pin_02_appDept'] }}
+                {% if data['pin_06_appDept'] %}
+                  {{ data['pin_06_appDept'] }}
                 {% else %}
                   Business Hub
                 {% endif %}
               </dd>
-              {% if data['pin_02_actionRespond'] !== "Approved" and data['pin_02_actionRespond'] !== "Declined"  %}
+              {% if data['pin_06_actionRespond'] !== "Approved" and data['pin_06_actionRespond'] !== "Declined"  %}
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="forward.html">Forward<span class="govuk-visually-hidden"> department</span></a>
               </dd>
@@ -100,10 +101,18 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
+                Application group
+              </dt>
+              <dd class="govuk-summary-list__value">
+                PIN phones
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
                 Application type
               </dt>
               <dd class="govuk-summary-list__value">
-                Add new legal PIN phone contact
+                Add new official PIN phone contact
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -133,8 +142,8 @@
                 Prisoner
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['prisonerName']) and (data['prisonNumber']) %}
-                  {{ data['prisonerName'] }} ({{ data['prisonNumber'] }})
+                {% if (data['prisonNumber']) and (data['prisonNumber']) %}
+                  {{ data['prisonNumber'] }} ({{ data['prisonNumber'] }})
                 {% else %}
                   Patel, Taj (AB1234C)
                 {% endif %}
@@ -174,8 +183,8 @@
 
 
         <div class="govuk-summary-list--header">
-          <h2 class="govuk-heading-m">New legal contact to add</h2>
-          <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden">legal PIN phone contact details</span></a>
+          <h2 class="govuk-heading-m">New official contact to add</h2>
+          <a href="javascript:window.history.go(-1)" class="govuk-body">Change <span class="govuk-visually-hidden">official PIN phone contact details</span></a>
         </div>
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -184,7 +193,7 @@
               First name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['pin_02_legalFirstName'] }}
+              {{ data['pin_02_officialFirstName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -192,7 +201,7 @@
               Last name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['pin_02_legalLastName'] }}
+              {{ data['pin_02_officialLastName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -218,8 +227,8 @@
                Telephone number 1
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_02_legalContactTel1'] %}
-              <p>{{ data['pin_02_legalContactTel1'] }}</p>
+              {% if data['pin_02_contactTel1'] %}
+              <p>{{ data['pin_02_contactTel1'] }}</p>
               {% endif %}
             </dd>
           </div>
@@ -228,8 +237,8 @@
                Telephone number 2
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_02_legalContactTel2'] %}
-              <p>{{ data['pin_02_legalContactTel2'] }}</p>
+              {% if data['pin_02_contactTel2'] %}
+              <p>{{ data['pin_02_contactTel2'] }}</p>
               {% endif %}
             </dd>
           </div>

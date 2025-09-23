@@ -8,7 +8,7 @@ module.exports = function (router, content) {
       res.redirect('/pin-phones/latest/applications/log/new-social-pin-contact/select-department.html')
     }
     if (appType == "bh_02") {
-      res.redirect('/pin-phones/latest/applications/log/new-legal-pin-contact/select-department.html')
+      res.redirect('/pin-phones/latest/applications/log/new-official-pin-contact/select-department.html')
     }
     if (appType == "bh_03") {
       res.redirect('/pin-phones/latest/applications/log/emergency-pin-credit/select-department.html')

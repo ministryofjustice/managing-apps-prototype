@@ -4,7 +4,7 @@
 {% set version="latest" %}
 {% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
-{% set homeurl="/pin-phones/latest/" %}
+{% set homeurl="/application-tool/latest/" %}
 
 
 {% block content %}
@@ -17,7 +17,7 @@
       <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
 
       <span class="govuk-caption-xl">
-        Add new legal PIN phone contact
+        Add new official PIN phone contact
       </span>
       <h1 class="govuk-heading-xl">Log details</h1>
 
@@ -27,20 +27,20 @@
           <div class="govuk-grid-column-one-half">
 
 
-            <form class="form" action="/pin-phones/latest/applications/log/new-legal-pin-contact/check-details">
+            <form class="form" action="/application-tool/latest/applications/log/new-official-pin-contact/check-details">
 
               <div class="govuk-form-group govuk-!-margin-bottom-5">
-                <label class="govuk-label govuk-label--s" for="legalFirstName">
+                <label class="govuk-label govuk-label--s" for="officialFirstName">
                   First name
                 </label>
-                <input class="govuk-input" id="legalFirstName" name="pin_02_legalFirstName" type="text" value="{{ data['pin_02_legalFirstName'] }}">
+                <input class="govuk-input" id="officialFirstName" name="pin_02_officialFirstName" type="text" value="{{ data['pin_02_officialFirstName'] }}">
               </div>
   
               <div class="govuk-form-group govuk-!-margin-bottom-5">
-                <label class="govuk-label govuk-label--s" for="legalLastName">
+                <label class="govuk-label govuk-label--s" for="officialLastName">
                   Last name
                 </label>
-                <input class="govuk-input" id="legalLastName" name="pin_02_legalLastName" type="text" value="{{ data['pin_02_legalLastName'] }}">
+                <input class="govuk-input" id="officialLastName" name="pin_02_officialLastName" type="text" value="{{ data['pin_02_officialLastName'] }}">
               </div>
   
               <div class="govuk-form-group  govuk-!-margin-bottom-5">
@@ -54,10 +54,10 @@
               <label class="govuk-label govuk-label--s" for="contactRelationship">
                 Relationship
               </label>
-              <select class="govuk-select" id="contactRelationship" name="pin_02_legalContactRelationship">
+              <select class="govuk-select" id="contactRelationship" name="pin_02_contactRelationship">
                 <option value="" selected disabled hidden>Select a relationship</option>
-                {% for relationship in data['legalRelationships'] %}
-                <option value="{{ relationship.legal_rel }}">{{ relationship.legal_rel }}</option>
+                {% for relationship in data['officialRelationships'] %}
+                <option value="{{ relationship.official_rel }}">{{ relationship.official_rel }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -77,16 +77,17 @@
                 <label class="govuk-label govuk-label--s" for="contactTel1" aria-describedby="contactTel1-hint">
                   Telephone number 1
                 </label>
-                <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel1" name="pin_02_legalContactTel1" type="text" value="{{ data['pin_02_legalContactTel1'] }}">
+                <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel1" name="pin_02_contactTel1" type="text" value="{{ data['pin_02_contactTel1'] }}">
                 </div>
 
                 <div class="govuk-form-group govuk-form-group govuk-!-margin-bottom-5">
                 <label class="govuk-label govuk-label--s" for="contactTel2" aria-describedby="contactTel1-hint">
                   Telephone number 2 (optional)
                 </label>
-                <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_02_legalContactTel2" type="text" value="{{ data['pin_02_legalContactTel2'] }}">
+                <input class="govuk-input govuk-!-margin-bottom-2" id="contactTel2" name="pin_02_contactTel2" type="text" value="{{ data['pin_02_contactTel2'] }}">
               </div>
             </fieldset>
+          
 
               <div class="moj-button-action">
                 <button type="submit" class="govuk-button" data-module="govuk-button">

@@ -184,7 +184,7 @@
               First name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['pin_04_legalFirstName'] }}
+              {{ data['pin_04_officialFirstName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -192,7 +192,7 @@
               Last name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['pin_04_legalLastName'] }}
+              {{ data['pin_04_officialLastName'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -200,8 +200,8 @@
                Telephone number 1
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_04_legalContactTel1'] %}
-              <p>{{ data['pin_04_legalContactTel1'] }}</p>
+              {% if data['pin_04_officialContactTel1'] %}
+              <p>{{ data['pin_04_officialContactTel1'] }}</p>
               {% endif %}
             </dd>
           </div>
@@ -210,8 +210,8 @@
                Telephone number 2
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['pin_04_legalContactTel2'] %}
-              <p>{{ data['pin_04_legalContactTel2'] }}</p>
+              {% if data['pin_04_officialContactTel2'] %}
+              <p>{{ data['pin_04_officialContactTel2'] }}</p>
               {% endif %}
             </dd>
           </div>
@@ -233,7 +233,7 @@
               {% if data['pin_04_contactType'] == "Social" %}
               <p>{{ data['pin_04_socialRelationship'] }}</p>
               {% elseif data['pin_04_contactType'] == "Legal" %}
-              <p>{{ data['pin_04_legalRelationship'] }}</p>
+              <p>{{ data['pin_04_officialRelationship'] }}</p>
               {% endif %}
             </dd>
           </div>
