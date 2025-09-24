@@ -5,6 +5,7 @@
 {% set phasebanner="yes" %}
 {% set bodyClasses = 'dps staff-v1' %}
 {% set homeurl="/pin-phones/latest/" %}
+{% set appID = data['url_id'] %}
 
 {% block content %}
 
@@ -30,7 +31,6 @@
   		</nav>
 
       <h1 class="govuk-heading-xl">
-        {% set appID = data['url_id'] %}
         {% for app in data['allMVP2Apps'] %}
         {% if app.app_id == appID  %}
         {{ app.app_type }}
@@ -70,7 +70,6 @@
         </ul>
       </nav>
 
-      {% set appID = data['url_id'] %}
       {% for app in data['allMVP2Apps'] %}
       {% if app.app_id == appID  %}
 
