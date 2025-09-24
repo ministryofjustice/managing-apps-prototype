@@ -96,3 +96,50 @@ p.none {margin-bottom: 0;}
     display: none;
   }
 }
+
+
+
+
+.print {
+
+  background-color: #f3f2f1;;
+
+  #actionBar {
+    background-color: #1d70b8;
+    position: fixed;
+    width: 100%;
+    top: 0; 
+    left: 0;
+    text-align: right;
+    a {
+      margin: 1em;;
+
+    }
+  }
+  #main-content {
+    padding: 100px 2em 2em 2em;
+    background-color: white;
+    margin: auto;
+    max-width: 800px;
+    dl {
+      max-width: 600px;
+    }
+  }
+
+}
+
+@media print {
+  /* All your print styles go here */
+  .print {
+    #actionBar { display: none;}
+     #main-content {
+      padding: inherit;
+      p, dl, h1 {
+        font-size: 12px !important;
+      }
+    dl {
+        max-width: 75%;
+      }
+   }
+  }
+}

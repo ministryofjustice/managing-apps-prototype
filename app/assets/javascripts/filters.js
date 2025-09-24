@@ -174,14 +174,14 @@ $(document).ready(function() {
             html += '<td class="govuk-table__cell">';
             html += '<div class="prisoner-info">';
             html += '<div class="prisoner-name">' + item.prisoner_name + '</div>';
-            html += '<div class="prisoner-id govuk-table__subtext govuk-body-s">' + item.prisoner_number + '</div>';
+            html += '<div class="prisoner-id govuk-table__subtext govuk-body-s">(' + item.prisoner_number + ')</div>';
             html += '</div>';
             html += '</td>';
             html += '<td class="govuk-table__cell">' + (item.current_dept || 'Unassigned') + '</td>';
             html += '<td class="govuk-table__cell">';
             if (item.status && item.status.toLowerCase() === 'closed' && item.decision) {
                 html += '<div>' + (item.status || 'Pending') + '</div>';
-                html += '<div class="govuk-table__subtext govuk-body-s">' + item.decision + '</div>';
+                html += '<div class="govuk-table__subtext govuk-body-s">(' + item.decision + ')</div>';
             } else {
                 html += (item.status || 'Pending');
             }
@@ -212,111 +212,304 @@ $(document).ready(function() {
         // updateSelectedFilters(); - removed this line
     }
     
-    function populateDepartments() {
-        var $departmentList = $('.filter-container .department-list');
-        if (!$departmentList.length) return;
+function populateDepartments() {
+    console.log('=== populateDepartments() called ===');
+    var $departmentList = $('.filter-container .department-list');
+    if (!$departmentList.length) return;
+    
+    // Save currently selected departments before clearing
+    var currentlySelected = [];
+    $('.filter-container input[name="department"]:checked').each(function() {
+        currentlySelected.push($(this).val());
+    });
+    console.log('Departments currently selected:', currentlySelected);
+    
+    $departmentList.empty();
+    
+    // Get current filter state (excluding departments to avoid circular filtering)
+    var prisonerSearchTerm = $('.filter-container .prisoner-search').val().toLowerCase().trim();
+    var selectedApplicationTypes = [];
+    var firstNightOnly = $('.filter-container #first-night').is(':checked');
+    
+    $('.filter-container input[name="application-type"]:checked').each(function() {
+        selectedApplicationTypes.push($(this).val());
+    });
+    
+    var currentApplications = getCurrentApplications();
+    
+    // Apply all filters except department filter
+    var filteredApplications = currentApplications.filter(function(item) {
+        // Prisoner name/number search
+        if (prisonerSearchTerm) {
+            var nameMatch = item.prisoner_name && item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
+            var idMatch = item.prisoner_number && item.prisoner_number.toLowerCase().includes(prisonerSearchTerm);
+            if (!nameMatch && !idMatch) {
+                return false;
+            }
+        }
         
-        $departmentList.empty();
+        // First night filter
+        if (firstNightOnly && !isFirstNightLocation(item.priority)) {
+            return false;
+        }
+        
+        // Application type filter
+        if (selectedApplicationTypes.length > 0 && !selectedApplicationTypes.includes(item.app_type)) {
+            return false;
+        }
+        
+        return true;
+    });
+    
+    // Count applications per department
+    var departmentCounts = {};
+    filteredApplications.forEach(function(app) {
+        var dept = app.current_dept || 'Unassigned';
+        departmentCounts[dept] = (departmentCounts[dept] || 0) + 1;
+    });
+    
+    // Only show departments that have applications
+    var availableDepartments = Object.keys(departmentCounts);
+    availableDepartments.sort();
+    
+    availableDepartments.forEach(function(deptName) {
+        var deptCount = departmentCounts[deptName];
+        var deptId = deptName.toLowerCase().replace(/\s+/g, '-');
+        
+        var html = '<div class="govuk-checkboxes__item department-item">';
+        html += '<input class="govuk-checkboxes__input" id="dept-' + deptId + '" name="department" type="checkbox" value="' + deptName + '"';
+        
+        // Only restore selection if this department is still available
+        if (currentlySelected.includes(deptName)) {
+            html += ' checked';
+        }
+        
+        html += '>';
+        html += '<label class="govuk-label govuk-checkboxes__label" for="dept-' + deptId + '">';
+        html += deptName + ' (' + deptCount + ')';
+        html += '</label>';
+        html += '</div>';
+        
+        $departmentList.append(html);
+    });
+    
+    console.log('Populated departments:', availableDepartments.length, 'available');
+}
+
+
+function populateApplicationTypes() {
+    console.log('=== populateApplicationTypes() called ===');
+    var $applicationTypeList = $('.filter-container .application-type-list');
+    if (!$applicationTypeList.length) return;
+    
+    // Save currently selected application types before clearing
+    var currentlySelected = [];
+    $('.filter-container input[name="application-type"]:checked').each(function() {
+        currentlySelected.push($(this).val());
+    });
+    console.log('App types currently selected:', currentlySelected);
+    
+    $applicationTypeList.empty();
+    
+    // Get current filter state (excluding application types to avoid circular filtering)
+    var prisonerSearchTerm = $('.filter-container .prisoner-search').val().toLowerCase().trim();
+    var selectedDepartments = [];
+    var firstNightOnly = $('.filter-container #first-night').is(':checked');
+    
+    $('.filter-container input[name="department"]:checked').each(function() {
+        selectedDepartments.push($(this).val());
+    });
+    
+    console.log('Selected departments for filtering app types:', selectedDepartments);
+    
+    var currentApplications = getCurrentApplications();
+    console.log('Current applications before department filter:', currentApplications.length);
+    
+    // Apply all filters except application type filter
+    var filteredApplications = currentApplications.filter(function(item) {
+        // Prisoner name/number search
+        if (prisonerSearchTerm) {
+            var nameMatch = item.prisoner_name && item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
+            var idMatch = item.prisoner_number && item.prisoner_number.toLowerCase().includes(prisonerSearchTerm);
+            if (!nameMatch && !idMatch) {
+                return false;
+            }
+        }
+        
+        // First night filter
+        if (firstNightOnly && !isFirstNightLocation(item.priority)) {
+            return false;
+        }
+        
+        // Department filter
+        if (selectedDepartments.length > 0) {
+            var itemDept = item.current_dept || 'Unassigned';
+            console.log('Checking app:', item.app_type, 'in dept:', itemDept, 'against selected:', selectedDepartments);
+            if (!selectedDepartments.includes(itemDept)) {
+                return false;
+            }
+        }
+        
+        return true;
+    });
+    
+    console.log('Filtered applications after department filter:', filteredApplications.length);
+    
+    // Count applications per type
+    var typeCounts = {};
+    filteredApplications.forEach(function(app) {
+        var appType = app.app_type;
+        if (appType) {
+            typeCounts[appType] = (typeCounts[appType] || 0) + 1;
+        }
+    });
+    
+    console.log('Application type counts:', typeCounts);
+
+    // Only show application types that have applications
+    var availableTypes = Object.keys(typeCounts);
+    availableTypes.sort();
+    
+    availableTypes.forEach(function(appType, index) {
+        var appTypeCount = typeCounts[appType];
+        var appTypeId = 'app-type-' + index;
+        
+        var html = '<div class="govuk-checkboxes__item application-type-item">';
+        html += '<input class="govuk-checkboxes__input" id="' + appTypeId + '" name="application-type" type="checkbox" value="' + appType + '"';
+        
+        // Only restore selection if this application type is still available
+        if (currentlySelected.includes(appType)) {
+            html += ' checked';
+        }
+        
+        html += '>';
+        html += '<label class="govuk-label govuk-checkboxes__label" for="' + appTypeId + '">';
+        html += appType + ' (' + appTypeCount + ')';
+        html += '</label>';
+        html += '</div>';
+        
+        $applicationTypeList.append(html);
+    });
+    
+    console.log('Populated application types:', availableTypes.length, 'available');
+}
+    
+    function getFilteredApplicationsForCounting() {
+        var prisonerSearchTerm = $('.filter-container .prisoner-search').val().toLowerCase().trim();
+        var selectedDepartments = [];
+        var selectedApplicationTypes = [];
+        var firstNightOnly = $('.filter-container #first-night').is(':checked');
+        
+        $('.filter-container input[name="department"]:checked').each(function() {
+            selectedDepartments.push($(this).val());
+        });
+        
+        $('.filter-container input[name="application-type"]:checked').each(function() {
+            selectedApplicationTypes.push($(this).val());
+        });
         
         var currentApplications = getCurrentApplications();
         
-        // Count applications per department for current filter
-        var departmentCounts = {};
-        currentApplications.forEach(function(app) {
-            var dept = app.current_dept || 'Unassigned';
-            departmentCounts[dept] = (departmentCounts[dept] || 0) + 1;
-        });
-        
-        // Create list of available departments based on data
-        var availableDepartments = [];
-        
-        // If we have departments data from API, use it
-        if (departmentsData.length > 0) {
-            availableDepartments = departmentsData.filter(function(dept) {
-                return departmentCounts[dept.department_name] > 0;
-            });
-        } else {
-            // Otherwise, create from application data
-            Object.keys(departmentCounts).forEach(function(deptName) {
-                availableDepartments.push({
-                    department_id: deptName.toLowerCase().replace(/\s+/g, '-'),
-                    department_name: deptName
-                });
-            });
-        }
-        
-        // Sort alphabetically
-        availableDepartments.sort(function(a, b) {
-            return a.department_name.localeCompare(b.department_name);
-        });
-        
-        // Hide department filter if no departments available
-        var $departmentFilter = $('.filter-container fieldset:has(.department-list)');
-        if (availableDepartments.length === 0) {
-            $departmentFilter.hide();
-            return;
-        } else {
-            $departmentFilter.show();
-        }
-        
-        availableDepartments.forEach(function(dept) {
-            var deptName = dept.department_name;
-            var deptCount = departmentCounts[deptName] || 0;
-            var deptId = dept.department_id || deptName.toLowerCase().replace(/\s+/g, '-');
+        return currentApplications.filter(function(item) {
+            // Prisoner name/number search
+            if (prisonerSearchTerm) {
+                var nameMatch = item.prisoner_name && item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
+                var idMatch = item.prisoner_number && item.prisoner_number.toLowerCase().includes(prisonerSearchTerm);
+                if (!nameMatch && !idMatch) {
+                    return false;
+                }
+            }
             
-            var html = '<div class="govuk-checkboxes__item department-item">';
-            html += '<input class="govuk-checkboxes__input" id="dept-' + deptId + '" name="department" type="checkbox" value="' + deptName + '">';
-            html += '<label class="govuk-label govuk-checkboxes__label" for="dept-' + deptId + '">';
-            html += deptName + ' (' + deptCount + ')';
-            html += '</label>';
-            html += '</div>';
+            // First night filter
+            if (firstNightOnly && !isFirstNightLocation(item.priority)) {
+                return false;
+            }
             
-            $departmentList.append(html);
+            return true;
         });
     }
     
-    function populateApplicationTypes() {
-        var $applicationTypeList = $('.filter-container .application-type-list');
-        if (!$applicationTypeList.length) return;
+    function getFilteredApplicationsForDepartments() {
+        var prisonerSearchTerm = $('.filter-container .prisoner-search').val().toLowerCase().trim();
+        var selectedApplicationTypes = [];
+        var firstNightOnly = $('.filter-container #first-night').is(':checked');
         
-        $applicationTypeList.empty();
+        $('.filter-container input[name="application-type"]:checked').each(function() {
+            selectedApplicationTypes.push($(this).val());
+        });
         
         var currentApplications = getCurrentApplications();
         
-        // Count applications per type for current filter
-        var typeCounts = {};
-        currentApplications.forEach(function(app) {
-            var appType = app.app_type;
-            if (appType) {
-                typeCounts[appType] = (typeCounts[appType] || 0) + 1;
+        return currentApplications.filter(function(item) {
+            // Prisoner name/number search
+            if (prisonerSearchTerm) {
+                var nameMatch = item.prisoner_name && item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
+                var idMatch = item.prisoner_number && item.prisoner_number.toLowerCase().includes(prisonerSearchTerm);
+                if (!nameMatch && !idMatch) {
+                    return false;
+                }
             }
+            
+            // First night filter
+            if (firstNightOnly && !isFirstNightLocation(item.priority)) {
+                return false;
+            }
+            
+            // Application type filter (when populating departments)
+            if (selectedApplicationTypes.length > 0 && !selectedApplicationTypes.includes(item.app_type)) {
+                return false;
+            }
+            
+            return true;
+        });
+    }
+    
+    function getFilteredApplicationsForApplicationTypes() {
+        var prisonerSearchTerm = $('.filter-container .prisoner-search').val().toLowerCase().trim();
+        var selectedDepartments = [];
+        var firstNightOnly = $('.filter-container #first-night').is(':checked');
+        
+        $('.filter-container input[name="department"]:checked').each(function() {
+            selectedDepartments.push($(this).val());
         });
         
-        // Create a set of unique application types that have applications
-        var availableTypes = Object.keys(typeCounts).sort();
+        var currentApplications = getCurrentApplications();
         
-        // Hide application type filter if no types available
-        var $applicationTypeFilter = $('.filter-container fieldset:has(.application-type-list)');
-        if (availableTypes.length === 0) {
-            $applicationTypeFilter.hide();
-            return;
-        } else {
-            $applicationTypeFilter.show();
-        }
-        
-        availableTypes.forEach(function(appType, index) {
-            var appTypeCount = typeCounts[appType] || 0;
-            var appTypeId = 'app-type-' + index;
+        return currentApplications.filter(function(item) {
+            // Prisoner name/number search
+            if (prisonerSearchTerm) {
+                var nameMatch = item.prisoner_name && item.prisoner_name.toLowerCase().includes(prisonerSearchTerm);
+                var idMatch = item.prisoner_number && item.prisoner_number.toLowerCase().includes(prisonerSearchTerm);
+                if (!nameMatch && !idMatch) {
+                    return false;
+                }
+            }
             
-            var html = '<div class="govuk-checkboxes__item application-type-item">';
-            html += '<input class="govuk-checkboxes__input" id="' + appTypeId + '" name="application-type" type="checkbox" value="' + appType + '">';
-            html += '<label class="govuk-label govuk-checkboxes__label" for="' + appTypeId + '">';
-            html += appType + ' (' + appTypeCount + ')';
-            html += '</label>';
-            html += '</div>';
+            // First night filter
+            if (firstNightOnly && !isFirstNightLocation(item.priority)) {
+                return false;
+            }
             
-            $applicationTypeList.append(html);
+            // Department filter (when populating application types)
+            if (selectedDepartments.length > 0) {
+                var itemDept = item.current_dept || 'Unassigned';
+                if (!selectedDepartments.includes(itemDept)) {
+                    return false;
+                }
+            }
+            
+            return true;
         });
+    }
+    
+    function restoreSelectedValues(filterType) {
+        // This function has been removed - selections are now handled inline
+        // to avoid restoring selections that shouldn't exist after cross-filtering
+    }
+    
+    function saveSelectedValues() {
+        // This function has been removed - selections are now handled inline
+        // to avoid conflicts with cross-filtering behavior
     }
     
     function initializeFilters() {
@@ -329,26 +522,7 @@ $(document).ready(function() {
         var $applyButtons = $container.find('.apply-filters');
         var $clearButton = $container.find('.clear-filters');
         
-        // Status radio button change handler with GOV.UK conditional reveal
-        $container.on('change', 'input[name="status"]', function() {
-            var selectedValue = $(this).val();
-            var $conditionalReveal = $('#conditional-closed');
-            
-            // Show/hide conditional reveal for closed status
-            if (selectedValue === 'closed') {
-                $conditionalReveal.removeClass('govuk-radios__conditional--hidden');
-                $conditionalReveal.attr('aria-hidden', 'false');
-            } else {
-                $conditionalReveal.addClass('govuk-radios__conditional--hidden');
-                $conditionalReveal.attr('aria-hidden', 'true');
-                // Uncheck closed sub-options when switching away from closed
-                $('#status-approved, #status-declined').prop('checked', false);
-            }
-            
-            // Don't refresh department and application type filters automatically
-            // They will be refreshed when apply button is clicked
-        });
-        
+      
         // Closed sub-status checkboxes
         $container.on('change', '#status-approved, #status-declined', function() {
             // Don't refresh department and application type filters automatically
@@ -407,14 +581,14 @@ $(document).ready(function() {
         $container.on('change', 'input[name="department"], input[name="application-type"], #first-night', function() {
             // Only update filters when apply button is pressed
         });
-        
-        // Prisoner search change handler - removed updateSelectedFilters() call
-        $prisonerSearch.on('input', function() {
-            // Only update filters when apply button is pressed
-        });
-        
+                
         // Apply filters buttons
         $applyButtons.on('click', function() {
+            // First, update the cross-filtering of available options
+            populateDepartments();
+            populateApplicationTypes();
+            
+            // Then update the filter tags and apply to table
             updateSelectedFilters();
             applyFilters();
         });

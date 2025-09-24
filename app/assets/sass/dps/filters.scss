@@ -94,6 +94,7 @@
 .filter-container {
 .govuk-form-group {
   border-bottom: 1px solid;
+  padding-bottom: 15px;
   .filter-search, .prisoner-search {
     background: url(/public/images/search-icon.svg) #fff no-repeat -5px -3px;
     padding-left: 30px;
@@ -103,11 +104,11 @@
   }
 }
 
-#filters--app-tyoe {
-.govuk-checkboxes {
-  max-height: 300px;
-  overflow-y: scroll;
-  padding-bottom: 5px;
-}
-}
+  #filters--app-type {
+    .govuk-checkboxes {
+      max-height: 300px;
+      overflow-y: scroll;
+      padding-bottom: 5px;
+    }
+  }
 }

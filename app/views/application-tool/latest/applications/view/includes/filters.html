@@ -23,21 +23,19 @@
             
             <!-- Filter options -->
             <div class="moj-filter__options">
-                <div class="govuk-form-group">
                 <button type="button" class="govuk-button apply-filters">
                     Apply filters
                 </button>
-                </div>
                 
                 <!-- Status filter with conditional reveal -->
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" aria-describedby="status-hint">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                            Status
+                            <h1 class="govuk-fieldset__heading">Status</h1>
                         </legend>
                         <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input govuk-radios__small" id="status-pending" name="status" type="radio" value="pending" checked>
+                                <input class="govuk-radios__input" id="status-pending" name="status" type="radio" value="pending" checked>
                                 <label class="govuk-label govuk-radios__label" for="status-pending">
                                     Pending
                                 </label>
@@ -75,7 +73,7 @@
                     </label>
                     <input class="govuk-input prisoner-search" id="prisoner-search" name="prisoner-search" type="text">
 
-                    <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-top-2">
+                    <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-top-3">
                         <div class="govuk-checkboxes__item priority-item">
                             <input class="govuk-checkboxes__input" id="first-night" name="priority" type="checkbox" value="first-night">
                             <label class="govuk-label govuk-checkboxes__label" for="first-night">
@@ -89,25 +87,21 @@
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset" aria-describedby="department-hint">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                            Department
+                            <h1 class="govuk-fieldset__heading">Department</h1>
                         </legend>
-                        <input class="govuk-input filter-search department-search" type="text">
                         <div class="govuk-checkboxes govuk-checkboxes--small department-list">
                             <!-- Departments will be populated by JavaScript -->
-                        </div>
-                        <div class="no-department-results" style="display: none;">
-                            No departments found matching your search.
                         </div>
                     </fieldset>
                 </div>
                 
                 <!-- Application type checkboxes -->
-                <div id="filters--app-tyoe" class="govuk-form-group govuk-!-margin-bottom-5">
+                <div id="filters--app-type" class="govuk-form-group govuk-!-margin-bottom-5">
                     <fieldset class="govuk-fieldset" aria-describedby="application-type-hint">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                            Application type
+                            <h1 class="govuk-fieldset__heading">Application type</h1>
                         </legend>
-                        <input class="govuk-input filter-search application-type-search" type="text">
+                        <input class="govuk-input application-type-search govuk-!-margin-bottom-3" type="text">
                         <div class="govuk-checkboxes govuk-checkboxes--small application-type-list">
                             <!-- Application types will be populated by JavaScript -->
                         </div>
@@ -117,12 +111,9 @@
                     </fieldset>
                 </div>
 
-                <div class="govuk-form-group">
-                <button type="button" class="govuk-button apply-filters">
+                <button type="button" class="govuk-button apply-filters govuk-!-margin-bottom-0">
                     Apply filters
                 </button>
-                </div>
-                
             </div>
         </div>
     </div>
