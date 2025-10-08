@@ -9,6 +9,14 @@
       {
         "app_id": "app_0102",
         "app_type": "Make a general chaplaincy enquiry"
+      },
+      {
+        "app_id": "app_0103",
+        "app_type": "Request to visit dying relative "
+      },
+      {
+        "app_id": "app_0104",
+        "app_type": "Request transfer on compassionate grounds  "
       }
     ]
   },
@@ -54,7 +62,7 @@
     "apps": [
       {
         "app_id": "app_0301",
-        "app_type": "Make a general governor\u202fenquiry"
+        "app_type": "Make a general governor enquiry"
       }
     ]
   },
@@ -155,10 +163,14 @@
       },
       {
         "app_id": "app_0802",
-        "app_type": "Visit the library"
+        "app_type": "Order from the library "
       },
       {
         "app_id": "app_0803",
+        "app_type": "Visit the library"
+      },
+      {
+        "app_id": "app_0804",
         "app_type": "Make a general library enquiry"
       }
     ]
@@ -172,50 +184,38 @@
       },
       {
         "app_id": "app_0902",
-        "app_type": "Attend a legal clinic"
+        "app_type": "Query about equalities"
       },
       {
         "app_id": "app_0903",
-        "app_type": "Enquire about court"
+        "app_type": "Query about court "
       },
       {
         "app_id": "app_0904",
-        "app_type": "Enquire about equalities"
+        "app_type": "Query about prison transfers"
       },
       {
         "app_id": "app_0905",
-        "app_type": "Enquire about immigration enforcement"
+        "app_type": "Query about release date"
       },
       {
         "app_id": "app_0906",
-        "app_type": "Enquire about prison transfers"
-      },
-      {
-        "app_id": "app_0907",
-        "app_type": "Enquire about release date"
-      },
-      {
-        "app_id": "app_0908",
-        "app_type": "Update prisoner details, for example, date of birth, next of kin"
-      },
-      {
-        "app_id": "app_0909",
         "app_type": "Request to see case admin"
       },
       {
-        "app_id": "app_0910",
+        "app_id": "app_0907",
         "app_type": "Request to see an OMU worker"
       },
       {
-        "app_id": "app_0911",
+        "app_id": "app_0908",
         "app_type": "Request to see prison POM"
       },
       {
-        "app_id": "app_0912",
-        "app_type": "Request to see probation POM"
+        "app_id": "app_0909",
+        "app_type": "Request to see probation POM "
       },
       {
-        "app_id": "app_0913",
+        "app_id": "app_0910",
         "app_type": "Make a general OMU enquiry"
       }
     ]
@@ -237,7 +237,7 @@
       },
       {
         "app_id": "app_1004",
-        "app_type": "Add or remove a PIN phone contact"
+        "app_type": "Remove a PIN phone contact"
       },
       {
         "app_id": "app_1005",
@@ -282,6 +282,10 @@
         "app_type": "Request a facilities list"
       },
       {
+        "app_id": "app_1205",
+        "app_type": "Request a new mattress"
+      },
+      {
         "app_id": "app_1206",
         "app_type": "Request property from Branston"
       },
@@ -304,60 +308,19 @@
       },
       {
         "app_id": "app_1303",
-        "app_type": "Ask about Job Centre Plus"
-      },
-      {
-        "app_id": "app_1304",
-        "app_type": "Ask about Through the Gate or Stepping Stones"
-      },
-      {
-        "app_id": "app_1305",
         "app_type": "Ask about probation"
       },
       {
-        "app_id": "app_1306",
+        "app_id": "app_1304",
         "app_type": "Contact a resettlement practitioner"
       },
       {
-        "app_id": "app_1307",
+        "app_id": "app_1305",
         "app_type": "Open a bank account before release"
       },
       {
-        "app_id": "app_1308",
+        "app_id": "app_1306",
         "app_type": "Make a general resettlement query"
-      }
-    ]
-  },
-  "group_14": {
-    "name": "Residential",
-    "apps": [
-      {
-        "app_id": "app_1401",
-        "app_type": "Ask for a haircut"
-      },
-      {
-        "app_id": "app_1402",
-        "app_type": "Ask for a cell change"
-      },
-      {
-        "app_id": "app_1403",
-        "app_type": "Request about laundry"
-      },
-      {
-        "app_id": "app_1404",
-        "app_type": "Request about prison clothing or kit"
-      },
-      {
-        "app_id": "app_1405",
-        "app_type": "Request a new mattress"
-      },
-      {
-        "app_id": "app_1406",
-        "app_type": "Review of CSRA (cell-sharing risk assessment)"
-      },
-      {
-        "app_id": "app_1407",
-        "app_type": "Make a general residential query"
       }
     ]
   },
@@ -365,28 +328,45 @@
     "name": "Safety",
     "apps": [
       {
-        "app_id": "app_1501",
+        "app_id": "app_1401",
         "app_type": "Request for support"
       },
       {
-        "app_id": "app_1502",
+        "app_id": "app_1402",
         "app_type": "Help with debt"
       },
       {
-        "app_id": "app_1503",
+        "app_id": "app_1403",
+        "app_type": "Order a distraction pack"
+      },
+      {
+        "app_id": "app_1404",
         "app_type": "Help with bullying"
       },
       {
-        "app_id": "app_1504",
+        "app_id": "app_1405",
         "app_type": "Help with gang-related issues"
       },
       {
-        "app_id": "app_1505",
+        "app_id": "app_1406",
         "app_type": "Contact the violence reduction team"
       },
       {
-        "app_id": "app_1506",
+        "app_id": "app_1407",
         "app_type": "Make a general safety enquiry"
+      }
+    ]
+  },
+  "group_15": {
+    "name": "Transfers",
+    "apps": [
+      {
+        "app_id": "app_1501",
+        "app_type": "Inter-prison transfer"
+      },
+      {
+        "app_id": "app_1502",
+        "app_type": "Make a general transfer enquiry"
       }
     ]
   },
@@ -395,35 +375,19 @@
     "apps": [
       {
         "app_id": "app_1601",
-        "app_type": "Ask about catalogues"
+        "app_type": "Emergency canteen"
       },
       {
         "app_id": "app_1602",
-        "app_type": "Make a catalogue order"
+        "app_type": "Canteen query"
       },
       {
         "app_id": "app_1603",
-        "app_type": "Request canteen refund"
+        "app_type": "Catalogue order"
       },
       {
         "app_id": "app_1604",
-        "app_type": "Request emergency canteen"
-      },
-      {
-        "app_id": "app_1605",
-        "app_type": "Request emergency vapes"
-      },
-      {
-        "app_id": "app_1606",
-        "app_type": "Return a catalogue order"
-      },
-      {
-        "app_id": "app_1607",
-        "app_type": "Suggest a canteen item"
-      },
-      {
-        "app_id": "app_1608",
-        "app_type": "Make a general enquiry about shopping or canteen"
+        "app_type": "Catalogue order return"
       }
     ]
   },
@@ -440,7 +404,7 @@
       },
       {
         "app_id": "app_1703",
-        "app_type": "Apply for a video visit"
+        "app_type": "Apply for a video call"
       },
       {
         "app_id": "app_1704",
@@ -448,7 +412,7 @@
       },
       {
         "app_id": "app_1705",
-        "app_type": "Swap VOs for PIN phone credit"
+        "app_type": "Swap VOs for phone credit"
       },
       {
         "app_id": "app_1706",

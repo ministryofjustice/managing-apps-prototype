@@ -176,6 +176,20 @@
                 {{ app.iep_status }}
               </dd>
             </div>
+          {% if app.app_type == "Add a social PIN phone contact"  %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                First night centre
+              </dt>
+              <dd class="govuk-summary-list__value">
+              {% if app.priority == "fnc"  %}
+                Yes
+              {% else %}
+                No
+              {% endif %}
+            </dd>
+            </div>
+          {% endif %}
           </dl>
 
 

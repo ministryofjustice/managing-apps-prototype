@@ -100,33 +100,28 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
+                  Actioned by
+                </dt>
+                <dd class="govuk-summary-list__value">
+                J Smith
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
                   Date
                 </dt>
                 <dd class="govuk-summary-list__value">
                   <p class="govuk-body">{{ 0 | getDate }}</p>
                 </dd>
               </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Prisoner
-                </dt>
-                <dd class="govuk-summary-list__value">
-                {% if (data['pin_05_prisonerName']) and (data['pin_05_prisonNumber']) %}
-                  {{ data['pin_05_prisonerName'] }} ({{ data['pin_05_prisonNumber'] }})
-                {% else %}
-                  Patel, Taj (AB1234C)
-                {% endif %}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Location
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  C-2-013
-                </dd>
-              </div>
             </dl>
+            <div class="moj-button-action">
+              {% if (data['actionRespond']) or (app.decision == "Approved") or (app.decision == "Declined") %}
+              <a href="./reply" target="_blank" class="govuk-button">
+                Print reply
+              </a>
+              {% endif %}
+            </div>
           </div>
 
           {% else %}
