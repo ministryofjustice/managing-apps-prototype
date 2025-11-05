@@ -95,45 +95,54 @@ $(document).ready(function() {
     }
     
     function getCurrentApplications() {
-        var selectedStatus = $('input[name="status"]:checked').val();
+        var pendingSelected = $('#status-pending').is(':checked');
+        var closedSelected = $('#status-closed').is(':checked');
         var includeApproved = $('#status-approved').is(':checked');
         var includeDeclined = $('#status-declined').is(':checked');
+        
+        // If neither or both are selected, show all applications
+        if ((!pendingSelected && !closedSelected) || (pendingSelected && closedSelected)) {
+            return allApplicationsData;
+        }
         
         return allApplicationsData.filter(function(app) {
             var status = app.status ? app.status.toLowerCase() : 'pending';
             var decision = app.decision ? app.decision.toLowerCase() : '';
             
-            if (selectedStatus === 'pending') {
-                return status === 'pending' || !app.status;
-            } else if (selectedStatus === 'closed') {
-                // First check if the application is closed
+            var matchesPending = false;
+            var matchesClosed = false;
+            
+            // Check if matches pending
+            if (pendingSelected) {
+                matchesPending = (status === 'pending' || !app.status);
+            }
+            
+            // Check if matches closed
+            if (closedSelected) {
                 var isClosed = status === 'closed';
                 
-                if (!isClosed) {
-                    return false;
-                }
-                
-                // If no specific decision filters are selected, show all closed applications
-                if (!includeApproved && !includeDeclined) {
-                    return true;
-                }
-                
-                // If both are selected, show all closed applications
-                if (includeApproved && includeDeclined) {
-                    return true;
-                }
-                
-                // If only approved is selected, show only approved decisions
-                if (includeApproved && !includeDeclined) {
-                    return decision === 'approved';
-                }
-                
-                // If only declined is selected, show only declined decisions
-                if (includeDeclined && !includeApproved) {
-                    return decision === 'declined';
+                if (isClosed) {
+                    // If no specific decision filters are selected, show all closed applications
+                    if (!includeApproved && !includeDeclined) {
+                        matchesClosed = true;
+                    }
+                    // If both are selected, show all closed applications
+                    else if (includeApproved && includeDeclined) {
+                        matchesClosed = true;
+                    }
+                    // If only approved is selected, show only approved decisions
+                    else if (includeApproved && !includeDeclined) {
+                        matchesClosed = (decision === 'approved');
+                    }
+                    // If only declined is selected, show only declined decisions
+                    else if (includeDeclined && !includeApproved) {
+                        matchesClosed = (decision === 'declined');
+                    }
                 }
             }
-            return false;
+            
+            // Return true if matches any selected status
+            return matchesPending || matchesClosed;
         });
     }
     
@@ -195,21 +204,23 @@ $(document).ready(function() {
     
     function initializeInterface() {
         // Ensure pending is selected by default
-        if (!$('input[name="status"]:checked').length) {
+        if (!$('#status-pending').is(':checked') && !$('#status-closed').is(':checked')) {
             $('#status-pending').prop('checked', true);
         }
         
         // Initialize filters and display
         populateDepartments();
         populateApplicationTypes();
-        initializeFilters();
         
         // Initial load with current applications
         var currentApplications = getCurrentApplications();
         displayResults(currentApplications);
         
-        // Don't show selected filters until apply button is pressed
-        // updateSelectedFilters(); - removed this line
+        // Initialize filters (which includes event handlers)
+        initializeFilters();
+        
+        // Show selected filters on page load (including default pending filter)
+        updateSelectedFilters();
     }
     
 function populateDepartments() {
@@ -512,6 +523,119 @@ function populateApplicationTypes() {
         // to avoid conflicts with cross-filtering behavior
     }
     
+    function updateSelectedFilters() {
+        var $container = $('.filter-container');
+        var $prisonerSearch = $container.find('.prisoner-search');
+        var $selectedFilters = $container.find('.selected-filters');
+        var $selectedTags = $container.find('.selected-tags');
+        
+        var selectedFilters = [];
+        
+        // Add prisoner search if present
+        var prisonerSearchValue = $prisonerSearch.val().trim();
+        if (prisonerSearchValue) {
+            selectedFilters.push({
+                label: 'Prisoner: ' + prisonerSearchValue,
+                value: prisonerSearchValue,
+                type: 'prisoner'
+            });
+        }
+        
+        // Add status filters only if they are checked
+        if ($('#status-pending').is(':checked')) {
+            selectedFilters.push({
+                label: 'Pending',
+                value: 'pending',
+                fieldset: 'Status',
+                type: 'status'
+            });
+        }
+        if ($('#status-closed').is(':checked')) {
+            var closedLabel = 'Closed';
+            var subStatuses = [];
+            if ($('#status-approved').is(':checked')) subStatuses.push('Approved');
+            if ($('#status-declined').is(':checked')) subStatuses.push('Declined');
+            
+            if (subStatuses.length > 0) {
+                closedLabel += ' (' + subStatuses.join(', ') + ')';
+            }
+            
+            selectedFilters.push({
+                label: closedLabel,
+                value: 'closed',
+                fieldset: 'Status',
+                type: 'status'
+            });
+        }
+        
+        // Add first night if selected
+        if ($('#first-night').is(':checked')) {
+            selectedFilters.push({
+                label: 'First night centre or early days centre',
+                value: 'first-night',
+                fieldset: 'Priority',
+                type: 'checkbox'
+            });
+        }
+        
+        // Add selected checkboxes
+        $container.find('input[name="department"]:checked, input[name="application-type"]:checked').each(function() {
+            var label = $(this).next('label').text().trim();
+            var value = $(this).val();
+            var fieldset = $(this).attr('name') === 'department' ? 'Department' : 'Application type';
+            
+            selectedFilters.push({
+                label: label,
+                value: value,
+                fieldset: fieldset,
+                type: 'checkbox'
+            });
+        });
+        
+        // Update the selected filters display using MoJ pattern
+        if (selectedFilters.length > 0) {
+            var tagsHtml = '';
+            var groupedFilters = {};
+            
+            // Group filters by fieldset
+            selectedFilters.forEach(function(filter) {
+                var fieldset = filter.fieldset || (filter.type === 'prisoner' ? 'Search' : 'Other');
+                if (!groupedFilters[fieldset]) {
+                    groupedFilters[fieldset] = [];
+                }
+                groupedFilters[fieldset].push(filter);
+            });
+            
+            // Build HTML for each group
+            Object.keys(groupedFilters).forEach(function(fieldset) {
+                tagsHtml += '<h3 class="govuk-heading-s govuk-!-margin-bottom-0">' + fieldset + '</h3>';
+                tagsHtml += '<ul class="moj-filter-tags">';
+                
+                groupedFilters[fieldset].forEach(function(filter) {
+                    tagsHtml += '<li><a class="moj-filter__tag" href="#" data-value="' + filter.value + '" data-type="' + filter.type + '">';
+                    tagsHtml += '<span class="govuk-visually-hidden">Remove this filter</span> ';
+                    
+                    if (filter.type === 'prisoner') {
+                        tagsHtml += filter.label;
+                    } else if (filter.type === 'checkbox') {
+                        // Remove count from label for display
+                        tagsHtml += filter.label.split('(')[0].trim();
+                    } else {
+                        tagsHtml += filter.label;
+                    }
+                    tagsHtml += '</a></li>';
+                });
+                
+                tagsHtml += '</ul>';
+            });
+            
+            $selectedTags.html(tagsHtml);
+            $selectedFilters.show();
+        } else {
+            $selectedFilters.hide();
+        }
+    }
+    
     function initializeFilters() {
         var $container = $('.filter-container');
         var $prisonerSearch = $container.find('.prisoner-search');
@@ -522,6 +646,19 @@ function populateApplicationTypes() {
         var $applyButtons = $container.find('.apply-filters');
         var $clearButton = $container.find('.clear-filters');
         
+        // Status checkbox change handlers
+        $container.on('change', '#status-pending, #status-closed', function() {
+            // Show/hide conditional checkboxes when closed is checked
+            if ($('#status-closed').is(':checked')) {
+                $('#conditional-closed').removeClass('govuk-checkboxes__conditional--hidden');
+                $('#conditional-closed').attr('aria-hidden', 'false');
+            } else {
+                $('#conditional-closed').addClass('govuk-checkboxes__conditional--hidden');
+                $('#conditional-closed').attr('aria-hidden', 'true');
+                // Uncheck the sub-checkboxes when closed is unchecked
+                $('#status-approved, #status-declined').prop('checked', false);
+            }
+        });
       
         // Closed sub-status checkboxes
         $container.on('change', '#status-approved, #status-declined', function() {
@@ -597,10 +734,9 @@ function populateApplicationTypes() {
         $clearButton.on('click', function(e) {
             e.preventDefault();
             
-            // Reset to defaults
+            // Clear all checkboxes (including status)
             $container.find('input[type="checkbox"]').prop('checked', false);
-            $('#status-pending').prop('checked', true);
-            $('#conditional-closed').addClass('govuk-radios__conditional--hidden');
+            $('#conditional-closed').addClass('govuk-checkboxes__conditional--hidden');
             $('#conditional-closed').attr('aria-hidden', 'true');
             $prisonerSearch.val('');
             $departmentSearch.val('');
@@ -626,11 +762,14 @@ function populateApplicationTypes() {
             if (type === 'prisoner') {
                 $prisonerSearch.val('');
             } else if (type === 'status') {
-                // Reset to pending when removing status filter
-                $('#status-pending').prop('checked', true);
-                $('#conditional-closed').addClass('govuk-radios__conditional--hidden');
-                $('#conditional-closed').attr('aria-hidden', 'true');
-                $('#status-approved, #status-declined').prop('checked', false);
+                // Uncheck the specific status
+                $container.find('input[value="' + value + '"]').prop('checked', false);
+                // If unchecking closed, hide conditional section
+                if (value === 'closed') {
+                    $('#conditional-closed').addClass('govuk-checkboxes__conditional--hidden');
+                    $('#conditional-closed').attr('aria-hidden', 'true');
+                    $('#status-approved, #status-declined').prop('checked', false);
+                }
             } else if (type === 'checkbox') {
                 $container.find('input[value="' + value + '"]').prop('checked', false);
             }
@@ -689,109 +828,6 @@ function populateApplicationTypes() {
             });
             
             displayResults(filteredData);
-        }
-        
-        function updateSelectedFilters() {
-            var selectedFilters = [];
-            
-            // Add prisoner search if present
-            var prisonerSearchValue = $prisonerSearch.val().trim();
-            if (prisonerSearchValue) {
-                selectedFilters.push({
-                    label: 'Prisoner: ' + prisonerSearchValue,
-                    value: prisonerSearchValue,
-                    type: 'prisoner'
-                });
-            }
-            
-            // Add status filter (always show current selection)
-            var selectedStatus = $('input[name="status"]:checked').val() || 'pending';
-            var statusLabel = selectedStatus.charAt(0).toUpperCase() + selectedStatus.slice(1);
-            
-            // Add sub-status for closed
-            if (selectedStatus === 'closed') {
-                var subStatuses = [];
-                if ($('#status-approved').is(':checked')) subStatuses.push('Approved');
-                if ($('#status-declined').is(':checked')) subStatuses.push('Declined');
-                
-                if (subStatuses.length > 0) {
-                    statusLabel += ' (' + subStatuses.join(', ') + ')';
-                }
-            }
-            
-            selectedFilters.push({
-                label: statusLabel,
-                value: selectedStatus,
-                fieldset: 'Status',
-                type: 'status'
-            });
-            
-            // Add first night if selected
-            if ($('#first-night').is(':checked')) {
-                selectedFilters.push({
-                    label: 'First night centre or early days centre',
-                    value: 'first-night',
-                    fieldset: 'Priority',
-                    type: 'checkbox'
-                });
-            }
-            
-            // Add selected checkboxes
-            $container.find('input[name="department"]:checked, input[name="application-type"]:checked').each(function() {
-                var label = $(this).next('label').text().trim();
-                var value = $(this).val();
-                var fieldset = $(this).attr('name') === 'department' ? 'Department' : 'Application type';
-                
-                selectedFilters.push({
-                    label: label,
-                    value: value,
-                    fieldset: fieldset,
-                    type: 'checkbox'
-                });
-            });
-            
-            // Update the selected filters display using MoJ pattern
-            if (selectedFilters.length > 0) {
-                var tagsHtml = '';
-                var groupedFilters = {};
-                
-                // Group filters by fieldset
-                selectedFilters.forEach(function(filter) {
-                    var fieldset = filter.fieldset || (filter.type === 'prisoner' ? 'Search' : 'Other');
-                    if (!groupedFilters[fieldset]) {
-                        groupedFilters[fieldset] = [];
-                    }
-                    groupedFilters[fieldset].push(filter);
-                });
-                
-                // Build HTML for each group
-                Object.keys(groupedFilters).forEach(function(fieldset) {
-                    tagsHtml += '<h3 class="govuk-heading-s govuk-!-margin-bottom-0">' + fieldset + '</h3>';
-                    tagsHtml += '<ul class="moj-filter-tags">';
-                    
-                    groupedFilters[fieldset].forEach(function(filter) {
-                        tagsHtml += '<li><a class="moj-filter__tag" href="#" data-value="' + filter.value + '" data-type="' + filter.type + '">';
-                        tagsHtml += '<span class="govuk-visually-hidden">Remove this filter</span> ';
-                        
-                        if (filter.type === 'prisoner') {
-                            tagsHtml += filter.label;
-                        } else if (filter.type === 'checkbox') {
-                            // Remove count from label for display
-                            tagsHtml += filter.label.split('(')[0].trim();
-                        } else {
-                            tagsHtml += filter.label;
-                        }
-                        tagsHtml += '</a></li>';
-                    });
-                    
-                    tagsHtml += '</ul>';
-                });
-                
-                $selectedTags.html(tagsHtml);
-                $selectedFilters.show();
-            } else {
-                $selectedFilters.hide();
-            }
         }
     }
 });
